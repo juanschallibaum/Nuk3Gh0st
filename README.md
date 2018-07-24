@@ -2,7 +2,7 @@
 
 # Nuk3 Gh0st
 
-Universal LKM Linux kernel rootkit, designed to work in any kernel version and both architectures (x86 and x64).
+Universal Linux LKM rootkit, designed to work in any kernel version and both architectures (x86 and x64).
 
 ## Functionality
 
