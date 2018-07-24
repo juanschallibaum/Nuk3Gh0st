@@ -38,6 +38,7 @@ The rootkit can do the following:
 | Linux Mint 17               |  3.13.0-37-generic      |   x86_64   |
 | Wifislax                    |  3.12.36                |   i686     |
 | Fedora 19                   |  3.9.5-301.fc19         |   x86_64   |
+| Ubuntu 12.10                |  3.5.0-17-generic       |   i686     |
 | Lihuen 5.10 (Debian based)  |  3.2.0-4-amd64          |   x86_64   |
 | Ubuntu 10.04.4 LTS          |  2.6.32-38-generic-pae  |   i686     |
 
