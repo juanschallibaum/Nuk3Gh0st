@@ -23,7 +23,7 @@ startup:
 clean-startup:
 	systemctl disable nuk3gh0st.service
 	service nuk3gh0st stop
-    	semanage permissive -d insmod_t
+	semanage permissive -d insmod_t
 	rm /usr/lib/nuk3gh0st.startup
 	rm /lib/systemd/system/nuk3gh0st.service
 clean:
