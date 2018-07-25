@@ -3,6 +3,7 @@
 green='\e[0;32m'
 red='\e[0;31m'
 purple='\e[0;35m'
+cyan='\e[0;36m'	
 endColor='\e[0m'
 item=${green}[*]${endColor}
 
@@ -32,7 +33,9 @@ if [ -f /usr/sbin/setenforce ]; then
 	
 	echo -e "${item} Unloading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: rmmod rootkit.ko${endColor}"
+	echo -n -e "${cyan}"
 	rmmod rootkit.ko
+	echo -n -e "${endColor}"
 	echo ""
 	
 	echo -e "${item} Reenabling SELINUX"
@@ -44,7 +47,9 @@ else
 	echo -e "${item} SELINUX is disabled"
 	echo -e "${item} Unloading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: rmmod rootkit.ko${endColor}"
+	echo -n -e "${cyan}"
 	rmmod rootkit.ko
+	echo -n -e "${endColor}"
 	echo ""
 	
 fi
