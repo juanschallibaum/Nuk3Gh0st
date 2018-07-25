@@ -79,7 +79,7 @@ load-nuk3gh0st
 Use rootkit:
 
 ```sh
-   nuk3gh0st --help
+nuk3gh0st --help
 
    $$    $$            $$         $$$$$$        
    $$$   $$            $$     $$ $$    $$       
