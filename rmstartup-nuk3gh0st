@@ -13,9 +13,11 @@ echo -e "${green}##################################${endColor}"
 echo ""
 echo -e "${item}Stopping nuk3gh0st.service"
 echo -e "   ${purple}cmd: service nuk3gh0st stop${endColor}"
+echo ""
 service nuk3gh0st stop
 echo -e "${item}Disabling nuk3gh0st.service"
 echo -e "   ${purple}cmd: systemctl disable nuk3gh0st.service${endColor}"
+echo ""
 systemctl disable nuk3gh0st.service
 echo -e "${item}Checking if SELINUX is enabled"
 if [ -f /usr/sbin/semanage ]; then
@@ -23,17 +25,20 @@ if [ -f /usr/sbin/semanage ]; then
 	#semanage permissive -d insmod_t
 	echo -e "${item}Disabling SELINUX temporarily"
 	echo -e "   ${purple}cmd: setenforce 0${endColor}"
+	echo ""
 	setenforce 0
 	echo -e "${item}Removing nuk3gh0st.service"
 	echo -e "   ${purple}cmd: rm /lib/systemd/system/nuk3gh0st.service${endColor}"
+	echo ""
 	rm /lib/systemd/system/nuk3gh0st.service
 	echo -e "${item}Reenabling SELINUX"
 	echo -e "   ${purple}cmd: setenforce 1${endColor}"
+	echo ""
 	setenforce 1
 else
 	echo -e "${item}SELINUX is disabled"
 	echo -e "${item}Removing nuk3gh0st.service"
 	echo -e "   ${purple}cmd: rm /lib/systemd/system/nuk3gh0st.service${endColor}"
+	echo ""
 	rm /lib/systemd/system/nuk3gh0st.service
 fi
-echo ""
