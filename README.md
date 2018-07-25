@@ -62,15 +62,10 @@ yum install kernel-headers-$(uname -r)
 yum install build-essential
 ```
 
-### Install
+## Install
 ```sh
 make
 make install
-```
-
-### Uninstall
-```sh
-make uninstall
 ```
 
 ## Use
@@ -144,6 +139,11 @@ Disabling rootkit at system startup:
 
 ```sh
 rmstartup-nuk3gh0st
+```
+
+## Uninstall
+```sh
+make uninstall
 ```
 
 ## License
