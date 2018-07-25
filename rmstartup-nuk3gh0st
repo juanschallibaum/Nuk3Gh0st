@@ -28,3 +28,4 @@ echo -e "${item}SELINUX is disabled"
 echo -e "${item}Removing nuk3gh0st.service"
 echo -e "   ${purple}cmd: rm /lib/systemd/system/nuk3gh0st.service${endColor}"
 rm /lib/systemd/system/nuk3gh0st.service
+echo ""
