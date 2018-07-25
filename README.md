@@ -42,7 +42,7 @@ The rootkit can do the following:
 | Lihuen 5.10 (Debian based)  |  3.2.0-4-amd64          |   x86_64   |
 | Ubuntu 10.04.4 LTS          |  2.6.32-38-generic-pae  |   i686     |
 
-In Wifislax x86 with 3.12.36, doesn't work file hidding functionality, but pid hidding works well.
+In Wifislax x86 with 3.12.36, doesn't work file hidding functionality, but pid and port hidding works well.
 
 ## Build
 
@@ -70,7 +70,7 @@ insmod rootkit.ko
 Use rootkit:
 
 ```sh
-   $ ./client --help
+   $ ./nuk3gh0st --help
 
    $$    $$            $$         $$$$$$        
    $$$   $$            $$     $$ $$    $$       
@@ -90,7 +90,7 @@ Use rootkit:
 
                    By Juan Schällibaum          
 
-   Usage: ./client [OPTION]...
+   Usage: ./nuk3gh0st [OPTION]...
 
    Options:
      --root-shell                 Grants you root shell access.
@@ -117,8 +117,8 @@ Use rootkit:
 Unload rootkit:
 
 ```sh
-./client --unhide
-./client --unprotect
+./nuk3gh0st --unhide
+./nuk3gh0st --unprotect
 rmmod rootkit.ko
 ```
 
