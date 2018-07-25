@@ -63,14 +63,12 @@ yum install build-essential
 ```
 
 ### Install
-
 ```sh
 make
 make install
 ```
 
 ### Uninstall
-
 ```sh
 make uninstall
 ```
