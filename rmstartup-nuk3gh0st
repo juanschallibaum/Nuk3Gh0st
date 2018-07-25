@@ -1,4 +1,8 @@
 #!/bin/bash
+echo "##################################"
+echo "# Disabling nuk3gh0st at startup #"
+echo "##################################"
+echo ""
 echo "Stopping nuk3gh0st.service"
 echo "cmd: service nuk3gh0st stop"
 service nuk3gh0st stop
