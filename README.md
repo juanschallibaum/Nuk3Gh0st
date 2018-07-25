@@ -130,6 +130,8 @@ Unload rootkit:
 unload-nuk3gh0st
 ```
 
+## Special functionality
+
 Enabling rootkit at system startup:
 
 ```sh
