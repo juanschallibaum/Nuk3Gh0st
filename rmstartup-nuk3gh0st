@@ -3,6 +3,7 @@
 green='\e[0;32m'
 red='\e[0;31m'
 purple='\e[0;35m'
+cyan='\e[0;36m'
 endColor='\e[0m'
 item=${green}[*]${endColor}
 
