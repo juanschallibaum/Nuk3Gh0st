@@ -79,7 +79,7 @@ load-nuk3gh0st
 Use rootkit:
 
 ```sh
-   $ ./nuk3gh0st --help
+   nuk3gh0st --help
 
    $$    $$            $$         $$$$$$        
    $$$   $$            $$     $$ $$    $$       
@@ -99,7 +99,7 @@ Use rootkit:
 
                    By Juan Schällibaum          
 
-   Usage: ./nuk3gh0st [OPTION]...
+   Usage: nuk3gh0st [OPTION]...
 
    Options:
      --root-shell                 Grants you root shell access.
