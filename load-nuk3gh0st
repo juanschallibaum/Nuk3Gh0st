@@ -27,5 +27,5 @@ if [ -f /usr/sbin/setenforce ]; then
 	setenforce 1
 else
 	bash /usr/share/nuk3gh0st/nuk3gh0st.startup
+	echo ""
 fi
-echo ""
