@@ -3,8 +3,9 @@
 green='\e[0;32m'
 red='\e[0;31m'
 purple='\e[0;35m'
+yellow='\e[0;33m'
 endColor='\e[0m'
-item=${green}[*]${endColor}
+item=${green}[*] ${endColor}
 
 echo ""
 echo -e "${green}#################################${endColor}"
