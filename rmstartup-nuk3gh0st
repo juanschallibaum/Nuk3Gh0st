@@ -1,13 +1,16 @@
 #!/bin/bash
-echo "systemctl disable nuk3gh0st.service"
-systemctl disable nuk3gh0st.service
-echo "service nuk3gh0st stop"
+echo "Stopping nuk3gh0st.service"
+echo "cmd: service nuk3gh0st stop"
 service nuk3gh0st stop
+echo "Disabling nuk3gh0st.service"
+echo "cmd: systemctl disable nuk3gh0st.service"
+systemctl disable nuk3gh0st.service
+echo "Checking if SELINUX is enabled"
 if [ -f /usr/sbin/semanage ]; then
-	echo "semanage permissive -d insmod_t"
+	echo "Disabling insmod permissive mode"
+	echo "cmd: semanage permissive -d insmod_t"
 	semanage permissive -d insmod_t
 fi
-echo "rm /usr/lib/nuk3gh0st.startup"
-rm /usr/lib/nuk3gh0st.startup
-echo "rm /lib/systemd/system/nuk3gh0st.service"
+echo "Removing nuk3gh0st.service"
+echo "cmd: rm /lib/systemd/system/nuk3gh0st.service"
 rm /lib/systemd/system/nuk3gh0st.service
