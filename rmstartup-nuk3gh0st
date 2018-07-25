@@ -7,10 +7,12 @@ echo "cmd: systemctl disable nuk3gh0st.service"
 systemctl disable nuk3gh0st.service
 echo "Checking if SELINUX is enabled"
 if [ -f /usr/sbin/semanage ]; then
+	echo "SELINUX is enabled"
 	echo "Disabling insmod permissive mode"
 	echo "cmd: semanage permissive -d insmod_t"
 	semanage permissive -d insmod_t
 fi
+echo "SELINUX is disabled"
 echo "Removing nuk3gh0st.service"
 echo "cmd: rm /lib/systemd/system/nuk3gh0st.service"
 rm /lib/systemd/system/nuk3gh0st.service
