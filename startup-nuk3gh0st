@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "systemctl disable nuk3gh0st.service"
 systemctl disable nuk3gh0st.service
 echo "service nuk3gh0st stop"
