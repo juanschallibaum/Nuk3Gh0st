@@ -44,20 +44,35 @@ The rootkit can do the following:
 
 In Wifislax x86 with 3.12.36, doesn't work file hidding functionality, but pid and port hidding works well.
 
-## Build
+## Pre requirements
 
 Install a compiler, Linux headers and all other things required for us to build the rootkit:
 
+### On Debian based
 ```sh
 apt-get update
+apt-get install kernel-headers-$(uname -r)
 apt-get install build-essential
 ```
 
-### Actual Building
+### On Red Hat based
+```sh
+yum update
+yum install kernel-headers-$(uname -r)
+yum install build-essential
+```
+
+### Install
 
 ```sh
 make
 make install
+```
+
+### Uninstall
+
+```sh
+make uninstall
 ```
 
 ## Use
