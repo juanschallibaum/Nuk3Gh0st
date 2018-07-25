@@ -81,24 +81,6 @@ Load rootkit:
 load-nuk3gh0st
 ```
 
-Unload rootkit:
-
-```sh
-unload-nuk3gh0st
-```
-
-Enabling rootkit at system startup:
-
-```sh
-startup-nuk3gh0st
-```
-
-Disabling rootkit at system startup:
-
-```sh
-rmstartup-nuk3gh0st
-```
-
 Use rootkit:
 
 ```sh
@@ -149,9 +131,19 @@ Use rootkit:
 Unload rootkit:
 
 ```sh
-./nuk3gh0st --unhide
-./nuk3gh0st --unprotect
-rmmod rootkit.ko
+unload-nuk3gh0st
+```
+
+Enabling rootkit at system startup:
+
+```sh
+startup-nuk3gh0st
+```
+
+Disabling rootkit at system startup:
+
+```sh
+rmstartup-nuk3gh0st
 ```
 
 ## License
