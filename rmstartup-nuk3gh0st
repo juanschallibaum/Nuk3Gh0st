@@ -33,7 +33,6 @@ if [ -f /usr/sbin/semanage ]; then
 	echo -e "   ${purple} cmd: systemctl disable nuk3gh0st.service${endColor}"
 	echo -n -e "${cyan}"
 	systemctl disable nuk3gh0st.service
-	sleep 5
 	echo -n -e "${endColor}"
 	echo ""
 	
@@ -49,7 +48,10 @@ if [ -f /usr/sbin/semanage ]; then
 	
 	echo -e "${item} Unloading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: rmmod rootkit.ko${endColor}"
+	echo -n -e "${cyan}"
 	rmmod rootkit.ko
+	echo -n -e "${endColor}"
+	echo ""
 	echo ""
 	
 	systemctl disable nuk3gh0st.service
@@ -86,7 +88,9 @@ else
 	
 	echo -e "${item} Unloading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: rmmod rootkit.ko${endColor}"
+	echo -n -e "${cyan}"
 	rmmod rootkit.ko
+	echo -n -e "${endColor}"
 	echo ""
 	
 fi
