@@ -6,6 +6,6 @@ all: rootkit client
 rootkit:
 	$(MAKE) -C $(KERNEL_DIR) SUBDIRS=$(PWD)
 client:
-	gcc -o client client.c --std=gnu99 -Wall -Wextra -pedantic
+	gcc -o nuk3gh0st nuk3gh0st.c --std=gnu99 -Wall -Wextra -pedantic
 clean:
-	rm -rf *.o *.ko *.symvers *.mod.* *.order
+	rm -rf *.o *.ko *.symvers *.mod.* *.order nuk3gh0st
