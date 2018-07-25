@@ -41,4 +41,3 @@ else
 	echo ""
 	rmmod rootkit.ko
 fi
-echo ""
