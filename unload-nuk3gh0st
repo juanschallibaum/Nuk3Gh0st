@@ -11,33 +11,40 @@ echo -e "${green}###################################${endColor}"
 echo -e "${green}# Unloading nuk3gh0st LKM rootkit #${endColor}"
 echo -e "${green}###################################${endColor}"
 echo ""
+
 echo -e "${item} Unhiding nuk3gh0st LKM rootkit (making visible with lsmod)"
 echo -e "   ${purple} cmd: nuk3gh0st --unhide${endColor}"
-echo ""
 nuk3gh0st --unhide
+echo ""
+
 echo -e "${item} Unprotecting nuk3ghost LKM rootkit"
 echo -e "   ${purple} cmd: nuk3gh0st --unprotect${endColor}"
-echo ""
 nuk3gh0st --unprotect
+echo ""
+
 echo -e "${item} Checking if SELINUX is enabled..."
 if [ -f /usr/sbin/setenforce ]; then
 	echo -e "${item} SELINUX is enabled"
 	echo -e "${item} Disabling SELINUX temporarily"
 	echo -e "   ${purple} cmd: setenforce 0${endColor}"
-	echo ""
 	setenforce 0
+	echo ""
+	
 	echo -e "${item} Unloading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: rmmod rootkit.ko${endColor}"
-	echo ""
 	rmmod rootkit.ko
+	echo ""
+	
 	echo -e "${item} Reenabling SELINUX"
 	echo -e "   ${purple} cmd: setenforce 1${endColor}"
-	echo ""
 	setenforce 1
+	echo ""
+	
 else
 	echo -e "${item} SELINUX is disabled"
 	echo -e "${item} Unloading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: rmmod rootkit.ko${endColor}"
-	echo ""
 	rmmod rootkit.ko
+	echo ""
+	
 fi
