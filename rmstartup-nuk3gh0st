@@ -2,6 +2,7 @@
 
 green='\e[0;32m'
 red='\e[0;31m'
+purple='\e[0;35m'
 endColor='\e[0m'
 item=${green}[*]${endColor}
 
@@ -11,19 +12,19 @@ echo -e "${green}# Disabling nuk3gh0st at startup #${endColor}"
 echo -e "${green}##################################${endColor}"
 echo ""
 echo -e "${item}Stopping nuk3gh0st.service"
-echo -e "${red}cmd: service nuk3gh0st stop${endColor}"
+echo -e "   ${purple}cmd: service nuk3gh0st stop${endColor}"
 service nuk3gh0st stop
 echo -e "${item}Disabling nuk3gh0st.service"
-echo -e "${red}cmd: systemctl disable nuk3gh0st.service${endColor}"
+echo -e "   ${purple}cmd: systemctl disable nuk3gh0st.service${endColor}"
 systemctl disable nuk3gh0st.service
 echo -e "${item}Checking if SELINUX is enabled"
 if [ -f /usr/sbin/semanage ]; then
 	echo -e "${item}SELINUX is enabled"
 	echo -e "${item}Disabling insmod permissive mode"
-	echo -e "${red}cmd: semanage permissive -d insmod_t${endColor}"
+	echo -e "   ${purple}cmd: semanage permissive -d insmod_t${endColor}"
 	semanage permissive -d insmod_t
 fi
 echo -e "${item}SELINUX is disabled"
 echo -e "${item}Removing nuk3gh0st.service"
-echo -e "${red}cmd: rm /lib/systemd/system/nuk3gh0st.service${endColor}"
+echo -e "   ${purple}cmd: rm /lib/systemd/system/nuk3gh0st.service${endColor}"
 rm /lib/systemd/system/nuk3gh0st.service
