@@ -37,6 +37,7 @@ if [ -f /usr/sbin/setenforce ]; then
 	rmmod rootkit.ko
 	sleep 3
 	echo -n -e "${endColor}"
+	echo ""
 	
 	echo -e "${item} Reenabling SELINUX"
 	echo -e "   ${purple} cmd: setenforce 1${endColor}"
@@ -51,5 +52,6 @@ else
 	rmmod rootkit.ko
 	sleep 3
 	echo -n -e "${endColor}"
+	echo ""
 	
 fi
