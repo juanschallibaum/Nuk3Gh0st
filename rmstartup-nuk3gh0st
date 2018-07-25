@@ -52,6 +52,7 @@ if [ -f /usr/sbin/semanage ]; then
 	rmmod rootkit.ko
 	sleep 3
 	echo -n -e "${endColor}"
+	echo ""
 	
 	systemctl disable nuk3gh0st.service
 	echo -e "${item} Reenabling SELINUX"
