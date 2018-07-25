@@ -1,7 +1,12 @@
+echo "systemctl disable nuk3gh0st.service"
 systemctl disable nuk3gh0st.service
+echo "service nuk3gh0st stop"
 service nuk3gh0st stop
 if [ -f /usr/sbin/semanage ]; then
+	echo "semanage permissive -d insmod_t"
 	semanage permissive -d insmod_t
 fi
+echo "rm /usr/lib/nuk3gh0st.startup"
 rm /usr/lib/nuk3gh0st.startup
+echo "rm /lib/systemd/system/nuk3gh0st.service"
 rm /lib/systemd/system/nuk3gh0st.service
