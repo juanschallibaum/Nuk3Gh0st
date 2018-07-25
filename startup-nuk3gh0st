@@ -29,3 +29,4 @@ systemctl enable nuk3gh0st.service
 echo -e "${item}Starting nuk3gh0st.service"
 echo -e "   ${purple}cmd: service nuk3gh0st start${endColor}"
 service nuk3gh0st start
+echo ""
