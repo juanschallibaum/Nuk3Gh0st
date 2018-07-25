@@ -21,7 +21,7 @@ echo -e "${item}Checking if SELINUX is enabled..."
 if [ -f /usr/sbin/setenforce ]; then
 	echo -e "${item}SELINUX is enabled"
 	echo -e "${item}Disabling SELINUX temporarily"
-	echo -e "   ${green}cmd: setenforce 0${endColor}"
+	echo -e "   ${purple}cmd: setenforce 0${endColor}"
 	setenforce 0
 	echo -e "${item}Unloading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple}cmd: rmmod rootkit.ko${endColor}"
