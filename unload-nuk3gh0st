@@ -50,6 +50,7 @@ else
 	echo -e "   ${purple} cmd: rmmod rootkit.ko${endColor}"
 	echo -n -e "${cyan}"
 	rmmod rootkit.ko
+	sleep 1
 	echo -n -e "${endColor}"
 	echo ""
 	
