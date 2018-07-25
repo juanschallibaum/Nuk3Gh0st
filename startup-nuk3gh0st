@@ -1,4 +1,8 @@
 #!/bin/bash
+echo "#################################"
+echo "# Enabling nuk3gh0st at startup #"
+echo "#################################"
+echo ""
 echo "Coping nuk3gh0st.service to systemd startup scripts directory"
 echo "cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service"
 cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
