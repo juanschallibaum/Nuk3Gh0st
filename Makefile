@@ -14,8 +14,10 @@ uninstall:
 	rm /usr/bin/nuk3gh0st
 	rm /usr/lib/rootkit.ko
 startup:
+	chmod +x startup.sh
 	./startup.sh
 clean-startup:
+	chmod +x clean-startup.sh
 	./clean-startup.sh
 clean:
 	rm -rf *.o *.ko *.symvers *.mod.* *.order nuk3gh0st
