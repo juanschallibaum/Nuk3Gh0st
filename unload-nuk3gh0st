@@ -35,5 +35,4 @@ else
 	echo -e "   ${purple}cmd: rmmod rootkit.ko${endColor}"
 	rmmod rootkit.ko
 fi
-
-
+echo ""
