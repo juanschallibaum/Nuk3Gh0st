@@ -11,63 +11,77 @@ echo -e "${green}##################################${endColor}"
 echo -e "${green}# Disabling nuk3gh0st at startup #${endColor}"
 echo -e "${green}##################################${endColor}"
 echo ""
+
 echo -e "${item} Checking if SELINUX is enabled"
 if [ -f /usr/sbin/semanage ]; then
 	echo -e "${item} SELINUX is enabled"
 	#semanage permissive -d insmod_t
 	echo -e "${item} Disabling SELINUX temporarily"
 	echo -e "   ${purple} cmd: setenforce 0${endColor}"
-	echo ""
 	setenforce 0
+	echo ""
+	
 	echo -e "${item} Stopping nuk3gh0st.service"
 	echo -e "   ${purple} cmd: service nuk3gh0st stop${endColor}"
-	echo ""
 	service nuk3gh0st stop
+	echo ""
+	
 	echo -e "${item} Disabling nuk3gh0st.service"
 	echo -e "   ${purple} cmd: systemctl disable nuk3gh0st.service${endColor}"
+	systemctl disable nuk3gh0st.service
 	echo ""
+	
 	echo -e "${item} Unhiding nuk3gh0st LKM rootkit (making visible with lsmod)"
 	echo -e "   ${purple} cmd: nuk3gh0st --unhide${endColor}"
-	echo ""
 	nuk3gh0st --unhide
+	echo ""
+	
 	echo -e "${item} Unprotecting nuk3ghost LKM rootkit"
 	echo -e "   ${purple} cmd: nuk3gh0st --unprotect${endColor}"
-	echo ""
 	nuk3gh0st --unprotect
+	echo ""
+	
 	echo -e "${item} Unloading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: rmmod rootkit.ko${endColor}"
-	echo ""
 	rmmod rootkit.ko
+	echo ""
+	
 	systemctl disable nuk3gh0st.service
 	echo -e "${item} Reenabling SELINUX"
 	echo -e "   ${purple} cmd: setenforce 1${endColor}"
-	echo ""
 	setenforce 1
+	echo ""
+	
 else
 	echo -e "${item} SELINUX is disabled"
 	echo -e "${item} Stopping nuk3gh0st.service"
 	echo -e "   ${purple} cmd: service nuk3gh0st stop${endColor}"
-	echo ""
 	service nuk3gh0st stop
+	echo ""
+	
 	echo -e "${item} Disabling nuk3gh0st.service"
 	echo -e "   ${purple} cmd: systemctl disable nuk3gh0st.service${endColor}"
-	echo ""
 	systemctl disable nuk3gh0st.service
+	echo ""
+	
 	echo -e "${item} Unhiding nuk3gh0st LKM rootkit (making visible with lsmod)"
 	echo -e "   ${purple} cmd: nuk3gh0st --unhide${endColor}"
-	echo ""
 	nuk3gh0st --unhide
+	echo ""
+	
 	echo -e "${item} Unprotecting nuk3ghost LKM rootkit"
 	echo -e "   ${purple} cmd: nuk3gh0st --unprotect${endColor}"
-	echo ""
 	nuk3gh0st --unprotect
+	echo ""
+	
 	echo -e "${item} Unloading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: rmmod rootkit.ko${endColor}"
-	echo ""
 	rmmod rootkit.ko
+	echo ""
+	
 fi
 
 echo -e "${item} Removing nuk3gh0st.service"
 echo -e "   ${purple} cmd: rm /lib/systemd/system/nuk3gh0st.service${endColor}"
-echo ""
 rm /lib/systemd/system/nuk3gh0st.service
+echo ""
