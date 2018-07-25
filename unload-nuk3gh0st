@@ -1,0 +1,25 @@
+#!/bin/bash
+echo "###################################"
+echo "# Unloading nuk3gh0st LKM rootkit #"
+echo "###################################"
+echo ""
+echo "nuk3gh0st --unhide"
+nuk3gh0st --unhide
+echo "nuk3gh0st --unprotect"
+nuk3gh0st --unprotect
+echo "Checking if SELINUX is enabled..."
+if [ -f /usr/sbin/setenforce ]; then
+	echo "SELINUX is enabled"
+	echo "setenforce 0"
+	setenforce 0
+	echo "rmmod rootkit.ko"
+	rmmod rootkit.ko
+	echo "setenforce 1"
+	setenforce 1
+else
+	echo "SELINUX is disabled"
+	echo "rmmod rootkit.ko"
+	rmmod rootkit.ko
+fi
+
+

