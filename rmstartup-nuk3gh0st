@@ -23,12 +23,16 @@ if [ -f /usr/sbin/semanage ]; then
 	
 	echo -e "${item} Stopping nuk3gh0st.service"
 	echo -e "   ${purple} cmd: service nuk3gh0st stop${endColor}"
+	echo -n -e "${cyan}"
 	service nuk3gh0st stop
+	echo -n -e "${endColor}"
 	echo ""
 	
 	echo -e "${item} Disabling nuk3gh0st.service"
 	echo -e "   ${purple} cmd: systemctl disable nuk3gh0st.service${endColor}"
+	echo -n -e "${cyan}"
 	systemctl disable nuk3gh0st.service
+	echo -n -e "${endColor}"
 	echo ""
 	
 	echo -e "${item} Unhiding nuk3gh0st LKM rootkit (making visible with lsmod)"
@@ -56,12 +60,16 @@ else
 	echo -e "${item} SELINUX is disabled"
 	echo -e "${item} Stopping nuk3gh0st.service"
 	echo -e "   ${purple} cmd: service nuk3gh0st stop${endColor}"
+	echo -n -e "${cyan}"
 	service nuk3gh0st stop
+	echo -n -e "${endColor}"
 	echo ""
 	
 	echo -e "${item} Disabling nuk3gh0st.service"
 	echo -e "   ${purple} cmd: systemctl disable nuk3gh0st.service${endColor}"
+	echo -n -e "${cyan}"
 	systemctl disable nuk3gh0st.service
+	echo -n -e "${endColor}"
 	echo ""
 	
 	echo -e "${item} Unhiding nuk3gh0st LKM rootkit (making visible with lsmod)"
