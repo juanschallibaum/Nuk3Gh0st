@@ -4,7 +4,7 @@ green='\e[0;32m'
 red='\e[0;31m'
 purple='\e[0;35m'
 endColor='\e[0m'
-item=${green}[*] ${endColor}
+item="${green}[*] ${endColor}"
 
 echo ""
 echo -e "${green}##################################${endColor}"
@@ -16,6 +16,9 @@ if [ -f /usr/sbin/semanage ]; then
 	echo -e "${item}SELINUX is enabled"
 	#semanage permissive -d insmod_t
 	echo -e "${item}Disabling SELINUX temporarily"
+	echo -e "   ${purple}cmd: setenforce 0${endColor}"
+	echo ""
+	setenforce 0
 	echo -e "${item}Stopping nuk3gh0st.service"
 	echo -e "   ${purple}cmd: service nuk3gh0st stop${endColor}"
 	echo ""
@@ -24,10 +27,6 @@ if [ -f /usr/sbin/semanage ]; then
 	echo -e "   ${purple}cmd: systemctl disable nuk3gh0st.service${endColor}"
 	echo ""
 	systemctl disable nuk3gh0st.service
-	echo -e "   ${purple}cmd: setenforce 0${endColor}"
-	echo ""
-	setenforce 0
-	rm /lib/systemd/system/nuk3gh0st.service
 	echo -e "${item}Reenabling SELINUX"
 	echo -e "   ${purple}cmd: setenforce 1${endColor}"
 	echo ""
