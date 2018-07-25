@@ -33,6 +33,7 @@ if [ -f /usr/sbin/semanage ]; then
 	echo -e "   ${purple} cmd: systemctl disable nuk3gh0st.service${endColor}"
 	echo -n -e "${cyan}"
 	systemctl disable nuk3gh0st.service
+	sleep 5
 	echo -n -e "${endColor}"
 	echo ""
 	
