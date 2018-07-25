@@ -48,14 +48,14 @@ In Wifislax x86 with 3.12.36, doesn't work file hidding functionality, but pid a
 
 Install a compiler, Linux headers and all other things required for us to build the rootkit:
 
-### On Debian based
+#### On Debian based:
 ```sh
 apt-get update
 apt-get install kernel-headers-$(uname -r)
 apt-get install build-essential
 ```
 
-### On Red Hat based
+#### On Red Hat based:
 ```sh
 yum update
 yum install kernel-headers-$(uname -r)
