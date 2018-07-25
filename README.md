@@ -1,4 +1,5 @@
 <img src="https://github.com/JuanSchallibaum/Nuk3Gh0st/blob/master/logo.jpg" width="300" height="300" />
+<img src="https://github.com/JuanSchallibaum/Nuk3Gh0st/blob/master/logo2.jpg" width="300" height="300" />
 
 # Nuk3 Gh0st
 
