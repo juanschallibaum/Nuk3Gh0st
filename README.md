@@ -6,7 +6,7 @@ Universal Linux LKM rootkit, designed to work in any kernel version and both arc
 
 ## Why Nuk3 Gh0st?
 
-- Is the most stable Linux LKM rootkit, working in any kernel version from 2.6.32 to 4.17.9.
+- Is the most stable Linux LKM rootkit, working in any kernel versions from 2.6.32 to 4.17.9.
 - Tested on 15 different distros with different kernel versions.
 - Can hide ports TCP and UDP of IPv4 and even IPv6.
 - Easy to build and compiles withouth any warning.
