@@ -52,8 +52,6 @@ The rootkit can do the following:
 | Lihuen 5.10 (Debian based)  |  3.2.0-4-amd64          |   x86_64   |
 | Ubuntu 10.04.4 LTS          |  2.6.32-38-generic-pae  |   i686     |
 
-In Wifislax x86 with 3.12.36, doesn't work file hidding functionality, but pid and port hidding works well.
-
 ## Pre requirements
 
 Install a compiler, Linux headers and all other things required for us to build the rootkit:
