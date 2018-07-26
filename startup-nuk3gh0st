@@ -71,9 +71,9 @@ function detect_init_system {
 function enable_startup_service {
 	echo -e "${item} Detecting init system..."
 	init_system=detect_init_system
-	if [ $init_system == "upstart" || $init_system == "sysv-init" ]; then
+	if [[ $init_system == "upstart" || $init_system == "sysv-init" ]]; then
 		echo "System is Upstart/init"
-	elif [ $init_system == "systemd" ]; then
+	elif [[ $init_system == "systemd" ]]; then
 		echo "System is SYSTEMD"
 	else
 		echo cannot tell;
