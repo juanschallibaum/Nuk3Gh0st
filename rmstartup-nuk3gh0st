@@ -30,12 +30,12 @@ function disable_selinux {
 }
 
 function disable_startup_service {
-	echo -e "${item} Stopping nuk3gh0st.service"
-	echo -e "   ${purple} cmd: service nuk3gh0st stop${endColor}"
-	echo -n -e "${cyan}"
-	service nuk3gh0st stop
-	echo -n -e "${endColor}"
-	echo ""
+	#echo -e "${item} Stopping nuk3gh0st.service"
+	#echo -e "   ${purple} cmd: service nuk3gh0st stop${endColor}"
+	#echo -n -e "${cyan}"
+	#service nuk3gh0st stop
+	#echo -n -e "${endColor}"
+	#echo ""
 	
 	echo -e "${item} Disabling nuk3gh0st.service"
 	echo -e "   ${purple} cmd: systemctl disable nuk3gh0st.service${endColor}"
