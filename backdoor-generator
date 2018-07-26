@@ -152,17 +152,17 @@ function remove_systemd_service {
 }
 
 function remove_rc_symlinks {
-	echo -e "${item} Removing symbolic links of backdoor.startup for run levels from 1 to 5"
-	echo -e "   ${purple} cmd: rm /etc/rc1.d/S99backdoor.startup${endColor}"
-	rm /etc/rc1.d/S99backdoor.startup
-	echo -e "   ${purple} cmd: rm /etc/rc2.d/S99backdoor.startup${endColor}"
-	rm /etc/rc2.d/S99backdoor.startup
-	echo -e "   ${purple} cmd: rm /etc/rc3.d/S99backdoor.startup${endColor}"
-	rm /etc/rc3.d/S99backdoor.startup
-	echo -e "   ${purple} cmd: rm /etc/rc4.d/S99backdoor.startup${endColor}"
-	rm /etc/rc4.d/S99backdoor.startup
-	echo -e "   ${purple} cmd: rm /etc/rc5.d/S99backdoor.startup${endColor}"
-	rm /etc/rc5.d/S99backdoor.startup
+	echo -e "${item} Removing symbolic links of backdoor for run levels from 1 to 5"
+	echo -e "   ${purple} cmd: rm /etc/rc1.d/S99backdoor${endColor}"
+	rm /etc/rc1.d/S99backdoor
+	echo -e "   ${purple} cmd: rm /etc/rc2.d/S99backdoor${endColor}"
+	rm /etc/rc2.d/S99backdoor
+	echo -e "   ${purple} cmd: rm /etc/rc3.d/S99backdoor${endColor}"
+	rm /etc/rc3.d/S99backdoor
+	echo -e "   ${purple} cmd: rm /etc/rc4.d/S99backdoor${endColor}"
+	rm /etc/rc4.d/S99backdoor
+	echo -e "   ${purple} cmd: rm /etc/rc5.d/S99backdoor${endColor}"
+	rm /etc/rc5.d/S99backdoor
 	echo ""
 }
 
