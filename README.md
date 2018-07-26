@@ -157,5 +157,44 @@ rmstartup-nuk3gh0st
 make uninstall
 ```
 
+```sh
+
+ \______   \_____    ____ |  | __ __| _/____   ___________     
+  |    |  _/\__  \ _/ ___\|  |/ // __ |/  _ \ /  _ \_  __ \    
+  |    |   \ / __ \  \___|    </ /_/ (  <_> |  <_> )  | \/    
+  |______  /(____  /\___  >__|_ \____ |\____/ \____/|__|       
+         \/      \/     \/     \/    \/                        
+                                            __                 
+    ____   ____   ____   ________________ _/  |_  ___________  
+   / ___\_/ __ \ /    \_/ __ \_  __ \__  \   __\/  _ \_  __ \ 
+  / /_/  >  ___/|   |  \  ___/|  | \// __ \|  | (  <_> )  | \/ 
+  \___  / \___  >___|  /\___  >__|  (____  /__|  \____/|__|    
+ /_____/      \/     \/     \/           \/                    
+                                                               
+    Generates a backdoor that sends bash reverse TCP shell	
+        every S seconds to H host, listening on P port         
+           and running it on startup, hidding itself           
+           	   with Nuk3gh0st LKM rootkit                   
+   								
+   		        In other words...			
+   	    YOU CAN MANTAIN ACCESS FOREVER AND EVER!   		
+                                                               
+                                                               
+ Usage:                                                            
+                                                                   
+    backdoor-generator --host H --port P --sleep S                 
+		Genetares a backdoor that sends bash reverse TCP shell   
+		every S seconds to H host listening on P port, and       
+ 		running it on startup.                                   
+		                                                         
+    backdoor-generator --remove                                    
+		Remove previously generated backdoor from startup        
+		and their files.                                         
+		                                                         
+    backdoor-generator --help                                      
+		Show this menu.                                          
+```
+
+
 ## License
 This project is licensed under [GPLv2](LICENSE).
