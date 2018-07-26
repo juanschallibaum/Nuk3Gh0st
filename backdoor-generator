@@ -5,6 +5,7 @@ red='\e[0;31m'
 purple='\e[0;35m'
 yellow='\e[0;33m'
 cyan='\e[0;36m'
+light_green='\e[0;92m'
 endColor='\e[0m'
 item=${green}[*]${endColor}
 
@@ -23,7 +24,7 @@ function print_banner {
 	echo -e "${green} /_____/      \/     \/     \/           \/                    ${endColor}"
 	echo -e "${green}                                                               ${endColor}"
 	echo -e "${green}    Generates a backdoor that sends bash reverse TCP shell	${endColor}"
-	echo -e "${green}        every X seconds to H host, listening on P port         ${endColor}"
+	echo -e "${green}        every S seconds to H host, listening on P port         ${endColor}"
 	echo -e "${green}           and running it on startup, hidding itself           ${endColor}"
 	echo -e "${green}           	   with Nuk3gh0st LKM rootkit                   ${endColor}"
 	echo -e "${green}   								${endColor}"
@@ -33,8 +34,20 @@ function print_banner {
 }
 
 function show_help {
-    echo "Ayuda del programa"
-    exit 0
+    echo -e "${light_green} Usage:                                                               ${endColor}"
+    echo -e "${light_green}                                                                      ${endColor}"
+    echo -e "${light_green}    backdoor-generator --host H --port P --sleep S                    ${endColor}"
+    echo -e "${light_green}		Genetares a backdoor that sends bash reverse TCP shell   ${endColor}"
+    echo -e "${light_green}		every S seconds to H host listening on P port, and       ${endColor}"
+    echo -e "${light_green} 		running it on startup.                                   ${endColor}"
+    echo -e "${light_green}		                                                         ${endColor}"
+    echo -e "${light_green}    backdoor-generator --remove                                       ${endColor}"
+    echo -e "${light_green}		Remove previously generated backdoor from startup        ${endColor}"
+    echo -e "${light_green}		and their files.                                         ${endColor}"
+    echo -e "${light_green}		                                                         ${endColor}"
+    echo -e "${light_green}    backdoor-generator --help                                         ${endColor}"
+    echo -e "${light_green}		Show this menu.                                          ${endColor}"
+    	        
 }
 
 function generate_backdoor {
@@ -272,7 +285,8 @@ do
 		shift
         ;;
     *)
-        echo "Argumento no válido"
+	echo -e "${red}WARNING: Invalid argument detected${endColor}"
+	echo ""
         show_help
         ;;
     esac
@@ -291,5 +305,7 @@ elif [[ -z $HOST_ARG && -z $PORT_ARG && -z $SLEEP_ARG && $HELP_ARG && -z $REMOVE
 then
 	show_help
 else
-	echo "Está ingresando los parametros malmente"
+	echo -e "${red}WARNING: Wrong argument combination detected${endColor}"
+	echo ""
+	show_help
 fi
