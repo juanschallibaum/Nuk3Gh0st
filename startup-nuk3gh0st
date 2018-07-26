@@ -77,15 +77,19 @@ function create_rc_symlinks {
 
 function enable_startup_service {
 	echo -e "${item} Detecting init system..."
-	if [[ `/sbin/init --version > /dev/null 2>&1 &` =~ upstart ]]; then 
+	echo -n -e "${cyan}"
+	if [[ `/sbin/init --version` =~ upstart ]]; then 
+		echo -n -e "${endColor}"
 		echo -e "${item} Init system is upstart"
 		create_init_service
 		create_rc_symlinks
-	elif [[ `systemctl` =~ -\.mount ]]; then 
+	elif [[ `systemctl` =~ -\.mount ]]; then
+		echo -n -e "${endColor}"
 		echo -e "${item} Init system is systemd"
 		create_systemd_service
 		enable_systemd_service
-	elif [[ -f /etc/init.d/cron && ! -h /etc/init.d/cron ]]; then 
+	elif [[ -f /etc/init.d/cron && ! -h /etc/init.d/cron ]]; then
+		echo -n -e "${endColor}"
 		echo -e "${item} Init system is sysv-init"
 		create_init_service
 		create_rc_symlinks
