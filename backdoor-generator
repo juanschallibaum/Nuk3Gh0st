@@ -34,19 +34,19 @@ function print_banner {
 }
 
 function show_help {
-    echo -e "${light_green} Usage:                                                               ${endColor}"
-    echo -e "${light_green}                                                                      ${endColor}"
-    echo -e "${light_green}    backdoor-generator --host H --port P --sleep S                    ${endColor}"
-    echo -e "${light_green}		Genetares a backdoor that sends bash reverse TCP shell   ${endColor}"
-    echo -e "${light_green}		every S seconds to H host listening on P port, and       ${endColor}"
-    echo -e "${light_green} 		running it on startup.                                   ${endColor}"
-    echo -e "${light_green}		                                                         ${endColor}"
-    echo -e "${light_green}    backdoor-generator --remove                                       ${endColor}"
-    echo -e "${light_green}		Remove previously generated backdoor from startup        ${endColor}"
-    echo -e "${light_green}		and their files.                                         ${endColor}"
-    echo -e "${light_green}		                                                         ${endColor}"
-    echo -e "${light_green}    backdoor-generator --help                                         ${endColor}"
-    echo -e "${light_green}		Show this menu.                                          ${endColor}"
+    echo -e "${yellow} Usage:                                                            ${endColor}"
+    echo -e "${yellow}                                                                   ${endColor}"
+    echo -e "${yellow}    backdoor-generator --host H --port P --sleep S                 ${endColor}"
+    echo -e "${yellow}		Genetares a backdoor that sends bash reverse TCP shell   ${endColor}"
+    echo -e "${yellow}		every S seconds to H host listening on P port, and       ${endColor}"
+    echo -e "${yellow} 		running it on startup.                                   ${endColor}"
+    echo -e "${yellow}		                                                         ${endColor}"
+    echo -e "${yellow}    backdoor-generator --remove                                    ${endColor}"
+    echo -e "${yellow}		Remove previously generated backdoor from startup        ${endColor}"
+    echo -e "${yellow}		and their files.                                         ${endColor}"
+    echo -e "${yellow}		                                                         ${endColor}"
+    echo -e "${yellow}    backdoor-generator --help                                      ${endColor}"
+    echo -e "${yellow}		Show this menu.                                          ${endColor}"
     	        
 }
 
