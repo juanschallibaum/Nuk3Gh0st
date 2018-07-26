@@ -93,7 +93,10 @@ function disable_startup_service {
 		remove_rc_symlinks
 		remove_init_service
 	else 
-		echo cannot tell dos; 
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is unrecognized. Trying with sysv-init"
+		remove_rc_symlinks
+		remove_init_service
 	fi
 }
 
