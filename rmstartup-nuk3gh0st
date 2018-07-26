@@ -76,15 +76,19 @@ function remove_init_service {
 
 function disable_startup_service {
 	echo -e "${item} Detecting init system..."
-	if [[ `/sbin/init --version > /dev/null 2>&1 &` =~ upstart ]]; then 
+	echo -n -e "${cyan}"
+	if [[ `/sbin/init --version > /dev/null 2>&1 &` =~ upstart ]]; then
+		echo -n -e "${endColor}"
 		echo -e "${item} Init system is upstart"
 		remove_rc_symlinks
 		remove_init_service
-	elif [[ `systemctl` =~ -\.mount ]]; then 
+	elif [[ `systemctl` =~ -\.mount ]]; then
+		echo -n -e "${endColor}"
 		echo -e "${item} Init system is systemd"
 		disable_systemd_service
 		remove_systemd_service
-	elif [[ -f /etc/init.d/cron && ! -h /etc/init.d/cron ]]; then 
+	elif [[ -f /etc/init.d/cron && ! -h /etc/init.d/cron ]]; then
+		echo -n -e "${endColor}"
 		echo -e "${item} Init system is sysv-init"
 		remove_rc_symlinks
 		remove_init_service
