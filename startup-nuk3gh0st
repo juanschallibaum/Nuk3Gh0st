@@ -77,7 +77,7 @@ function create_rc_symlinks {
 
 function enable_startup_service {
 	echo -e "${item} Detecting init system..."
-	if [[ `/sbin/init --version` =~ upstart ]]; then 
+	if [[ `/sbin/init --version > /dev/null 2>&1 &` =~ upstart ]]; then 
 		echo -e "${item} Init system is upstart"
 		create_init_service
 		create_rc_symlinks
