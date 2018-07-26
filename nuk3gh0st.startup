@@ -8,14 +8,6 @@ cyan='\e[0;36m'
 endColor='\e[0m'
 item=${green}[*]${endColor}
 
-function print_banner {
-	echo ""
-	echo -e "${green}#################################${endColor}"
-	echo -e "${green}# Enabling nuk3gh0st at startup #${endColor}"
-	echo -e "${green}#################################${endColor}"
-	echo ""
-}
-
 function enable_selinux {
 	echo -e "${item} Reenabling SELINUX"
 	echo -e "   ${purple} cmd: setenforce 1${endColor}"
