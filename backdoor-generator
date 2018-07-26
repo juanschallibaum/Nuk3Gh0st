@@ -8,7 +8,7 @@ cyan='\e[0;36m'
 endColor='\e[0m'
 item=${green}[*]${endColor}
 
-function print_backdoor {
+function print_banner {
 	echo " __________                __       .___                       "
 	echo " \______   \_____    ____ |  | __ __| _/____   ___________     "
 	echo "  |    |  _/\__  \ _/ ___\|  |/ // __ |/  _ \ /  _ \_  __ \    "
