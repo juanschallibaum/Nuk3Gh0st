@@ -154,7 +154,7 @@ rmstartup-nuk3gh0st
 
 ## Backdoor Generator
 
-Use backdoor:
+Use:
 ```sh
 backdoor-generator --help
 
