@@ -77,7 +77,7 @@ function remove_init_service {
 function disable_startup_service {
 	echo -e "${item} Detecting init system..."
 	echo -n -e "${cyan}"
-	if [[ `/sbin/init --version > /dev/null 2>&1 &` =~ upstart ]]; then
+	if [[ `/sbin/init --version` =~ upstart ]]; then
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is upstart"
 		remove_rc_symlinks
