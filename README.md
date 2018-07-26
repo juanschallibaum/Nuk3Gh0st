@@ -10,7 +10,7 @@ Universal Linux LKM rootkit, designed to work in any kernel version and both arc
 - Tested on 15 different distros with different kernel versions.
 - Can hide ports TCP and UDP of IPv4 and even IPv6.
 - Easy to use, easy to build and compiles cleanly withouth any warning.
-- Contains special functionality: can enable rootkit on startup!
+- Can enable rootkit at startup, supporting sysv-init, upstart and systemd.
 
 ## Functionality
 
