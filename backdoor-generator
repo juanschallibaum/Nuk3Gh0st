@@ -27,7 +27,8 @@ function print_banner {
 	echo -e "${green}           and running it on startup, hidding itself           ${endColor}"
 	echo -e "${green}           	   with Nuk3gh0st LKM rootkit                   ${endColor}"
 	echo -e "${green}   								${endColor}"
-	echo -e "${green}  In other words... YOU CAN MANTAIN ACCESS FOREVER AND EVER!   ${endColor}"
+	echo -e "${green}   		        In other words...			${endColor}"
+	echo -e "${green}   	    YOU CAN MANTAIN ACCESS FOREVER AND EVER!   		${endColor}"
 	echo -e "${green}                                                               ${endColor}"
 }
 
