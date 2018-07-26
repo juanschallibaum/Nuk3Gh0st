@@ -6,10 +6,13 @@ purple='\e[0;35m'
 endColor='\e[0m'
 item=${green}[*]${endColor}
 
-echo ""
-echo -e "${green}#################################${endColor}"
-echo -e "${green}# Loading nuk3gh0st LKM rootkit #${endColor}"
-echo -e "${green}#################################${endColor}"
-echo ""
+function print_banner {
+	echo ""
+  echo -e "${green}#################################${endColor}"
+  echo -e "${green}# Loading nuk3gh0st LKM rootkit #${endColor}"
+  echo -e "${green}#################################${endColor}"
+  echo ""
+}
 
+print_banner
 bash /usr/share/nuk3gh0st/nuk3gh0st.startup
