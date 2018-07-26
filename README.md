@@ -59,14 +59,14 @@ Install a compiler, Linux headers and all other things required for us to build 
 #### On Debian based:
 ```sh
 apt-get update
-apt-get install kernel-headers-$(uname -r)
+apt-get install linux-headers-$(uname -r)
 apt-get install build-essential
 ```
 
 #### On Red Hat based:
 ```sh
 yum update
-yum install kernel-headers-$(uname -r)
+yum install linux-headers-$(uname -r)
 yum install build-essential
 ```
 
