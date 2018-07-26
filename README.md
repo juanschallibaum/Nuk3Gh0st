@@ -11,6 +11,7 @@ Universal Linux LKM rootkit, designed to work in any kernel version and both arc
 - Can enable rootkit at startup, supporting sysv-init, upstart and systemd.
 - Temporaly disables SELINUX if it is present, to load rootkit and enable it at startup withouth problems.
 - Can hide ports TCP and UDP of IPv4 and even IPv6.
+- Hides itself from be watched trough lsmod, and hides their own files during rootkit loading.
 - Easy to use, easy to build and compiles cleanly withouth any warning.
 
 ## Functionality
