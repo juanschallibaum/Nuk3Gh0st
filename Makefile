@@ -32,6 +32,7 @@ uninstall:
 	-rm /usr/bin/unload-nuk3gh0st
 	-rm /usr/bin/startup-nuk3gh0st
 	-rm /usr/bin/rmstartup-nuk3gh0st
+	-rm /usr/bin/backdoor-generator
 	-rm -rf /usr/share/nuk3gh0st
 clean:
 	-rm -rf *.o *.ko *.symvers *.mod.* *.order nuk3gh0st
