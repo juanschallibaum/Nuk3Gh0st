@@ -25,11 +25,6 @@ function generate_backdoor {
 	chmod +x $backdoor_dir
 }
 
-function remove_backdoor {
-    echo "Removiendo backdoor"
-    exit 0
-}
-
 function enable_selinux {
 	echo -e "${item} Reenabling SELINUX"
 	echo -e "   ${purple} cmd: setenforce 1${endColor}"
