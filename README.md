@@ -153,7 +153,10 @@ rmstartup-nuk3gh0st
 ```
 
 ## Backdoor Generator
+
+Use backdoor:
 ```sh
+backdoor-generator --help
 
  \______   \_____    ____ |  | __ __| _/____   ___________     
   |    |  _/\__  \ _/ ___\|  |/ // __ |/  _ \ /  _ \_  __ \    
