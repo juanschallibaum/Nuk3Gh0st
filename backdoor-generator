@@ -281,15 +281,15 @@ do
 		SLEEP="$2"
 		shift
         ;;
-    -r|--remove)
+    	-r|--remove)
 		REMOVE_ARG="OK"
 		shift
         ;;
-    *)
-	echo -e "${red}WARNING: Invalid argument detected${endColor}"
-	echo ""
-        show_help
-        ;;
+    #*)
+    #		echo -e "${red}WARNING: Invalid argument detected${endColor}"
+    #		echo ""
+    #    	show_help
+    #    ;;
     esac
     shift
 done
