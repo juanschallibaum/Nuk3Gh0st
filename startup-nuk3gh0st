@@ -64,7 +64,7 @@ function detect_init_system {
 		echo -e "${item} Init system is sysv-init"
 		return "sysv-init"
 	else 
-		echo cannot tell; 
+		echo cannot tell dos; 
 	fi
 }
 
