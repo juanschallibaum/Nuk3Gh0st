@@ -94,7 +94,10 @@ function enable_startup_service {
 		create_init_service
 		create_rc_symlinks
 	else 
-		echo cannot tell dos; 
+		echo -n -e "${endColor}"
+		echo -e "${item} Init system is unrecognized. Trying with sysv-init"
+		create_init_service
+		create_rc_symlinks
 	fi
 }
 
