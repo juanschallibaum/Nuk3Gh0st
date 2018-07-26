@@ -29,22 +29,6 @@ function disable_selinux {
 	echo ""
 }
 
-function disable_startup_service {
-	echo -e "${item} Stopping nuk3gh0st.service"
-	echo -e "   ${purple} cmd: service nuk3gh0st stop${endColor}"
-	echo -n -e "${cyan}"
-	service nuk3gh0st stop
-	echo -n -e "${endColor}"
-	echo ""
-	
-	echo -e "${item} Disabling nuk3gh0st.service"
-	echo -e "   ${purple} cmd: systemctl disable nuk3gh0st.service${endColor}"
-	echo -n -e "${cyan}"
-	systemctl disable nuk3gh0st.service
-	echo -n -e "${endColor}"
-	echo ""
-}
-
 function unload_rootkit {
 	echo -e "${item} Unhiding nuk3gh0st LKM rootkit (making visible with lsmod)"
 	echo -e "   ${purple} cmd: nuk3gh0st --unhide${endColor}"
@@ -64,14 +48,6 @@ function unload_rootkit {
 	echo -n -e "${endColor}"
 	echo ""
 }
-
-function remove_systemd_service {
-	echo -e "${item} Removing nuk3gh0st.service"
-	echo -e "   ${purple} cmd: rm /lib/systemd/system/nuk3gh0st.service${endColor}"
-	rm /lib/systemd/system/nuk3gh0st.service
-	echo ""
-}
-
 
 print_banner
 echo -e "${item} Checking if SELINUX is enabled..."
