@@ -47,6 +47,7 @@ function show_help {
     echo -e "${yellow}		                                                         ${endColor}"
     echo -e "${yellow}    backdoor-generator --help                                      ${endColor}"
     echo -e "${yellow}		Show this menu.                                          ${endColor}"
+    echo -e "${green}                                                               ${endColor}"
     	        
 }
 
