@@ -7,7 +7,6 @@ cyan='\e[0;36m'
 endColor='\e[0m'
 item=${green}[*]${endColor}
 
-
 function print_banner {
 	echo ""
 	echo -e "${green}##################################${endColor}"
