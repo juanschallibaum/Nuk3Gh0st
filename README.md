@@ -152,11 +152,6 @@ Disabling rootkit at system startup:
 rmstartup-nuk3gh0st
 ```
 
-## Uninstall
-```sh
-make uninstall
-```
-
 ## Backdoor Generator
 ```sh
 
@@ -196,6 +191,10 @@ make uninstall
 		Show this menu.                                          
 ```
 
+## Uninstall
+```sh
+make uninstall
+```
 
 ## License
 This project is licensed under [GPLv2](LICENSE).
