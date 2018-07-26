@@ -306,7 +306,7 @@ elif [[ -z $HOST_ARG && -z $PORT_ARG && -z $SLEEP_ARG && $HELP_ARG && -z $REMOVE
 then
 	show_help
 else
-	echo -e "${red}WARNING: Wrong arguments detected${endColor}"
+	echo -e "${red} WARNING: Wrong arguments detected${endColor}"
 	echo ""
 	show_help
 fi
