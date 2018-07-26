@@ -72,6 +72,7 @@ function create_rc_symlinks {
 	ln -s /etc/init.d/nuk3gh0st.startup /etc/rc4.d/S99nuk3gh0st.startup
 	echo -e "   ${purple} cmd: ln -s /etc/init.d/nuk3gh0st.startup /etc/rc5.d/S99nuk3gh0st.startup${endColor}"
 	ln -s /etc/init.d/nuk3gh0st.startup /etc/rc5.d/S99nuk3gh0st.startup
+	echo ""
 }
 
 function enable_startup_service {
