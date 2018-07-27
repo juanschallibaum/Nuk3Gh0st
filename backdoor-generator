@@ -26,10 +26,10 @@ function print_banner {
 	echo -e "${green}    Generates a backdoor that sends bash reverse TCP shell	${endColor}"
 	echo -e "${green}        every S seconds to H host, listening on P port         ${endColor}"
 	echo -e "${green}           and running it on startup, hidding itself           ${endColor}"
-	echo -e "${green}           	   with Nuk3gh0st LKM rootkit                   ${endColor}"
+	echo -e "${green}                  with Nuk3gh0st LKM rootkit                   ${endColor}"
 	echo -e "${green}   								${endColor}"
-	echo -e "${green}   		        In other words...			${endColor}"
-	echo -e "${green}   	    YOU CAN MANTAIN ACCESS FOR EVER AND EVER!   	${endColor}"
+	echo -e "${green}                       In other words...			${endColor}"
+	echo -e "${green}           YOU CAN MANTAIN ACCESS FOR EVER AND EVER!   	${endColor}"
 	echo -e "${green}                                                               ${endColor}"
 	echo -e "${green}                                                               ${endColor}"
 }
