@@ -175,10 +175,10 @@ backdoor-generator --help
     Generates a backdoor that sends bash reverse TCP shell	
         every S seconds to H host, listening on P port         
            and running it on startup, hidding itself           
-           	   with Nuk3gh0st LKM rootkit                   
+           	  with Nuk3gh0st LKM rootkit                   
    								
-   		        In other words...			
-   	    YOU CAN MANTAIN ACCESS FOREVER AND EVER!   		
+   		       In other words...			
+   	   YOU CAN MANTAIN ACCESS FOR EVER AND EVER!   		
                                                                
                                                                
  Usage:                                                            
