@@ -144,13 +144,13 @@ unload-nuk3gh0st
 Enabling rootkit at system startup:
 
 ```sh
-startup-nuk3gh0st
+enable-nuk3gh0st
 ```
 
 Disabling rootkit at system startup:
 
 ```sh
-rmstartup-nuk3gh0st
+disable-nuk3gh0st
 ```
 
 ## Backdoor Generator
