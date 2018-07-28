@@ -83,14 +83,20 @@ function remove_init_service {
 	echo ""
 }
 
+function remove_upstart_service {
+	echo -e "${item} Removing nuk3gh0st.conf from /etc/init/ (Upstart startup script directory)"
+	echo -e "   ${purple} cmd: rm /etc/init/nuk3gh0st.conf${endColor}"
+	rm /etc/init/nuk3gh0st.conf
+	echo ""
+}
+
 function disable_startup_service {
 	echo -e "${item} Detecting init system..."
 	echo -n -e "${cyan}"
 	if [[ `/sbin/init --version` =~ upstart ]]; then
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is upstart"
-		remove_rc_symlinks
-		remove_init_service
+		remove_upstart_service
 	elif [[ `systemctl` =~ -\.mount ]]; then
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is systemd"
