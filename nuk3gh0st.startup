@@ -2,8 +2,8 @@
 
 ### BEGIN INIT INFO
 # Provides:          nuk3gh0st.startup
-# Required-Start:    networking
-# Required-Stop:     networking
+# Required-Start:    
+# Required-Stop:     
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: nuk3gh0st service
