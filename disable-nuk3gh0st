@@ -70,6 +70,7 @@ function remove_rc_symlinks {
 	echo -e "${item} Removing symbolic links to nuk3gh0st.startup"
 	echo -e "   ${purple} cmd: update-rc.d -f nuk3gh0st.startup remove${endColor}"
 	update-rc.d -f nuk3gh0st.startup remove
+	echo ""
 }
 
 function remove_init_service {
