@@ -84,14 +84,20 @@ function create_rc_symlinks {
 	echo ""
 }
 
+function create_upstart_service {
+	echo -e "${item} Coping nuk3gh0st.conf to /etc/init/ (Upstart startup script directory)"
+	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/nuk3gh0st.conf /etc/init/nuk3gh0st.conf${endColor}"
+	cp /usr/share/nuk3gh0st/nuk3gh0st.conf /etc/init/nuk3gh0st.conf
+	echo ""
+}
+
 function enable_startup_service {
 	echo -e "${item} Detecting init system..."
 	echo -n -e "${cyan}"
 	if [[ `/sbin/init --version` =~ upstart ]]; then 
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is upstart"
-		create_init_service
-		update_rc_symlinks
+		create_upstart_service
 	elif [[ `systemctl` =~ -\.mount ]]; then
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is systemd"
