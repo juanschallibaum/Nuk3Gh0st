@@ -157,7 +157,9 @@ function create_init_service {
 function update_rc_symlinks {
 	echo -e "${item} Update rc symbolic links to /etc/init.d/backdoor"
 	echo -e "   ${purple} cmd: update-rc.d backdoor defaults${endColor}"
+	echo -n -e "${cyan}"
 	update-rc.d backdoor defaults
+	echo -n -e "${endColor}"
 	echo ""
 }
 
@@ -254,7 +256,9 @@ function remove_rc_symlinks {
 	
 	echo -e "${item} Removing symbolic links to backdoor"
 	echo -e "   ${purple} cmd: update-rc.d -f backdoor remove${endColor}"
+	echo -n -e "${cyan}"
 	update-rc.d -f backdoor remove
+	echo -n -e "${endColor}"
 	echo ""
 }
 
