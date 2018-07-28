@@ -60,6 +60,13 @@ function create_init_service {
 	echo ""
 }
 
+function update_rc_symlinks {
+	echo -e "${item} Update rc symbolic links to /etc/init.d/nuk3gh0st.startup"
+	echo -e "   ${purple} cmd: update-rc.d nuk3gh0st.startup defaults${endColor}"
+	update-rc.d nuk3gh0st.startup defaults
+	echo ""
+}
+
 function create_rc_symlinks {
 	echo -e "${item} Create symbolic links of nuk3gh0st.startup for run levels from 1 to 5"
 	echo -e "   ${purple} cmd: ln -s /etc/init.d/nuk3gh0st.startup /etc/rc1.d/S98nuk3gh0st.startup${endColor}"
@@ -82,7 +89,7 @@ function enable_startup_service {
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is upstart"
 		create_init_service
-		create_rc_symlinks
+		update_rc_symlinks
 	elif [[ `systemctl` =~ -\.mount ]]; then
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is systemd"
@@ -92,12 +99,12 @@ function enable_startup_service {
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is sysv-init"
 		create_init_service
-		create_rc_symlinks
+		update_rc_symlinks
 	else 
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is unrecognized. Trying with sysv-init"
 		create_init_service
-		create_rc_symlinks
+		update_rc_symlinks
 	fi
 }
 
