@@ -260,8 +260,8 @@ function remove_rc_symlinks {
 
 function remove_init_service {
 	echo -e "${item} Removing nuk3gh0st.startup from /etc/init.d/ (sysv-init startup script directory)"
-	echo -e "   ${purple} cmd: rm /etc/init.d/backdoor.startup${endColor}"
-	rm /etc/init.d/backdoor.startup
+	echo -e "   ${purple} cmd: rm /etc/init.d/backdoor${endColor}"
+	rm /etc/init.d/backdoor
 	echo ""
 }
 
