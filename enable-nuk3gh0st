@@ -63,7 +63,9 @@ function create_init_service {
 function update_rc_symlinks {
 	echo -e "${item} Update rc symbolic links to /etc/init.d/nuk3gh0st.startup"
 	echo -e "   ${purple} cmd: update-rc.d nuk3gh0st.startup defaults${endColor}"
+	echo -n -e "${cyan}"
 	update-rc.d nuk3gh0st.startup defaults
+	echo -n -e "${endColor}"
 	echo ""
 }
 
