@@ -69,9 +69,12 @@ function remove_rc_symlinks {
 	
 	echo -e "${item} Removing symbolic links to nuk3gh0st.startup"
 	echo -e "   ${purple} cmd: update-rc.d -f nuk3gh0st.startup remove${endColor}"
+	echo -n -e "${cyan}"
 	update-rc.d -f nuk3gh0st.startup remove
+	echo -n -e "${endColor}"
 	echo ""
-}
+	
+	}
 
 function remove_init_service {
 	echo -e "${item} Removing nuk3gh0st.startup from /etc/init.d/ (sysv-init startup script directory)"
