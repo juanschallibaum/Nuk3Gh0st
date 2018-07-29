@@ -67,7 +67,7 @@ char *strnstr(const char *haystack, const char *needle, size_t len)
 
 #endif
 
-
+typedef int (*proc_write_t)(struct file *, char *, size_t);
 
 struct proc_dir_entry {
 	/*
