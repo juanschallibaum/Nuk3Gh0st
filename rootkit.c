@@ -43,8 +43,12 @@
 #include <net/udp.h>
 
 #include <linux/utsname.h>
+#define TRUE 1
+#define FALSE 0
 
 #define TMPSZ 150
+
+static int is_openSUSE;
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3, 0, 0)
 
