@@ -1221,7 +1221,7 @@ int init(void)
             return 0;
         }
 	*/
-	if (strstr(utsname()->release, 'lp') != NULL) {
+	if (strstr(utsname()->release, "lp") != NULL) {
             is_openSUSE = 1;
         } else {
 	    is_openSUSE = 0;
