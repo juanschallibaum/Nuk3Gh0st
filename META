@@ -1,2 +1,5 @@
 en opensuse la carpeta /lib/systemd no existe, por lo tanto tampoco /lib/systemd/system, pero si se crean, el script que se ubique ahi funcionaria perfectamente
 por eso habría que preguntar si existe el directorio antes de copiarlo, y en caso negativo crear los directorios  systemd y dentr system.
+
+Opensuse usa el kernel 4.12.14, utilizando la estructura proc_dir_entry que en otras distribuciónes como ubuntu, y según bootlin, se empezó
+a utilizar recién desde la versión 4.14.
