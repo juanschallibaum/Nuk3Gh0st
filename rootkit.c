@@ -68,8 +68,7 @@ char *strnstr(const char *haystack, const char *needle, size_t len)
 #endif
 
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)  && \
-    LINUX_VERSION_CODE < KERNEL_VERSION(4, 16, 0)
+
 
 struct proc_dir_entry {
 	unsigned int low_ino;
@@ -80,19 +79,9 @@ struct proc_dir_entry {
 	loff_t size;
 	const struct inode_operations *proc_iops;
 	const struct file_operations *proc_fops;
-	#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0) && \
-    	LINUX_VERSION_CODE < KERNEL_VERSION(3, 19, 0)
-	struct proc_dir_entry *next, *parent, *subdir;
-	#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3, 19, 0) && \
-    	LINUX_VERSION_CODE < KERNEL_VERSION(4, 14, 0)
 	struct proc_dir_entry *parent;
 	struct rb_root subdir;
-    	struct rb_node subdir_node;
-	#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
-	struct proc_dir_entry *parent;
-	struct rb_root_cached subdir;
-    	struct rb_node subdir_node;
-	#endif
+	struct rb_node subdir_node;
 	void *data;
 	atomic_t count;		/* use count */
 	atomic_t in_use;	/* number of callers into module in progress; */
@@ -104,72 +93,11 @@ struct proc_dir_entry {
 	char name[];
 };
 
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 16, 0) && \
-    LINUX_VERSION_CODE < KERNEL_VERSION(4, 17, 0)
 
-struct proc_dir_entry {
-	/*
-	 * number of callers into module in progress;
-	 * negative -> it's going away RSN
-	 */
-	atomic_t in_use;
-	atomic_t count;		/* use count */
-	struct list_head pde_openers;	/* who did ->open, but not ->release */
-	/* protects ->pde_openers and all struct pde_opener instances */
-	spinlock_t pde_unload_lock;
-	struct completion *pde_unload_completion;
-	const struct inode_operations *proc_iops;
-	const struct file_operations *proc_fops;
-	void *data;
-	unsigned int low_ino;
-	nlink_t nlink;
-	kuid_t uid;
-	kgid_t gid;
-	loff_t size;
-	struct proc_dir_entry *parent;
-	struct rb_root_cached subdir;
-	struct rb_node subdir_node;
-	umode_t mode;
-	u8 namelen;
-	char name[];
-};
 
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 17, 0)
 
-struct proc_dir_entry {
-	/*
-	 * number of callers into module in progress;
-	 * negative -> it's going away RSN
-	 */
-	atomic_t in_use;
-	refcount_t refcnt;
-	struct list_head pde_openers;	/* who did ->open, but not ->release */
-	/* protects ->pde_openers and all struct pde_opener instances */
-	spinlock_t pde_unload_lock;
-	struct completion *pde_unload_completion;
-	const struct inode_operations *proc_iops;
-	const struct file_operations *proc_fops;
-	void *data;
-	unsigned int low_ino;
-	nlink_t nlink;
-	kuid_t uid;
-	kgid_t gid;
-	loff_t size;
-	struct proc_dir_entry *parent;
-	struct rb_root subdir;
-	struct rb_node subdir_node;
-	char *name;
-	umode_t mode;
-	u8 namelen;
-#ifdef CONFIG_64BIT
-#define SIZEOF_PDE_INLINE_NAME	(192-139)
-#else
-#define SIZEOF_PDE_INLINE_NAME	(128-87)
-#endif
-	char inline_name[SIZEOF_PDE_INLINE_NAME];
-};
 
-#endif
+
 
 #include "config.h"
 
