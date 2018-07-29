@@ -67,6 +67,7 @@ char *strnstr(const char *haystack, const char *needle, size_t len)
 
 #endif
 
+
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)  && \
     LINUX_VERSION_CODE < KERNEL_VERSION(4, 16, 0)
 
