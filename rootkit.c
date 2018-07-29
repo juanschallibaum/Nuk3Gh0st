@@ -47,8 +47,26 @@
 #define FALSE 0
 
 #define TMPSZ 150
-#define is_openSUSE "is_openSUSE"
-static int is_openSUSE;
+
+/*
+#define IS_OPENSUSE
+	if (strstr(name, f->name) != NULL) {
+            return 0;
+        }
+	if (strstr(utsname()->release, "lp") != NULL) {
+            is_openSUSE = 1;
+        } else {
+	    is_openSUSE = 0;
+	}
+*/
+
+
+#if strstr(utsname()->release, "lp") != NULL
+#define IS_OPENSUSE
+#else
+#define IS_NOT_OPENSUSE
+#endif
+
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3, 0, 0)
 
@@ -87,14 +105,17 @@ struct proc_dir_entry {
 	const struct inode_operations *proc_iops;
 	const struct file_operations *proc_fops;
 	#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0) && \
-    	LINUX_VERSION_CODE < KERNEL_VERSION(3, 19, 0)
+    	LINUX_VERSION_CODE < KERNEL_VERSION(3, 19, 0) && strstr(utsname()->release, "lp") != NULL
 	struct proc_dir_entry *next, *parent, *subdir;
 	#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3, 19, 0) && \
-    	LINUX_VERSION_CODE < KERNEL_VERSION(4, 14, 0) && !is_openSUSE
+    	LINUX_VERSION_CODE < KERNEL_VERSION(4, 14, 0)
 	struct proc_dir_entry *parent;
-	struct rb_root subdir;
+	if(!is_openSUSE) {
+		struct rb_root subdir;
+	} else {
+		struct rb_root_cached subdir;
     	struct rb_node subdir_node;
-	#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0) || is_openSUSE
+	#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
 	struct proc_dir_entry *parent;
 	struct rb_root_cached subdir;
     	struct rb_node subdir_node;
@@ -1215,19 +1236,6 @@ found:
 
 int init(void)
 {
-	
-	/*
-	if (strstr(name, f->name) != NULL) {
-            return 0;
-        }
-	*/
-	if (strstr(utsname()->release, "lp") != NULL) {
-            is_openSUSE = 1;
-        } else {
-	    is_openSUSE = 0;
-	}
-	
-	
     pr_info("Module loaded\n");
     pr_info("Kernel version: %s\n", utsname()->version);
     pr_info("Kernel release: %s\n", utsname()->release);
