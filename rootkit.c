@@ -69,14 +69,13 @@ char *strnstr(const char *haystack, const char *needle, size_t len)
 
 
 
-
 struct proc_dir_entry {
 	/*
 	 * number of callers into module in progress;
 	 * negative -> it's going away RSN
 	 */
 	atomic_t in_use;
-	refcount_t refcnt;
+	atomic_t count;		/* use count */
 	struct list_head pde_openers;	/* who did ->open, but not ->release */
 	/* protects ->pde_openers and all struct pde_opener instances */
 	spinlock_t pde_unload_lock;
@@ -90,17 +89,11 @@ struct proc_dir_entry {
 	kgid_t gid;
 	loff_t size;
 	struct proc_dir_entry *parent;
-	struct rb_root subdir;
+	struct rb_root_cached subdir;
 	struct rb_node subdir_node;
-	char *name;
 	umode_t mode;
 	u8 namelen;
-#ifdef CONFIG_64BIT
-#define SIZEOF_PDE_INLINE_NAME	(192-139)
-#else
-#define SIZEOF_PDE_INLINE_NAME	(128-87)
-#endif
-	char inline_name[SIZEOF_PDE_INLINE_NAME];
+	char name[];
 };
 
 
@@ -1106,7 +1099,7 @@ int setup_proc_comm_channel(void)
     #endif
     */
 	
-    entry = rb_first(&proc_entry->subdir);
+    entry = rb_first(&proc_entry->subdir.rb_root);
 
     while (entry) {
         pr_info("Looking at \"/proc/%s\"\n", rb_entry(entry, struct proc_dir_entry, subdir_node)->name);
