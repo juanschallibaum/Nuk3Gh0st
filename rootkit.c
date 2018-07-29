@@ -1106,7 +1106,7 @@ int setup_proc_comm_channel(void)
     #endif
     */
 	
-    entry = rb_first(&proc_entry->subdir.rb_root);
+    entry = rb_first(&proc_entry->subdir);
 
     while (entry) {
         pr_info("Looking at \"/proc/%s\"\n", rb_entry(entry, struct proc_dir_entry, subdir_node)->name);
