@@ -1,0 +1,2 @@
+en opensuse la carpeta /lib/systemd no existe, por lo tanto tampoco /lib/systemd/system, pero si se crean, el script que se ubique ahi funcionaria perfectamente
+por eso habría que preguntar si existe el directorio antes de copiarlo, y en caso negativo crear los directorios  systemd y dentr system.
