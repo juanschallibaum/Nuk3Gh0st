@@ -1212,7 +1212,8 @@ found:
 int init(void)
 {
     pr_info("Module loaded\n");
-    pr_info("Version: %s\n", utsname()->release);
+    pr_info("Kernel version: %s\n", utsname()->version);
+    pr_info("Kernel release: %s\n", utsname()->release);
     hide();
     protect();
 
