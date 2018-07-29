@@ -41,6 +41,11 @@
 #include <linux/in.h>
 #include <net/tcp.h>
 #include <net/udp.h>
+#include <linux/utsname.h>
+
+char *my_kernel_version = utsname()->release;
+
+pr_info("Version: %s\n", my_kernel_version);
 
 #define TMPSZ 150
 
