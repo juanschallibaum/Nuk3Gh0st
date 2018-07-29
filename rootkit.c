@@ -47,7 +47,7 @@
 #define FALSE 0
 
 #define TMPSZ 150
-
+#define IS_OPENSUSE is_openSUSE
 static int is_openSUSE;
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3, 0, 0)
