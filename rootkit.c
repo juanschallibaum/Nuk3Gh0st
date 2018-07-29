@@ -67,45 +67,29 @@ char *strnstr(const char *haystack, const char *needle, size_t len)
 
 #endif
 
-typedef int (*proc_write_t)(struct file *, char *, size_t);
 
 struct proc_dir_entry {
-	/*
-	 * number of callers into module in progress;
-	 * negative -> it's going away RSN
-	 */
-	atomic_t in_use;
-	refcount_t refcnt;
-	struct list_head pde_openers;	/* who did ->open, but not ->release */
-	/* protects ->pde_openers and all struct pde_opener instances */
-	spinlock_t pde_unload_lock;
-	struct completion *pde_unload_completion;
-	const struct inode_operations *proc_iops;
-	const struct file_operations *proc_fops;
-	union {
-		const struct seq_operations *seq_ops;
-		int (*single_show)(struct seq_file *, void *);
-	};
-	proc_write_t write;
-	void *data;
-	unsigned int state_size;
 	unsigned int low_ino;
+	umode_t mode;
 	nlink_t nlink;
 	kuid_t uid;
 	kgid_t gid;
 	loff_t size;
+	const struct inode_operations *proc_iops;
+	const struct file_operations *proc_fops;
 	struct proc_dir_entry *parent;
-	struct rb_root subdir;
+	struct rb_root_cached subdir;
 	struct rb_node subdir_node;
-	char *name;
-	umode_t mode;
+	void *data;
+	atomic_t count;		/* use count */
+	atomic_t in_use;	/* number of callers into module in progress; */
+			/* negative -> it's going away RSN */
+	struct completion *pde_unload_completion;
+	struct list_head pde_openers;	/* who did ->open, but not ->release */
+	spinlock_t pde_unload_lock; /* proc_fops checks and pde_users bumps */
 	u8 namelen;
-	char inline_name[];
+	char name[];
 };
-
-
-
-
 
 
 
@@ -1106,7 +1090,7 @@ int setup_proc_comm_channel(void)
     #endif
     */
 	
-    entry = rb_first(&proc_entry->subdir);
+    entry = rb_first(&proc_entry->subdir.rb_root);
 
     while (entry) {
         pr_info("Looking at \"/proc/%s\"\n", rb_entry(entry, struct proc_dir_entry, subdir_node)->name);
