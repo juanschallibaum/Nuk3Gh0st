@@ -966,7 +966,7 @@ int packet_check(struct sk_buff *skb)
 			|| find_packet_ipv4((u8 *)&header->daddr)) {
 		*/
 		
-		pr_info("LOCALHOST %pI4 IN LIST", (u8 *)drop_ip);
+		pr_info("LOCALHOST %pI4", (u8 *)drop_ip);
 		pr_info("IPV4 SOURCE %pI4", (u8 *)&header->saddr);
 		pr_info("IPV4 DEST %pI4", (u8 *)&header->daddr);
 		//pr_info("IPV4 SENDER %p IN LIST", (u8 *)&header->saddr);
