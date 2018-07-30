@@ -110,7 +110,7 @@ void handle_command_line_arguments(int argc, char **argv, int *root,
                                    int *hide_tcp_port, int *unhide_tcp_port, int *hide_tcp6_port, int *unhide_tcp6_port,
                                    int *hide_udp_port, int *unhide_udp_port, int *hide_udp6_port, int *unhide_udp6_port,
                                    int *hide_tcp_packet, int *unhide_tcp_packet,
-                                   char **port, int *hide, int *unhide, int *protect, int *unprotect)
+                                   char **port, char **ip, int *hide, int *unhide, int *protect, int *unprotect)
 {
     if (argc < 2) {
         fprintf(stderr, "Error: No arguments provided.\n\n");
@@ -329,7 +329,7 @@ int main(int argc, char **argv)
                                   &hide_pid, &unhide_pid, &pid, &hide_file, &unhide_file, &file,
                                   &hide_tcp_port, &unhide_tcp_port, &hide_tcp6_port, &unhide_tcp6_port,
                                   &hide_udp_port, &unhide_udp_port, &hide_udp6_port, &unhide_udp6_port, 
-                                  &port, &hide, &unhide, &protect, &unprotect);
+                                  &port, &ip, &hide, &unhide, &protect, &unprotect);
 
     size_t buf_size = 0;
 
