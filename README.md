@@ -37,6 +37,7 @@ The rootkit can do the following:
 
 |           Distro            |          Kernel         |    Arch    |
 |-----------------------------|-------------------------|------------|
+| Arch Linux 2018             |  4.17.10-1-ARCH         |   x86_64   |
 | Kali Linux (Rolling)        |  4.17.9                 |   x86_64   |
 | Kali Linux (Rolling)        |  4.16.18                |   x86_64   |
 | Linux Mint 19 (Tara)        |  4.15.0-20-generic      |   i686     |
