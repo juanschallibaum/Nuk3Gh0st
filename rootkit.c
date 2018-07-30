@@ -931,6 +931,7 @@ int packet_check(struct sk_buff *skb)
 		if(find_packet_ipv4((u8 *)&header->saddr) 
 			|| find_packet_ipv4((u8 *)&header->daddr)) {
 		*/
+		pr_info("IP ENTRANTE: %d   IP LOCALHOST: %d\n", header->daddr, *(unsigned int *)drop_ip);
 		if(header->saddr == *(unsigned int *)drop_ip || header->daddr == *(unsigned int *)drop_ip){
 			//debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 			pr_info("SE DETECTO 127.0.0.1 FILTRANDO\n");
