@@ -319,6 +319,7 @@ int main(int argc, char **argv)
     int hide_tcp_packet;
     int unhide_tcp_packet;
     char *port;
+    char *ip;
     int hide;
     int unhide;
     int protect;
