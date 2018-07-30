@@ -616,7 +616,7 @@ int hide_tcp4_packet(const char *ip)
     return 1;
 }
 
-void unhide_tcp4_packet(const char *name)
+void unhide_tcp4_packet(const char *ip)
 {
     struct hidden_packet *p, *tmp;
 
