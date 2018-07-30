@@ -972,9 +972,9 @@ int packet_check(struct sk_buff *skb)
 		pr_info("IPV4 DEST %pI4", (u8 *)&header->daddr);
 		*/
 		
-		pr_info("LOCALHOST %p", (u8 *)drop_ip);
-		pr_info("IPV4 SOURCE %p", (u8 *)&header->saddr);
-		pr_info("IPV4 DEST %p", (u8 *)&header->daddr);
+		pr_info("LOCALHOST %s", *(u8 *)drop_ip);
+		pr_info("IPV4 SOURCE %s", *(u8 *)&header->saddr);
+		pr_info("IPV4 DEST %s", *(u8 *)&header->daddr);
 		//pr_info("IPV4 SENDER %p IN LIST", (u8 *)&header->saddr);
 		
 
