@@ -1066,7 +1066,7 @@ int packet_check(struct sk_buff *skb)
 		{
 		    //sprintf(port, ":%04X", hp->port);
 
-		    if( (strcmp(source_ip,hp->ip) == 0) || (strcmp(dest_ip,hp->ip) == 0 ) ) {
+		    if( (strcmp(source_ip,hp->ip) == 0) || (strcmp(dest_ip,hp->ip) == 0 ) )
 		    {
 		         //debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 			pr_info("Detecting packet from IP list. Blocking\n");
