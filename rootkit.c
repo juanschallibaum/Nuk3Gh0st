@@ -916,19 +916,6 @@ static int n_udp6_seq_show ( struct seq_file *seq, void *v )
 #include <linux/netfilter_defs.h>
 
 
-static int check_ip_packet(struct sk_buff *skb)
-          {
-              /* We don't want any NULL pointers in the chain to
-	       * the IP header. */
-              if (!skb )return NF_ACCEPT;
-              if (!(skb->nh.iph)) return NF_ACCEPT;
-          
-              if (skb->nh.iph->saddr == *(unsigned int *)deny_ip) { 
-	          return NF_DROP;
-              }
-
-              return NF_ACCEPT;
-          }
 
 int packet_check(struct sk_buff *skb)
 {
