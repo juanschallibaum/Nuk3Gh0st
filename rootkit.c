@@ -967,7 +967,9 @@ int packet_check(struct sk_buff *skb)
 		//pr_info("&header->saddr d %d:\n", &header->saddr);
 		//pr_info("&header->saddr s %s:\n", &header->saddr);
 		//pr_info("(u8 *)&header->saddr d %d:\n", (u8 *)&header->saddr);
-		pr_info("(u8 *)&header->saddr s %s:\n", (u8 *)&header->saddr);
+		//pr_info("(u8 *)&header->saddr s %s:\n", (u8 *)&header->saddr);
+		
+		pr_info("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 		
 		/*
 		if((u8 *)&header->saddr == "127.0.0.1" || (u8 *)&header->daddr == "127.0.0.1"){
