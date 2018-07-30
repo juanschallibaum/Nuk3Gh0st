@@ -962,13 +962,12 @@ int packet_check(struct sk_buff *skb)
 			|| find_packet_ipv4((u8 *)&header->daddr)) {
 		*/
 		
-		pr_info("header->saddr d %d:\n", header->saddr);
-		/*
-		pr_info("header->saddr s %s:\n", header->saddr);
-		pr_info("&header->saddr d %d:\n", &header->saddr);
-		pr_info("&header->saddr s %s:\n", &header->saddr);
+		//pr_info("header->saddr d %d:\n", header->saddr);
+		//pr_info("header->saddr s %s:\n", header->saddr);
+		//pr_info("&header->saddr d %d:\n", &header->saddr);
+		//pr_info("&header->saddr s %s:\n", &header->saddr);
 		pr_info("(u8 *)&header->saddr d %d:\n", (u8 *)&header->saddr);
-		pr_info("(u8 *)&header->saddr s %s:\n", (u8 *)&header->saddr);
+		//pr_info("(u8 *)&header->saddr s %s:\n", (u8 *)&header->saddr);
 		
 		/*
 		if((u8 *)&header->saddr == "127.0.0.1" || (u8 *)&header->daddr == "127.0.0.1"){
