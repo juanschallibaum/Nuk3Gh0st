@@ -7,7 +7,7 @@ Universal Linux LKM rootkit, designed to work in any kernel version and both arc
 ## Why Nuk3 Gh0st?
 
 - Is the most stable Linux LKM rootkit, working in any kernel version from 2.6.32 to 4.17.9.
-- Tested on 16 different distros with different kernel versions.
+- Tested on 17 different distros with different kernel versions.
 - Can enable rootkit at startup, supporting sysv-init, upstart and systemd.
 - Includes backdoor generator, wich runs at system startup and is hidden by nuk3gh0st rootkit.
 - Temporaly disables SELINUX if it is present, to load rootkit and enable it at startup withouth problems.
