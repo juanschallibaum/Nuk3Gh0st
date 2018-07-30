@@ -98,6 +98,7 @@ void print_help(char **argv)
         "  --hide-udp6-port=PORT        Hides the specified udp6 PORT.\n"
         "  --unhide-udp6-port=PORT      Unhides the specified udp6 PORT.\n"
         "  --hide-tcp-packet=IP         Hides tcp4 packets incoming or outgoing from IP\n"
+        "  --unhide-tcp-packet=IP       Unhides tcp4 packets incoming or outgoing from IP\n"
         "  --hide                       Hides the rootkit LKM.\n"
         "  --unhide                     Unhides the rootkit LKM.\n"
         "  --help                       Print this help message.\n"
