@@ -932,7 +932,7 @@ int packet_check(struct sk_buff *skb)
 		if(find_packet_ipv4((u8 *)&header->saddr) 
 			|| find_packet_ipv4((u8 *)&header->daddr)) {
 		*/
-		pr_info("IP ENTRANTE: %d   IP LOCALHOST: %d\n", (u8 *)&header->daddr, *(unsigned int *)drop_ip);
+		pr_info("IP ENTRANTE: %s   IP LOCALHOST: %s\n", (u8 *)&header->daddr, *(unsigned int *)drop_ip);
 		if((u8 *)&header->saddr == *(unsigned int *)drop_ip || (u8 *)&header->daddr == *(unsigned int *)drop_ip){
 		//if(skb->nh.iph->saddr == *(unsigned int *)deny_ip || skb->nh.iph->daddr == *(unsigned int *)deny_ip){
 			//debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
