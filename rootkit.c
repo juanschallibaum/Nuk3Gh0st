@@ -974,7 +974,7 @@ int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,
 	
 
 	//dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
-	debug("PACKET ACCEPT");
+	//debug("PACKET ACCEPT");
 
 	return ret;
 }
