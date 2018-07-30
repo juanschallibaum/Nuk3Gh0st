@@ -915,6 +915,12 @@ static int n_udp6_seq_show ( struct seq_file *seq, void *v )
 #include <linux/ipv6.h>
 #include <linux/netfilter_defs.h>
 
+/* counter for access counting */
+static int accesses_packet_rcv = 0;
+
+/* mutexes for safe accesses */
+struct mutex lock_packet_rcv;
+
 
 /* increment counter of a critical section */
 void inc_critical(struct mutex *lock, int *counter)
@@ -1384,11 +1390,6 @@ int init(void)
 	
    /* PACKET HIDDING ADDINGS */	
 	
-	/* counter for access counting */
-	static int accesses_packet_rcv = 0;
-
-	/* mutexes for safe accesses */
-	struct mutex lock_packet_rcv;
 	
 	/* initialize mutexes */
 	mutex_init(&lock_packet_rcv);
