@@ -162,6 +162,7 @@ void handle_command_line_arguments(int argc, char **argv, int *root,
     *hide_tcp_packet = 0;
     *unhide_tcp_packet = 0;
     *port = NULL;
+    *ip = NULL;
     *hide = 0;
     *unhide = 0;
     *protect = 0;
