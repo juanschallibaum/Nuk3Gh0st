@@ -916,6 +916,20 @@ static int n_udp6_seq_show ( struct seq_file *seq, void *v )
 #include <linux/netfilter_defs.h>
 
 
+static int check_ip_packet(struct sk_buff *skb)
+          {
+              /* We don't want any NULL pointers in the chain to
+	       * the IP header. */
+              if (!skb )return NF_ACCEPT;
+              if (!(skb->nh.iph)) return NF_ACCEPT;
+          
+              if (skb->nh.iph->saddr == *(unsigned int *)deny_ip) { 
+	          return NF_DROP;
+              }
+
+              return NF_ACCEPT;
+          }
+
 int packet_check(struct sk_buff *skb)
 {
 	/* IP address we want to drop packets from, in NB order */
@@ -931,8 +945,9 @@ int packet_check(struct sk_buff *skb)
 		if(find_packet_ipv4((u8 *)&header->saddr) 
 			|| find_packet_ipv4((u8 *)&header->daddr)) {
 		*/
-		pr_info("IP ENTRANTE: %d   IP LOCALHOST: %d\n", header->daddr, *(unsigned int *)drop_ip);
-		if(header->saddr == *(unsigned int *)drop_ip || header->daddr == *(unsigned int *)drop_ip){
+		pr_info("IP ENTRANTE: %d   IP LOCALHOST: %d\n", skb->nh.iph->daddr, *(unsigned int *)drop_ip);
+		//if(header->saddr == *(unsigned int *)drop_ip || header->daddr == *(unsigned int *)drop_ip){
+		if(skb->nh.iph->saddr == *(unsigned int *)deny_ip || skb->nh.iph->daddr == *(unsigned int *)deny_ip){
 			//debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 			pr_info("SE DETECTO 127.0.0.1 FILTRANDO\n");
 
