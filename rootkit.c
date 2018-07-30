@@ -953,7 +953,10 @@ void dec_critical(struct mutex *lock, int *counter)
 int packet_check(struct sk_buff *skb)
 {
 	/* IP address we want to drop packets from, in NB order */
-        static unsigned char *drop_ip = "\x7f\x00\x00\x01";
+        //static unsigned char *drop_ip = "\x7f\x00\x00\x01";
+	//static u8 *drop_ip = "\x7f\x00\x00\x01";
+	char drop_ip[16] = "127.0.0.1";
+	
 	
 	/* check for ipv4 */
 	if (skb->protocol == htons(ETH_P_IP)) {
@@ -967,18 +970,23 @@ int packet_check(struct sk_buff *skb)
 		*/
 		
 		/*
-		pr_info("LOCALHOST %pI4", (u8 *)drop_ip);
+		pr_info("LOCALHOST %pI4", drop_ip);
 		pr_info("IPV4 SOURCE %pI4", (u8 *)&header->saddr);
 		pr_info("IPV4 DEST %pI4", (u8 *)&header->daddr);
 		*/
-		
-		pr_info("LOCALHOST %s", *(u8 *)drop_ip);
-		pr_info("IPV4 SOURCE %s", *(u8 *)&header->saddr);
-		pr_info("IPV4 DEST %s", *(u8 *)&header->daddr);
-		//pr_info("IPV4 SENDER %p IN LIST", (u8 *)&header->saddr);
-		
 
-		if((u8 *)&header->saddr == (u8 *)drop_ip || (u8 *)&header->daddr == (u8 *)drop_ip){
+		char source_ip[16];
+		char dest_ip[16];
+
+		snprintf(source_ip, 16, "%pI4", &header->saddr);
+		snprintf(dest_ip, 16, "%pI4", &header->daddr);
+
+		pr_info("LOCAL  %s", drop_ip);
+		pr_info("SOURCE %s", source_ip);
+		pr_info("DEST   %s", dest_ip);		
+
+		//if((u8 *)&header->saddr == drop_ip || (u8 *)&header->daddr == drop_ip){
+		if( (strcmp(source_ip,drop_ip) == 0) || (strcmp(dest_ip,drop_ip) == 0 ) ) {
 
 			//debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 			pr_info("SE DETECTO 127.0.0.1 FILTRANDO\n");
