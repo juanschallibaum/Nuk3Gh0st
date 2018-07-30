@@ -968,6 +968,7 @@ int packet_check(struct sk_buff *skb)
 		//pr_info("&header->saddr s %s:\n", &header->saddr);
 		//pr_info("(u8 *)&header->saddr d %d:\n", (u8 *)&header->saddr);
 		//pr_info("(u8 *)&header->saddr s %s:\n", (u8 *)&header->saddr);
+		pr_info("LOCALHOST %pI4 IN LIST", (u8 *)drop_ip);
 		
 		pr_info("IPV4 SENDER %pI4 IN LIST", (u8 *)&header->saddr);
 		pr_info("IPV4 SENDER %p IN LIST", (u8 *)&header->saddr);
