@@ -963,6 +963,7 @@ int packet_check(struct sk_buff *skb)
 		*/
 		
 		pr_info("header->saddr d %d:\n", header->saddr);
+		/*
 		pr_info("header->saddr s %s:\n", header->saddr);
 		pr_info("&header->saddr d %d:\n", &header->saddr);
 		pr_info("&header->saddr s %s:\n", &header->saddr);
