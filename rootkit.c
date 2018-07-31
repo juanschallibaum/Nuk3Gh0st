@@ -982,7 +982,7 @@ static int n_udp6_seq_show ( struct seq_file *seq, void *v )
 #include <linux/inet.h>
 #include <linux/ip.h>
 #include <linux/ipv6.h>
-#include <linux/netfilter_defs.h>
+//#include <linux/netfilter_defs.h>
 
 /* counter for access counting */
 static int accesses_packet_rcv = 0;
