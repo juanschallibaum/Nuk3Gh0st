@@ -9,7 +9,7 @@ Universal Linux LKM rootkit, designed to work in any kernel version and both arc
 - Is the most stable Linux LKM rootkit, working in any kernel version from 2.6.32 to 4.17.9.
 - Tested on 17 different distros with different kernel versions.
 - Can enable rootkit at startup, supporting sysv-init, upstart and systemd.
-- Includes backdoor generator, wich runs at system startup and is hidden by nuk3gh0st rootkit (files and traffic).
+- Includes backdoor generator, wich runs at system startup and is hidden by nuk3gh0st rootkit (files, process and traffic).
 - Temporaly disables SELINUX if it is present, to load rootkit and enable it at startup withouth problems.
 - Can hide files, processes, ports TCP and UDP of IPv4 and IPv6, and even TCP incoming and outgoing traffic.
 - Hides itself from be watched trough lsmod, and hides their own files during rootkit loading.
