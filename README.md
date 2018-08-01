@@ -2,6 +2,8 @@
 
 # Nuk3 Gh0st
 
+##Currently there are problems after i adding the functionality of hiding packages, and also is unstable in multicore systems 
+
 Universal Linux LKM rootkit, designed to work in any kernel version and both architectures (x86 and x64).
 
 ## Why Nuk3 Gh0st?
