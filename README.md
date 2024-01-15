@@ -2,9 +2,11 @@
 
 # Nuk3 Gh0st
 
-## Currently there are problems after i adding the functionality of hiding network traffic, and also is unstable in multicore systems 
-
 Universal Linux LKM rootkit, designed to work in any kernel version and both architectures (x86 and x64).
+
+## Note 
+
+#### Please be aware of existing issues following the addition of the network traffic hiding functionality. Additionally, there is instability in multicore systems.
 
 ## Why Nuk3 Gh0st?
 
@@ -210,6 +212,10 @@ make uninstall
 
 ## License
 This project is licensed under [GPLv2](LICENSE).
+
+## Credits
+
+Nuk3gh0st is based on [nurupo/rootkit](https://github.com/nurupo/rootkit). It extends its functionality by incorporating both its own modules and those from other well-known rootkits. Additionally, it has been adapted to operate on a wide range of different kernels, undergoing thorough testing across various operating systems. However, it's important to note that the core of Nuk3gh0st is derived from nurupo's rootkit, and as such, nurupo deserves the majority of the credit.
 
 ## Disclaimer
 
