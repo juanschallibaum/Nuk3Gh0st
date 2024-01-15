@@ -116,7 +116,7 @@ nuk3gh0st --help
     $$$$$$  $$    $$  $$$$$$  $$$$$$$    $$$$   
 
                    By Juan Schällibaum
-		Based on Nurupo\'s Rootkit          
+                 Based on nurupo rootkit          
 
    Usage: nuk3gh0st [OPTION]...
 
