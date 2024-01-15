@@ -780,7 +780,7 @@ void unprotect(void)
 }
 
 
-// ========== END PROTECT ==========
+// ========== END PROTECT =========
 
 
 // ========== READDIR ==========
