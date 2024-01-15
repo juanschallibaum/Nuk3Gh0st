@@ -115,7 +115,8 @@ nuk3gh0st --help
    $$    $$ $$    $$ $$   $$$       $$   $$ $$  
     $$$$$$  $$    $$  $$$$$$  $$$$$$$    $$$$   
 
-                   By Juan Schällibaum          
+                   By Juan Schällibaum
+		Based on Nurupo's Rootkit          
 
    Usage: nuk3gh0st [OPTION]...
 
