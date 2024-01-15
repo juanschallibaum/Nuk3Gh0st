@@ -77,7 +77,7 @@ void print_help(char **argv)
         " $$$$$$  $$    $$  $$$$$$  $$$$$$$    $$$$   \n"
         "                                             \n"
         "                By Juan Schällibaum          \n"
-        "                                             \n"
+        "              Based on nurupo rootkit        \n"
                             
         
         "Usage: %s [OPTION]...\n"
